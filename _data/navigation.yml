@@ -1,0 +1,21 @@
+# Main navigation, rendered in _includes/masthead.html.
+# A `requires_flag` key gates the link on a site-level flag in _config.yml.
+# Pages still build at their permalinks; only the nav entry is hidden.
+
+main:
+  - title: "About"
+    url: /about/
+  - title: "Publications"
+    url: /publications/
+  - title: "Side projects"
+    url: /portfolio/
+  - title: "Blog"
+    url: /posts/
+  - title: "CV"
+    url: /cv/
+  - title: "Talks"
+    url: /talks/
+    requires_flag: show_talks
+  - title: "Teaching"
+    url: /teaching/
+    requires_flag: show_teaching

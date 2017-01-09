@@ -1,0 +1,24 @@
+# Build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# macOS
+.DS_Store
+
+# Editors / IDEs
+.vscode/
+local/
+.claude/
+.superpowers/
+
+# Bundler / Ruby
+.bundle/
+/vendor/
+Gemfile.lock
+
+# Node
+node_modules/
+package-lock.json
+docs/data/*
