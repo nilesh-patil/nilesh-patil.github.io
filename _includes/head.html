@@ -1,0 +1,40 @@
+{% include base_path %}
+
+<meta charset="utf-8">
+
+{% include seo.html %}
+
+<link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+{% if site.dark_mode %}
+<script>
+  /* Pre-paint theme application: runs synchronously before <body> renders to
+     prevent a flash of unstyled content. Three modes: light (default), dark,
+     sepia. Cycle + persistence logic lives in assets/js/theme-cycle.js
+     (loaded after the academicpages bundle to override the stock 2-state
+     toggle). Keep this block free of // line comments: the HTML compressor
+     flattens this script to a single line, so a // would comment out the
+     rest of the IIFE and silently kill theme restore (esp. sepia, which the
+     stock academicpages bundle does not know how to re-apply on load). */
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var allowed = stored === 'dark' || stored === 'light' || stored === 'sepia';
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = allowed ? stored : (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark' || theme === 'sepia') {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    } catch (_) { /* localStorage may be blocked; fall through to light. */ }
+  })();
+</script>
+{% endif %}
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
