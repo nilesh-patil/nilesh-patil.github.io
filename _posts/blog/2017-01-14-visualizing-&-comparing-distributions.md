@@ -46,7 +46,7 @@ data = data.merge(countries,how='left',on='countryName')
 data = data[~data.Region.isnull()]
 ```
 
-#### 1. Histograms:
+#### Histograms:
 
 
 ```python
@@ -62,7 +62,7 @@ sns.plt.title('Life expectancy at birth- years');
 ![png](\images\blog\distributions\output_5_0.png)
 
 
-#### 2. Scatter Plot:
+#### Scatter Plot:
 
 
 ```python
@@ -84,7 +84,7 @@ sns.plt.ylabel('Female');
 ![png](\images\blog\distributions\output_7_0.png)
 
 
-#### 3. Density plot:
+#### Density plot:
 
 
 ```python
@@ -102,7 +102,7 @@ sns.plt.ylabel('Fraction');
 ![png](\images\blog\distributions\output_9_0.png)
 
 
-#### 4. Boxplot:
+#### Boxplot:
 
 
 ```python
@@ -127,7 +127,7 @@ sns.plt.xticks(rotation=30);
 ![png](\images\blog\distributions\output_11_0.png)
 
 
-#### 5. Violin plot:
+#### Violin plot:
 
 
 ```python
@@ -202,7 +202,7 @@ sns.plt.xticks(rotation=30);
 ![png](\images\blog\distributions\output_16_0.png)
 
 
-#### 6. Heatmap:
+#### Heatmap:
 
 
 ```python
@@ -243,4 +243,4 @@ sns.plt.title('Expenditure on education (%GDP)');
 ![png](\images\blog\distributions\output_18_0.png)
 
 
-#### 7. Rugs:
+#### Rugs:
