@@ -12,18 +12,18 @@ date: 2017-01-14T15:39:55-04:00
 modified: 2017-01-14T14:19:19-04:00
 ---
 
+###### Sections:
+
+* [1. Histogram](#1-histogram)
+* [2. Scatter plot](#2-scatter-plot)
+* [3. Density plot](#3-density-plot)
+* [4. Boxplot](#4-boxplot)
+* [5. Violin-plot](#5-violin-plot)
+* [6. Heatmap](#6-heatmap)
+* [7. Rugs](#7-rugs)
 
 Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & vizualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
 
-We'll discuss the following plots :
-
-	1. Histogram
-	2. Scatter plot
-	3. Density plot
-	4. Boxplot
-	5. Violin plot
-	6. Heatmap
-	7. Rugs
 
 
 ```python
@@ -32,9 +32,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-```
 
-```python
 
 data = pd.read_csv('./indicators.txt',sep='\t')
 countries = pd.read_csv('./country_classification_worldbank.txt',sep='\t')
@@ -48,7 +46,7 @@ data = data.merge(countries,how='left',on='countryName')
 data = data[~data.Region.isnull()]
 ```
 
-$$Histograms$$
+#### 1. Histograms:
 
 
 ```python
@@ -64,7 +62,7 @@ sns.plt.title('Life expectancy at birth- years');
 ![png](\images\blog\distributions\output_5_0.png)
 
 
-$$Scatter Plot$$
+#### 2. Scatter Plot:
 
 
 ```python
@@ -86,7 +84,7 @@ sns.plt.ylabel('Female');
 ![png](\images\blog\distributions\output_7_0.png)
 
 
-$$Density\ plot$$
+#### 3. Density plot:
 
 
 ```python
@@ -104,7 +102,7 @@ sns.plt.ylabel('Fraction');
 ![png](\images\blog\distributions\output_9_0.png)
 
 
-$$Boxplot$$
+#### 4. Boxplot:
 
 
 ```python
@@ -129,7 +127,7 @@ sns.plt.xticks(rotation=30);
 ![png](\images\blog\distributions\output_11_0.png)
 
 
-$$Violin\ plot$$
+#### 5. Violin plot:
 
 
 ```python
@@ -204,7 +202,7 @@ sns.plt.xticks(rotation=30);
 ![png](\images\blog\distributions\output_16_0.png)
 
 
-$$Heatmap$$
+#### 6. Heatmap:
 
 
 ```python
@@ -245,4 +243,4 @@ sns.plt.title('Expenditure on education (%GDP)');
 ![png](\images\blog\distributions\output_18_0.png)
 
 
-#### Rugs
+#### 7. Rugs:
