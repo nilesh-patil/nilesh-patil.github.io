@@ -19,17 +19,17 @@ modified: 2017-03-14T19:48:19-04:00
 * [6. Final comments](#final-comments)
 * [References](#references)
 
-##### *1. Introduction:*
+##### 1. Introduction:
 
 Transportation networks offer a fascinating opportunity to identify local population’s travel habits, aggregated daily routines and a way to augment city-planning decisions. In our analysis, we have focused on exploring travel patterns of New York City residents from about 146+ million taxi trips. The complete code, visualizations & reports are available in the [**Github Repository**](https://github.com/nilesh-patil/TransportationFlowNetwork)
 
-##### *2. Prior work:*
+##### 2. Prior work:
 
 GPS based transportation networks have been studied in detail for traffic flow analysis and determining social dynamics<sup>[1]</sup>. Bike sharing datasets have been used for clustering locations based on the usage profile<sup>[2]</sup> and predicting bike demand<sup>[3]</sup> GPS based taxi datasets have been used to identify mobility patterns in Shanghai, China<sup>[4]</sup>.
 
 In<sup>[4]</sup>, the trip distribution has been characterized as combination of 3 independent types and non-negative matrix factorization has been used to identify 3 patterns from 1.58 million trips in Shanghai, China. This is the core of our approach, as we are attempting to characterize taxi usage in New York City with a similar dataset. Prior analysis has also been done to produce transportation network graphs from street geometries<sup>[5]</sup> and subway maps<sup>[6]</sup>.
 
-##### *3. Data Description:*
+##### 3. Data Description:
 
 a)  *Raw data:*
 
@@ -59,7 +59,7 @@ Same location : multiple close nodes
 
 We finally decided to merge our dataset with US Census Bureau census tracts which removed the above problem. We have 580+ nodes in the final network and are worked with analyzing census tract as node and number of trips between two census tracts represented as an edge.
 
-##### *4. Exploratory Analysis:*
+##### 4. Exploratory Analysis:
 
 1 . Trips taken in each month(fig-i) peaks between March-May and drops substantially during June onwards. This can be attributed directly to the weather pattern, as commuters are expected to avoid walking long distances during low temperatures or rainy weather.
 
@@ -85,7 +85,7 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 
 ![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="400px" width="400px"}
 
-##### *5. Full Network analysis*
+##### 5. Full Network analysis
 
 ![Taxi-Graph](\images\blog\graphs\nycTaxiData\image7.png){: .center-image height="750px" width="750px"}
 
@@ -116,7 +116,7 @@ We divided the network into 3 communities, using multilevel community detection 
 
 We plotted a snapshot of the trips leaving major NYC areas and this shows, Manhattan is the most connected of all, whereas most trips from Lower east side, East village & Brooklyn end up towards northern sides of NYC. With a small fraction ending up within the community itself.
 
-##### *6. Final comments*
+##### 6. Final comments
 
 - Cities are different from other networks in the sense that minor rerouting is usually pretty straighforward i.e. a detour of one block is easy to take and usually does not lead to significant change in cost, time or length of the route.
 

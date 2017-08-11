@@ -17,7 +17,7 @@ modified: 2017-07-15T19:48:19-04:00
 * [4. Densenet Based Classifier](#densenet-classifier)
 * [References](#references)
 
-##### *1. Introduction:*
+##### 1. Introduction:
 
 Astronomy has historically been one of the most data intensive fields & a major chunk of this data is collected is collected as images collected by variety a number of telescopes - terrestrial as well as in space. A BIG data-project which aims to collate this data from various sources to form a coherent picture of the universe is [Sloan Digital Sky Survey](http://www.sdss.org/).
 
@@ -36,7 +36,7 @@ A citizen science project called [Galaxy zoo](https://www.galaxyzoo.org) was lau
 ![](\images\blog\galaxyzoo\00.galaxyzoo-tree.png){: .center-image height="850px" width="1050px"}
 
 
-##### *2. Data Description:*
+##### 2. Data Description:
 
 The dataset consists of 100k+ jpeg images and the corresponding score vector for each image. The score vector has 37 values where each value represents the weighted score from volunteers in the project.
 
@@ -53,6 +53,6 @@ These images are read in as `numpy` arrays in python with the following represen
 ![Numpy array](\images\blog\galaxyzoo\03.numpy_array.png){: .center-image height="250px" width="250px"}
 
 
-##### *3. Fully Convolutional Model:*
+##### 3. Fully Convolutional Model:
 
 A convolutional network takes in your image array as input extracts features from this array which best represents the task at hand & then gives out a classification/regression output. Standard classification models use one-vs-rest scheme to mathematically represent output. In this form, the correct class is assigned `1` while other possible classes in the dataset are assigned `0`. The output vector is of length `c`, where `c` is total number of classes in the dataset.

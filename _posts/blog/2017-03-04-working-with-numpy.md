@@ -14,17 +14,17 @@ If you don't know, in short - [Numpy](http://www.numpy.org) is a python library 
 
 ## Index
 
-[Vectors](#Vectors)
-  - [Generate a sequence](#Create-vectors-by-generating-different-sequence-of-numbers)
-  - [Operations on a single vector](#Single-vector-operations)
-  - [Basics](#Single-vector-operations)
-  - [Calculate statistical measures](#Calculate-basic-statistical-measures)
-  - [Subset a vector](#Subset-a-vector)
+[Vectors](#vectors)
+  - [Generate a sequence](#create-vectors-by-generating-different-sequence-of-numbers)
+  - [Operations on a single vector](#single-vector-operations)
+  - [Basics](#single-vector-operations)
+  - [Calculate statistical measures](#calculate-basic-statistical-measures)
+  - [Subset a vector](#subset-a-vector)
 
-[Matrices](#Matrices)
- - [Generate a matrix](#Create-matrix)
- - [Matrix operations](#Matrix-operations)
- - [Subset a matrix](#Subset-a-matrix)
+[Matrices](#matrices)
+ - [Generate a matrix](#create-a-matrix)
+ - [Matrix operations](#matrix-operations)
+ - [Subset a matrix](#subset-a-matrix)
 
 ##### Import numpy  package for current session
 
