@@ -14,13 +14,13 @@ modified: 2017-01-14T14:19:19-04:00
 
 ###### Sections:
 
-* [1. Histogram](#1-histogram)
-* [2. Scatter plot](#2-scatter-plot)
-* [3. Density plot](#3-density-plot)
-* [4. Boxplot](#4-boxplot)
-* [5. Violin-plot](#5-violin-plot)
-* [6. Heatmap](#6-heatmap)
-* [7. Rugs](#7-rugs)
+* [1. Histogram](#histogram)
+* [2. Scatter plot](#scatter-plot)
+* [3. Density plot](#density-plot)
+* [4. Boxplot](#boxplot)
+* [5. Violin-plot](#violin-plot)
+* [6. Heatmap](#heatmap)
+* [7. Rugs](#rugs)
 
 Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & vizualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
 

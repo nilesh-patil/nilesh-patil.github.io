@@ -21,13 +21,13 @@ modified: 2017-02-15T14:19:19-04:00
 * [5. Analysis and Results](#analysis-and-results)
 * [References](#references)
 
-##### *1. Introduction:*
+#### 1. Introduction:
 
 A modern smartphone comes equipped with variety of sensors from motion detectors to optical calibrators. The data collected by these sensors is valuable for better aligning the applications on the phone with user’s lifestyle. In this project, we have focused on using data collected from motion sensors to build a model which identifies type of activity being performed with minimal computation involved. The end goal is to create a model which can classify the activity being performed with high accuracy without sacrificing the limited computational resources available on a single phone.
 
 The project is hosted here: [Github](https://github.com/nilesh-patil/HumanActivityRecognition)
 
-##### *2. Data Collection and Preparation:*
+#### 2. Data Collection and Preparation:
 
 We used the data provided by Human Activity Recognition research project, which built this database from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors. The complete data & related papers can be accessed at: [UCI ML repository page](https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
@@ -43,7 +43,7 @@ There are 6 categories of activities being performed:
 
 The raw db)ta has separate text files for most of the variable groups & we have used the dataset that was saved as RData file. In this dataset, a single column(‘subject’) is used to identify a user and the last column(‘activity’) was used to identify the activity being performed when the measurements were taken. All other attributes are available in the same column oriented data format. This is important to know, because, the values in the dataset have been normalized.
 
-##### *3. Exploratory Analysis:*
+#### 3. Exploratory Analysis:
 
 a) *High dimensionality:*
 
@@ -75,7 +75,7 @@ We also started out with basic visual exploration of the dataset by plotting dis
 	<figcaption>Representative distribution</figcaption>
 </figure></center>
 
-##### *4. Model:*
+#### 4. Model:
 
 The first step was to create a train & test set. We split our data into two sets in 7:3 ratios by random sampling without replacement. This ensures that our train & test sets are representative of the complete dataset. Another approach to do it would be to do this sampling for each output class. In our case, the result wasn’t significantly different.
 
@@ -89,7 +89,7 @@ We used Random forest variable importance scores to determine the final variable
 
 We started out with all 561 variables & reduced the total features to 5 in our final model. The focus of our process was to follow a algorithmic approach instead of a domain knowledge based model building process & hence we relied on oob score & variable importance to determine the optimal number of features, trees to be used & which features to use.
 
-##### *Step-by-step process:*
+##### Step-by-step process:
 
 1.Set RandomState = 42
 
@@ -115,7 +115,7 @@ We started out with all 561 variables & reduced the total features to 5 in our f
 
 The only, major assumption in our choice of algorithm (RandomForest) is that random forests don’t overfit training set. This assumption breaks down when the training dataset is extremely biased, but in our case its relatively balanced & hence we choose it over other algorithms.
 
-##### *5. Analysis and Results:*
+#### 5. Analysis and Results:
 
 1.Important Features:
 
@@ -139,6 +139,7 @@ The final model had importance scores are as shown in the figure:
   |:---:|:---:|:---:|
   |*Train*|94.50% (oob)|83.48%|
   |*Test*|94.37%|82.37%|
+  {: .table}
 
 <center>
 <figure class="half">

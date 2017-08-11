@@ -19,9 +19,10 @@ date: 2017-02-03
 
 Courses at University of Rochester:
 
-| Semester 1 | Semester 2 |
-|:-------:|:--------:|
-| Networks & graph analysis | Deep Learning |
+| Semester 1 | Semester 2 | Semester 3 |
+|:-------:|:--------:|:--------:|
+| Networks & graph analysis | Deep Learning | Thesis Semester|
 | Statistical computing I | Machine Learning |
 | Data Mining | Statistical Computing II |
 | Random Processes | Database Systems |
+{: .table}
