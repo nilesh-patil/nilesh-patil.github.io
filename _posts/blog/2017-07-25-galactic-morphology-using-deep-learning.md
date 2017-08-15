@@ -55,4 +55,6 @@ These images are read in as `numpy` arrays in python with the following represen
 
 ##### Fully Convolutional Model:
 
-A convolutional network takes in your image array as input extracts features from this array which best represents the task at hand & then gives out a classification/regression output. Standard classification models use one-vs-rest scheme to mathematically represent output. In this form, the correct class is assigned `1` while other possible classes in the dataset are assigned `0`. The output vector is of length `c`, where `c` is total number of classes in the dataset.
+A convolutional network takes in your image array as input extracts features from this array which best represents the task at hand & then gives out a classification/regression output. Standard classification models use one-vs-rest scheme to represent output for an elegant representation of the classification task. In this form, the correct class is assigned `1` while other possible classes in the dataset are assigned `0`. The output vector is of length `c`, where `c` is total number of classes in the dataset.
+
+In the Galaxy Morphology classification task, we use standard `.jpeg` images to create a vector of length 37 which describes the properties of that object. We set it up as a regression task in this case since our ground truth is a rescaled version of votes gathered from volunteers. 
