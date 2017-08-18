@@ -52,9 +52,22 @@ These images are read in as `numpy` arrays in python with the following represen
 
 ![Numpy array](\images\blog\galaxyzoo\03.numpy_array.png){: .center-image height="250px" width="250px"}
 
-
 ##### Fully Convolutional Model:
 
 A convolutional network takes in your image array as input extracts features from this array which best represents the task at hand & then gives out a classification/regression output. Standard classification models use one-vs-rest scheme to represent output for an elegant representation of the classification task. In this form, the correct class is assigned `1` while other possible classes in the dataset are assigned `0`. The output vector is of length `c`, where `c` is total number of classes in the dataset.
 
-In the Galaxy Morphology classification task, we use standard `.jpeg` images to learn the shape attributes as a vector of length 37 which describes its properties. We set it up as a regression task in this case, since our ground truth is a rescaled version of votes gathered from volunteers.
+In the Galaxy Morphology classification task, we use standard `.jpeg` images to learn the shape attributes as a vector of length 37 which describes its properties. We set it up as a regression task in this case, since our ground truth is a weighted version of votes gathered from volunteers.
+
+The model takes in a normalized array representing input image. This array passes through the following layers stacked after each other:
+
+    1. Convolutional layers : It consists of a seat of learnable features. In terms of standard modeling terminology, the features that a model uses are usually handcrafted i.e. some form of transformations of the raw input data. In images, these filters are expected to learn optimal features for the task at hand instead of features crafted by a domain expert. Since the output from this convolutional layer is learnt w.r.t output, the features being generated at each step should ideally be the optimal representation of input provided at that step.
+    
+    2. Pooling layers : The pooling layers reduce size of incoming representation by selecting from a set of appropriate functions. The `maxpooling` layer chooses maximum from a given volume of array as an appropriate representaiton of the focus. Similarly, `average-pooling` takes average of the volume. 
+    
+    3. Activation : Activation functions are used to introduce non-linearity in the model. This layer applies a given function to each element of input array. Standard activation functions used in models are 'relu', 'softmax', 'sigmoid', 'tanh' etc.
+    
+    4. Dropout : Dropout is a technique developed to reduce overfitting in deep neural networks. The effect of adding this layer is equal to setting activations for a fraction of neurons to `zero` during training time & during test time, using that fraction as weighted average for the weights being used i.e. during training time, a particualr unit 'll is present with probabilty `p` & during prediction, the weights learnt for this particular unit are multiplied by `p`.
+    
+    5. Batch normalization : A major problem encountered while training neural networks is the variation in distribution of input values to successive layers. Due to this, a large number of updates with an extremely small update rate are required. By using batch-normalization, we normalize the input at each layer to `zero` mean & 'one' standard-devation. Effectively, we end up with higher learning rates giving the same results.
+    
+ 
