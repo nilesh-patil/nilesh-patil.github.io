@@ -6,7 +6,7 @@ categories: blog
 excerpt: 'Training a deep neural net to understand galactic structure'
 tags: [deep-learning, visualization, galaxy, computer-vision]
 image:
-  feature:
+  feature: blog/feature/galaxy.jpg
 date: 2017-07-15T15:39:55-04:00
 modified: 2017-07-15T19:48:19-04:00
 ---
