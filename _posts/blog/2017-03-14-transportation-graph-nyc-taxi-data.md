@@ -6,7 +6,7 @@ categories: blog
 excerpt: 'Analyzing a real world graph : transportation network in NYC'
 tags: [graph, network, visualization, nyc, trasnportation]
 image:
-  feature:
+  feature: blog/feature/nyc_network.png
 date: 2017-03-14T15:39:55-04:00
 modified: 2017-03-14T19:48:19-04:00
 ---
