@@ -19,7 +19,7 @@ modified: 2017-07-15T19:48:19-04:00
 
 ##### Introduction:
 
-Astronomy has historically been one of the most data intensive fields & a major chunk of this data is collected is collected as images collected by variety a number of telescopes - terrestrial as well as in space. A BIG data-project which aims to collate this data from various sources to form a coherent picture of the universe is [Sloan Digital Sky Survey](http://www.sdss.org/).
+Astronomy has historically been one of the most data intensive fields & a major chunk of this data is collected as images collected by a number of telescopes - terrestrial as well as in space. A BIG data-project which aims to collate this data from various sources to form a coherent picture of the universe is [Sloan Digital Sky Survey](http://www.sdss.org/).
 
 
 To quote the project website :
@@ -60,12 +60,19 @@ In the Galaxy Morphology classification task, we use standard `.jpeg` images to 
 
 The model takes in a normalized array representing input image. This array passes through the following layers stacked after each other:
 
-1. *Convolutional layers* : It consists of a set of learnt features. In terms of standard modeling terminology, the features that a model uses are usually handcrafted i.e. some form of transformations of the raw input data. In images, the kernels that form the convolutional layer are expected to learn optimal features for the task at hand, instead of features crafted by a domain expert. Since the output from this convolutional layer is learnt w.r.t output, the features being generated at each step should ideally be the optimal representation of input provided at that step.
+1. *Convolutional layer* : It consists of a set of learnt features. In terms of standard modeling terminology, the features that a model uses are usually handcrafted i.e. some form of transformations of the raw input data. In images, the kernels that form the convolutional layer are expected to learn optimal features for the task at hand, instead of features crafted by a domain expert. Since the output from this convolutional layer is learnt w.r.t output, the features being generated at each step should ideally be the optimal representation of input provided at that step.
 
-2. *Pooling layers* : The pooling layers reduce size of incoming representation by selecting from a set of appropriate functions. The `max-pooling` layer chooses maximum from a given volume of array as an appropriate representation of the focus. Similarly, `average-pooling` takes average of the volume.
+2. *Pooling layer* : The pooling layer reduce size of incoming representation by selecting from a set of appropriate downsampling functions. The `max-pooling` layer chooses maximum from a given volume of array as an appropriate representation of the focus. Similarly, `average-pooling` takes average of the volume.
 
 3. *Activation* : Activation functions are used to introduce non-linearity in the model. This layer applies a given function to each element of input array. Standard activation functions used in models are 'relu', 'softmax', 'sigmoid', 'tanh' etc.
 
 4. *Dropout* : Dropout is a technique developed to reduce overfitting in deep neural networks. The effect of adding this layer is equal to setting activations for a fraction of neurons to `zero` during training time & during test time, using that fraction as weighted average for the weights being used i.e. during training time, a particualr unit 'll is present with probability `p` & during prediction, the weights learnt for this particular unit are multiplied by `p`.
 
 5. *Batch normalization* : A major problem encountered while training neural networks is the variation in distribution of input values to successive layers. Due to this, a large number of updates with an extremely small update rate are required. By using batch-normalization, we normalize the input at each layer to $$\mu=0$$ & $$\sigma=1$$. Effectively, we end up with higher learning rates giving the same results.
+
+
+#### Setup :
+
+The layers in a neural network are stacked one afer the other to be used as a module & we experiment with different network structures starting with some well tested & prevalent ones to some recently pulished. The last few layers are `Dense` layers, i.e. they are fully connected layers and their final output is compared with the expected output to calculate error value for the observation in focus. This error is `back-propagated` to give higher or lower importance to the learnt features of convolutional layers & nodes of dense layers. With each bacward pass of these error values, the expectation is that given enough data, our network structure 'll learn optimal features for solving the problem at hand.
+
+In our setup, the intermediate features are extracted successeivel from the raw galaxy image & then the corresponding regression is done to match human generated score for the the same image. This score is a vector of `37` values, each representing a physical aspect of the galaxy, termed as galaxy morphology.
