@@ -22,7 +22,7 @@ modified: 2017-01-14T14:19:19-04:00
 * [6. Heatmap](#heatmap)
 * [7. Rugs](#rugs)
 
-Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & vizualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
+Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & visualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
 
 
 
