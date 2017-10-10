@@ -23,10 +23,7 @@ M.S. in Data Science, University of Rochester
 nilesh.patil@rochester.edu
 </center>
 
-<center>
-Graduate Projects, University of Rochester
-</center>
-
+** Graduate Projects, University of Rochester :**
 - Analyzing large networks:
 
     - Using NYC’s transportation data (1 billion+ taxi trips), we built a large time variant network to analyze travel habits of residents and determining pressure points in this network
