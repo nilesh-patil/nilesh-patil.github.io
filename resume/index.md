@@ -23,7 +23,7 @@ M.S. in Data Science, University of Rochester
 nilesh.patil@rochester.edu
 </center>
 
-** Graduate Projects, University of Rochester :**
+**Graduate Projects, University of Rochester :**
 - Analyzing large networks:
 
     - Using NYC’s transportation data (1 billion+ taxi trips), we built a large time variant network to analyze travel habits of residents and determining pressure points in this network
@@ -38,7 +38,7 @@ nilesh.patil@rochester.edu
 
 ## Professional Experience
 
-** Data Scientist / Sr. Analyst, Predictive Analytics AXA (New York, US / Pune, India) December ’14 to June '16 **
+**Data Scientist / Sr. Analyst, Predictive Analytics AXA (New York, US / Pune, India) December ’14 to June '16**
 
 - Worked with AXA partners to develop machine learning based predictive analytics frameworks.^
 - At AXA, we used Hadoop stack for storage + manipulation & R/Python/SPARK for analysis. Aggregation & Exploratory analysis was done using HIVE/IMPALA & R/Python.
@@ -47,7 +47,7 @@ nilesh.patil@rochester.edu
 - Promoting Data science community by organizing seminars, best practices sessions, machine learning & big data tools workshops for AXA-US & AXA-India.
 - Mentoring & training colleagues in possible applications of machine learning & data science stack.
 
-** Analyst – Big Data/Predictive Analytics AbsolutData Research and Analytics June ’13 to December ’14 **
+**Analyst – Big Data/Predictive Analytics AbsolutData Research and Analytics June ’13 to December ’14**
 
 - Sensor & transactional data analytics: Extensive predictive analytics experience for a Mining equipment failure prediction project with one of the world’s largest copper and gold mining companies.
 - Developed multi stage prediction model for prediction of engine failure (~$850,000 per engine).
