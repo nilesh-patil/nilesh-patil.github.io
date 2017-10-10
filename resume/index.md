@@ -20,7 +20,7 @@ M.S. in Data Science, University of Rochester
 </center>
 
 <center>
-nilesh.patil@rochester.edu   |   nilesh-patil   |   Nilesh Patil
+nilesh.patil@rochester.edu
 </center>
 
 <center>
