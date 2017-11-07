@@ -12,16 +12,6 @@ date: 2017-02-03
  </a>
 </center>
 
-
-# <center> NILESH PATIL </center>
-
-<center>
-M.S. in Data Science, University of Rochester
-</center>
-
-<center>
-nilesh.patil@rochester.edu
-</center>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
