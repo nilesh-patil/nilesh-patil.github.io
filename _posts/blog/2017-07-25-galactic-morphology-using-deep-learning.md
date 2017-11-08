@@ -42,7 +42,7 @@ The dataset consists of 100k+ jpeg images and the corresponding score vector for
 
 The important point to remember is that the scores aren't probability score per se. They are weighted scores & so they vary from 0 to 1 but all sub scores for a question don't necessarily sum up to 1 as a rule.
 
-Each image is of size `424x424x3` & each value is between `0-255`. A good practice is to rescale the data between `0-1` by multiplying every image array with `1.0/255`. The channels & cell values do not represent the physical aspect of data collection, but are standardized to the accepted image formats.
+Each image is of size `424x424x3` & each value is between `0-255`. A good practice is to rescale the data. In our experiments, we normalize the images by calculating $$\mu_{channel}$$ and $$\sigma_{channel}$$ over the full dataset and then normalizing each channel using their correspodning $$\mu$$ and $$\sigma$$. The channels & cell values do not represent the physical aspect of data collection, but are standardized to the accepted image formats between 0-255 and so the normalization is more of a hack for better gradient updates and not adomain  knowledge based modification.
 
 A few sample images from the dataset:
 
