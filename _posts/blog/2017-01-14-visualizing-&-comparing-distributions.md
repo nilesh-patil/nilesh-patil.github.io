@@ -59,7 +59,7 @@ sns.plt.title('Life expectancy at birth- years');
 ```
 
 
-![png](\images\blog\distributions\output_5_0.png)
+![Histogram](\images\blog\distributions\output_5_0.png){: .center-image height="500px" width="750px"}
 
 
 #### Scatter Plot:
@@ -81,7 +81,7 @@ sns.plt.ylabel('Female');
 ```
 
 
-![png](\images\blog\distributions\output_7_0.png)
+![png](\images\blog\distributions\output_7_0.png){: .center-image height="500px" width="750px"}
 
 
 #### Density plot:
@@ -99,7 +99,7 @@ sns.plt.ylabel('Fraction');
 ```
 
 
-![png](\images\blog\distributions\output_9_0.png)
+![png](\images\blog\distributions\output_9_0.png){: .center-image height="500px" width="750px"}
 
 
 #### Boxplot:
@@ -124,7 +124,7 @@ sns.plt.xticks(rotation=30);
 ```
 
 
-![png](\images\blog\distributions\output_11_0.png)
+![png](\images\blog\distributions\output_11_0.png){: .center-image height="600px" width="750px"}
 
 
 #### Violin plot:
@@ -146,7 +146,7 @@ sns.plt.ylabel('Life expectancy at birth (years)');
 ```
 
 
-![png](\images\blog\distributions\output_13_0.png)
+![png](\images\blog\distributions\output_13_0.png){: .center-image height="500px" width="750px"}
 
 
 An interesting variation of violin plot that I use for comparing two distributions across multiple groups is by splitting them in two regions, one for each distribution. By default, `seaborn` supports this by taking in the `hue` parameter. The way we compare two different variables is by reshaping our dataset as shown below.
@@ -174,7 +174,7 @@ sns.plt.ylabel('');
 ```
 
 
-![png](\images\blog\distributions\output_15_0.png)
+![png](\images\blog\distributions\output_15_0.png){: .center-image height="500px" width="750px"}
 
 
 
@@ -199,7 +199,7 @@ sns.plt.xticks(rotation=30);
 ```
 
 
-![png](\images\blog\distributions\output_16_0.png)
+![png](\images\blog\distributions\output_16_0.png){: .center-image height="500px" width="750px"}
 
 
 #### Heatmap:
@@ -240,7 +240,7 @@ sns.plt.title('Expenditure on education (%GDP)');
 ```
 
 
-![png](\images\blog\distributions\output_18_0.png)
+![png](\images\blog\distributions\output_18_0.png){: .center-image height="600px" width="1000px"}
 
 
 #### Rugs:
