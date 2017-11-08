@@ -21,7 +21,7 @@ modified: 2017-03-14T19:48:19-04:00
 
 ##### Introduction:
 
-Transportation networks offer a fascinating opportunity to identify local population’s travel habits, aggregated daily routines and a way to augment city-planning decisions. In our analysis, we have focused on exploring travel patterns of New York City residents from about 146+ million taxi trips. The complete code, visualizations & reports are available in the [**Github Repository**](https://github.com/nilesh-patil/TransportationFlowNetwork)
+Transportation networks offer a fascinating opportunity to identify local population’s travel habits, daily routines and a usage-data driven way to augment city-planning decisions. In our analysis, we focus on exploring travel patterns of New York City residents using 146+ million taxi trips taken for the year 2015. The complete code, visualizations & reports are available in the [**Github Repository**](https://github.com/nilesh-patil/TransportationFlowNetwork)
 
 ##### Prior work:
 
@@ -31,12 +31,11 @@ In<sup>[4]</sup>, the trip distribution has been characterized as combination of
 
 ##### Data Description:
 
-a)  *Raw data:*
+a)  *Raw data :*
 
-New York city taxi & Limousine Commission has made the taxi trips dataset available for public use since 2009 onwards<sup>[7]</sup> . We used this dataset to perform our analysis. The complete dataset contains \~150 million trips for each year & each row represents one trip, with features for starting and stopping point, distance travelled, taxi-charge, time taken etc. We are using 2015 dataset which contains 146,112,990 trips in total.
-For combining the geolocation data to census tracts, we used the extremely helpful NYC landuse dataset<sup>[8]</sup>.
+New York city taxi & Limousine Commission has made the taxi trips dataset available for public use since 2009 onwards<sup>[7]</sup> . We used this dataset to perform our analysis. The complete dataset contains \~150 million trips for each year & each row represents one trip, with features for starting and stopping point, distance travelled, taxi-charge, time taken etc. We are using 2015 dataset which contains 146,112,990 trips in total. For combining the geolocation data to census tracts, we used the extremely helpful NYC landuse dataset<sup>[8]</sup>.
 
-b)  *Data transformation:*
+b)  *Data transformation :*
 
 We use the following variables for each trip:
 *  Trip starting timestamp
@@ -45,7 +44,7 @@ We use the following variables for each trip:
 *  Stop point(Lat/Long)
 *  Charges
 
-Using these trips, we build our directed graph with starting and stop points as nodes. As an additional condition, we have started with most frequent trips (more than 500 in the year for a given pair of locations). From prior work we summarized that rounding off location coordinates to 2 decimal points is also feasible and given our difficulties analyzing the dataset with 40,000+ nodes, we are now in the process of reducing our network by 2 separate approaches:
+Using these trips, we build our directed graph with start and stop location for a given trip as nodes. As an additional condition, we only used locations with high number trips (more than 500 in the year for a given pair of locations). From prior work we summarized that rounding off location coordinates to 2 decimal points is also an option and given our difficulties analyzing the dataset with 40,000+ nodes, we are now in the process of reducing our network by 2 separate approaches:
 
 - One node for 5 manhattan blocks
 - Using 6 million most frequent trips to get 1275 most frequently travelled edges.
@@ -55,7 +54,7 @@ We create features for month, day, wekday, period of the day etc from the timest
 
 Same location : multiple close nodes
 
-![nycTaxiDataimage2](\images\blog\graphs\nycTaxiData\image2.png){: .center-image height="250px" width="250px"}
+![nycTaxiDataimage2](\images\blog\graphs\nycTaxiData\image2.png){: .center-image height="300px" width="300px"}
 
 We finally decided to merge our dataset with US Census Bureau census tracts which removed the above problem. We have 580+ nodes in the final network and are worked with analyzing census tract as node and number of trips between two census tracts represented as an edge.
 
@@ -63,18 +62,18 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 
 1 . Trips taken in each month(fig-i) peaks between March-May and drops substantially during June onwards. This can be attributed directly to the weather pattern, as commuters are expected to avoid walking long distances during low temperatures or rainy weather.
 
-![](\images\blog\graphs\nycTaxiData\image3.png){: .center-image height="250px" width="750px"}
-(fig-i)
+![](\images\blog\graphs\nycTaxiData\image3.png){: .center-image height="300px" width="850px"}
+<center>(fig-i)</center>
 
 2 . For our full dataset, the degree distribution is shown in first plot whereas the second plot shows degree distribution for graph generated using edges with atleast 500 trips in 2015.
 
-![](\images\blog\graphs\nycTaxiData\image4.png){: .center-image height="250px" width="750px"}
-(fig-ii)
+![](\images\blog\graphs\nycTaxiData\image4.png){: .center-image height="300px" width="850px"}
+<center>(fig-ii)</center>
 
 3 . The heat-map (fig iii) shows relative trip-density for each hour of the day in 2015. From this information, we summarize that the busiest hours are 6AM to 9AM. We attribute most of this traffic to users on their daily work-commute whereas there is a remarkable increase in density between 12AM to 4AM on weekends. We are looking for an approach to perform similar analysis on the network structure generated from our subset, to create temporal traffic density visualization.
 
-![](\images\blog\graphs\nycTaxiData\image5.png){: .center-image height="1000px" width="750px"}
-(Fig-iii)
+![](\images\blog\graphs\nycTaxiData\image5.png){: .center-image height="1000px" width="2000px"}
+<center>(fig-iii)</center>
 
 4 . We analyzed the cost vs duration relationship for the trips and found interesting abnormal number of constant cost trips. We are attributing these trips to:
 
@@ -83,7 +82,7 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 - Traffic delays within the same trips leading to delays
 
 
-![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="400px" width="400px"}
+![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="500px" width="500px"}
 
 ##### Full Network analysis
 
