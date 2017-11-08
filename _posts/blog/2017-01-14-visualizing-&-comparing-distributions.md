@@ -48,7 +48,7 @@ data_indicators = pd.read_sql_query('select * from Indicators',conn)
 
 ```
 
-### Histograms:
+### Histogram:
 
 ##### Data Prep
 ```python
@@ -345,4 +345,42 @@ sns.plt.title('Expenditure on education (%GDP)');
 ![png](\images\blog\distributions\output_18_0.png){: .center-image height="600px" width="1000px"}
 
 
-#### Rugs:
+### Rugs:
+
+##### Data prep
+```python
+selected_indicators = ['Merchandise trade (% of GDP)']
+
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
+
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
+```
+
+##### Plot
+```python
+columns_order = sort(data_plot.Region.unique())
+
+sns.set(style="white",
+        palette="pastel",
+        color_codes=True,
+        rc={
+            'figure.figsize':(12,8),'figure.dpi':500
+           })
+
+g = sns.FacetGrid(data_plot,
+                  col="Region",
+                  col_wrap=4,
+                  col_order=columns_order,subplot_kws={'ylim':(0,0.02)})
+g.map(sns.distplot, "Value", hist=False, rug=True);
+plt.savefig('./plots/07.rugplot.png', dpi=500, bbox_inches='tight');
+```
+
+![png](\images\blog\distributions\07.rugplot.png){: .center-image height="600px" width="1000px"}
