@@ -25,109 +25,211 @@ modified: 2017-01-14T14:19:19-04:00
 Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & visualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
 
 
+### Connect to data:
 
 ```python
-%matplotlib inline
-import numpy as np
+%pylab inline
+
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import sqlite3
 
 
-data = pd.read_csv('./indicators.txt',sep='\t')
-countries = pd.read_csv('./country_classification_worldbank.txt',sep='\t')
+db_path = './data/world-development-indicators/database.sqlite'
 
-data.columns=['countryName']+[colname for colname in data.columns[1:]]
-columns = data.columns
+conn = sqlite3.connect(db_path)
+db = conn.cursor()
+db.execute("SELECT name FROM sqlite_master WHERE type='table';")
+print(db.fetchall())
 
-countries['countryName'] = countries.countryName.astype(str)
-data['countryName'] = data.countryName.astype(str)
-data = data.merge(countries,how='left',on='countryName')
-data = data[~data.Region.isnull()]
+data_countries = pd.read_sql_query('select * from Country',conn)
+data_series = pd.read_sql_query('select * from Series',conn)
+data_indicators = pd.read_sql_query('select * from Indicators',conn)
+
 ```
 
-#### Histograms:
+### Histograms:
 
-
+##### Data Prep
 ```python
-sns.plt.figure(figsize=(8,5))
-sns.set(style="whitegrid",palette="pastel", color_codes=True)
-sns.set_style('whitegrid')
+selected_indicators = ['Life expectancy at birth, female (years)',
+                       'Life expectancy at birth, male (years)',
+                       'Life expectancy at birth, total (years)']
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
 
-sns.plt.hist(data['Life expectancy at birth- years'],20);
-sns.plt.title('Life expectancy at birth- years');
-```
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
 
-
-![Histogram](\images\blog\distributions\output_5_0.png){: .center-image height="500px" width="750px"}
-
-
-#### Scatter Plot:
-
-
-```python
-sns.plt.figure(figsize=(8,5))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
-sns.set_style('whitegrid')
-
-sns.plt.scatter(x='MaleSuicide Rate 100k people',
-                y='Female Suicide Rate 100k people',
-                data=data,
-                s=75,
-                alpha=0.75);
-sns.plt.title('Femal vs Male suicide rate(per 100k)');
-sns.plt.xlabel('Male');
-sns.plt.ylabel('Female');
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot[['feature','type']] = data_plot['IndicatorName'].str.split(', ',expand=True)
+data_plot.reset_index(inplace=True, drop=True)
 ```
 
 
-![png](\images\blog\distributions\output_7_0.png){: .center-image height="500px" width="750px"}
-
-
-#### Density plot:
-
-
+##### Plot
 ```python
-sns.plt.figure(figsize=(8,4))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
-sns.set_style('whitegrid')
+nbins = 15
+sns.set(style="white",
+        palette="pastel",
+        color_codes=True,
+        rc={'figure.figsize':(12,8),
+            'figure.dpi':500})
 
-sns.kdeplot(data['Life expectancy at birth- years'],legend=False);
-sns.plt.title('Life expectancy at birth - years');
-sns.plt.xlabel('Years');
-sns.plt.ylabel('Fraction');
+sns.distplot(data_plot.Value[data_plot.type=='female (years)'], bins=nbins)
+sns.distplot(data_plot.Value[data_plot.type=='male (years)'], bins=nbins)
+sns.distplot(data_plot.Value[data_plot.type=='total (years)'], bins=nbins)
+plt.legend(['Female', 'Male', 'Total'], bbox_to_anchor=(1.12,1.04))
+plt.xlim((25,100))
+plt.grid(color='black',linestyle='-.',linewidth=0.25)
+plt.title('Life expectancy at birth ( In years )')
 ```
 
 
-![png](\images\blog\distributions\output_9_0.png){: .center-image height="500px" width="750px"}
+![Histogram](\images\blog\distributions\01.histogram.png){: .center-image height="300px" width="850px"}
 
 
-#### Boxplot:
+### Scatter Plot:
 
-
+##### Data Prep
 ```python
-sns.plt.figure(figsize=(8,4))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
+
+selected_indicators = ['Unemployment, female (% of female labor force)',
+                       'Unemployment, male (% of male labor force)']
+
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
+
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot[['feature','type']] = data_plot['IndicatorName'].str.split(', ',expand=True)
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['type'] = data_plot.type.str.replace(' \(% of male labor force\)','')
+data_plot['type'] = data_plot.type.str.replace(' \(% of female labor force\)','')
+data_plot = data_plot.pivot_table(values='Value',index='CountryName',columns='type')
+
+```
+
+##### Plot
+```python
+sns.set(style="white",
+        palette="pastel",
+        rc={'figure.figsize':(7,5),
+            'figure.dpi':500})
+
+sns.lmplot(x = 'female', y = 'male', data = data_plot, fit_reg=False, x_jitter=1.5, y_jitter=1.5)
+plt.xlim((0,40))
+plt.ylim((0,40))
+plt.grid(color='black', linestyle='-.', linewidth=0.25)
+plt.title('Unemployment (% of total)',)
+plt.savefig('./plots/02.scatter.png',orientation='landscape',dpi=500);
+```
+
+
+![png](\images\blog\distributions\02.scatter.png){: .center-image height="500px" width="750px"}
+
+
+### Density plot:
+
+##### Data Prep
+```python
+selected_indicators = ['Mortality rate, adult, female (per 1,000 female adults)',
+                       'Mortality rate, adult, male (per 1,000 male adults)']
+
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
+
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot[['feature','type']] = data_plot['IndicatorName'].str.split(', adult, ',expand=True)
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['type'] = data_plot.type.str.replace(' \(per 1,000 female adults\)','')
+data_plot['type'] = data_plot.type.str.replace(' \(per 1,000 male adults\)','')
+data_plot = data_plot.pivot_table(values='Value',index='CountryName',columns='type')
+```
+
+##### Plot
+```python
+sns.set(style="white",
+        palette="pastel",
+        color_codes=True,
+        rc={
+            'figure.figsize':(10,6),
+            'figure.dpi':200
+           })
+
+sns.kdeplot(data_plot.male, color='red')
+sns.kdeplot(data_plot.female, color='blue')
+plt.grid(color='black',linestyle='-.', linewidth=0.25)
+plt.title('Mortality rate')
+plt.ylim((0,0.006))
+plt.xlim((-100,700))
+plt.savefig('./03.density.png');
+```
+
+
+![png](\images\blog\distributions\03.density.png){: .center-image height="500px" width="750px"}
+
+
+### Boxplot:
+
+##### Data prep
+```python
+selected_indicators = ['Merchandise trade (% of GDP)']
+
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
+
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
+```
+
+##### Plot
+```python
+scolumns_order = sort(data_plot.Region.unique())
+
+sns.set(style="white",
+        palette="pastel",
+        color_codes=True,
+        rc={
+            'figure.figsize':(10,6),'figure.dpi':200
+           })
+
 sns.boxplot(x='Region',
-            y='Life expectancy at birth- years',
-            palette=sns.color_palette("Blues"),
-            order=['Sub-Saharan Africa','South Asia',
-                   'East Asia & Pacific','Latin America & Caribbean',
-                   'Middle East & North Africa','Europe & Central Asia',
-                   'North America'],
+            y='Value',
+            palette='autumn',
+            order=columns_order,
             width=0.4,
             fliersize=3,
-            data=data);
-sns.plt.title('Life expectancy (by region)')
-sns.plt.ylabel('Life expectancy at birth (years)')
-sns.plt.xticks(rotation=30);
+            data=data_plot);
+plt.grid(color='black',linestyle='-.', linewidth=0.25)
+plt.xticks(rotation=30)
+plt.title('Merchandise trade')
+plt.ylabel('% of GDP');
+plt.savefig('./04.boxplot.png');
 ```
 
 
-![png](\images\blog\distributions\output_11_0.png){: .center-image height="600px" width="750px"}
+![png](\images\blog\distributions\04.boxplot.png){: .center-image height="500px" width="950px"}
 
 
-#### Violin plot:
+### Violin plot:
 
 
 ```python
@@ -202,7 +304,7 @@ sns.plt.xticks(rotation=30);
 ![png](\images\blog\distributions\output_16_0.png){: .center-image height="500px" width="750px"}
 
 
-#### Heatmap:
+### Heatmap:
 
 
 ```python
