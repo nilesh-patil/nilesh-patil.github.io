@@ -1,6 +1,6 @@
 ---
 layout: page
-title: articles
+title: Articles
 excerpt: "Stuff!"
 search_omit: true
 ---
