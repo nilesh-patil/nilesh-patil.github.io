@@ -5,7 +5,7 @@ comments: true
 modified:
 categories: blog
 excerpt: 'Activity detection from sensor data'
-tags: [sensors,model,RandomForest,project]
+tags: [sensors, model, RandomForest, project]
 image:
   thumb:
 date: 2017-02-15T15:39:55-04:00
