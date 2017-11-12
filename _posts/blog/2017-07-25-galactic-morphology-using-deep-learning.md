@@ -70,7 +70,7 @@ The model takes in a normalized array representing input image. This array passe
 Below, (a) represents a standard net with no dropout and (b) represents dropout applied to the same network. After droput, each layer has some fraction of activations set to zero, thus effectively reducing the impact of that neuron in the final model.
 ![Droput Network](\images\blog\galaxyzoo\03.droput_representation.png){: .center-image height="250px" width="500px"}
 
-5. *Batch normalization* : A major problem encountered while training neural networks is the variation in distribution of input values to successive layers. Due to this, a large number of updates with an extremely small update rate are required. By using batch-normalization, we normalize the input at each layer to &mu;<sub>x</sub>=0 & &sigma;<sub>x</sub>=1. Effectively, we end up with higher learning rates giving the same results.
+5. *Batch normalization* : A major problem encountered while training neural networks is the variation in distribution of input values to successive layers. Due to this, a large number of updates with an extremely small update rate are required. By using batch-normalization, we normalize the input at each layer to *&mu;<sub>x</sub> = 0* & *&sigma;<sub>x</sub> = 1*. Effectively, we end up with higher learning rates giving the same results.
 Effectively, `Batchnormalization` implements the following transform :
 
 $$X_{out} = \gamma*\frac{X_{in}-\mu_X}{\sigma_X}+\beta$$
@@ -82,7 +82,6 @@ Here, &mu;<sub>X</sub> and &sigma;<sub>X</sub> are calculated and applied channe
 The layers in a neural network are stacked one afer the other to be used as a module & we experiment with different network structures starting with some well tested & prevalent ones to some recently pulished. The last few layers are `Dense` layers, i.e. they are fully connected layers and their final output is compared with the expected output to calculate error value for the observation in focus. This error is `back-propagated` to give higher or lower importance to the learnt features of convolutional layers & nodes of dense layers. With each bacward pass of these error values, the expectation is that given enough data, our network structure 'll learn optimal features for solving the problem at hand.
 
 In our setup, the intermediate features are extracted successeivel from the raw galaxy image & then the corresponding regression is done to match human generated score for the the same image. This score is a vector of `37` values, each representing a physical aspect of the galaxy, termed as galaxy morphology.
-
 
 ### References :
 
