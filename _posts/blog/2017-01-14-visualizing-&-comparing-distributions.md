@@ -287,47 +287,101 @@ plt.savefig('./plots/05.violinplot.png', dpi=250, bbox_inches='tight');
 ### Heatmap:
 
 
+##### Data prep
+
 ```python
-order=['Low income','Lower middle income',
-                     'Upper middle income','High income']
+selected_indicators_export = [
+    'Merchandise exports to developing economies in East Asia & Pacific (% of total merchandise exports)',
+    'Merchandise exports to developing economies in Latin America & the Caribbean (% of total merchandise exports)',
+    'Merchandise exports to developing economies in Middle East & North Africa (% of total merchandise exports)',
+    'Merchandise exports to developing economies in South Asia (% of total merchandise exports)',
+    'Merchandise exports to developing economies in Sub-Saharan Africa (% of total merchandise exports)',
+    'Merchandise exports to developing economies outside region (% of total merchandise exports)',
+    'Merchandise exports to developing economies within region (% of total merchandise exports)',
+    'Merchandise exports to economies in the Arab World (% of total merchandise exports)',
+    'Merchandise exports to high-income economies (% of total merchandise exports)'
+]
 
-data_plot = pd.pivot_table(data,
-               values='Research and development expenditure  2005-2012',
-               columns='Income group',
-               index='Region')
+selected_indicators_imports = [
+    'Merchandise imports from developing economies in East Asia & Pacific (% of total merchandise imports)',
+    'Merchandise imports from developing economies in Latin America & the Caribbean (% of total merchandise imports)',
+    'Merchandise imports from developing economies in Middle East & North Africa (% of total merchandise imports)',
+    'Merchandise imports from developing economies in South Asia (% of total merchandise imports)',
+    'Merchandise imports from developing economies in Sub-Saharan Africa (% of total merchandise imports)',
+    'Merchandise imports from developing economies outside region (% of total merchandise imports)',
+    'Merchandise imports from developing economies within region (% of total merchandise imports)',
+    'Merchandise imports from economies in the Arab World (% of total merchandise imports)',
+    'Merchandise imports from high-income economies (% of total merchandise imports)'
+]
 
-figure = sns.plt.figure(figsize=(10,4))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators_export)
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
+data_export = data_plot.pivot_table(values='Value',columns='Region',index='IndicatorName')
 
-figure.add_subplot(121)
-sns.heatmap(data_plot[order],
-            xticklabels=['LI','LMI','UMI','HI'],);
-sns.plt.ylabel('');
-sns.plt.xlabel('');
-sns.plt.title('Expenditure of R&D (%GDP)');
 
-
-data_plot = pd.pivot_table(data,
-               values='Public expenditure on education Percentange GDP',
-               columns='Income group',
-               index='Region')
-
-figure.add_subplot(122)
-sns.heatmap(data_plot[order],
-            xticklabels=['LI','LMI','UMI','HI'],
-            yticklabels=False);
-sns.plt.ylabel('');
-sns.plt.xlabel('');
-sns.plt.title('Expenditure on education (%GDP)');
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators_imports)
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
+data_import = data_plot.pivot_table(values='Value',columns='Region',index='IndicatorName')
 ```
 
+##### Plot
 
-![png](\images\blog\distributions\output_18_0.png){: .center-image height="600px" width="1000px"}
+```python
+sns.set(style="white",
+        color_codes=True,
+        rc={
+            'figure.figsize':(20,8),
+            'figure.dpi':250
+           })
+fig, (imports, exports) = plt.subplots(1, 2, sharex=True)
+
+im1 = sns.heatmap(data_import.loc[:,xlabels],
+                  ax=imports,
+                  center=50,
+                  cbar=False,
+                  cmap="YlGnBu")
+imports.set_yticklabels(ylabels)
+imports.set_ylabel('')
+imports.set_xlabel('')
+imports.set_title('Imports :');
+
+im2 = sns.heatmap(data_export.loc[:,xlabels],
+                  ax=exports,
+                  center=50,
+                  yticklabels=False,
+                  cbar=False,
+                  cmap="YlGnBu")
+exports.set_ylabel('')
+exports.set_xlabel('')
+exports.set_title('Exports :');
+fig.subplots_adjust(wspace=0.05, hspace=0)
+
+mappable = im1.get_children()[0]
+fig.colorbar(mappable, ax = [imports,exports],orientation = 'vertical')
+plt.savefig('./plots/06.heatmap.png', dpi=250, bbox_inches='tight');
+```
+
+![png](\images\blog\distributions\06.heatmap.png){: .center-image height="500px" width="1000px"}
 
 
 ### Rugs:
 
 ##### Data prep
+
 ```python
 selected_indicators = ['Merchandise trade (% of GDP)']
 
@@ -345,6 +399,7 @@ data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how=
 ```
 
 ##### Plot
+
 ```python
 columns_order = sort(data_plot.Region.unique())
 
