@@ -231,78 +231,58 @@ plt.savefig('./04.boxplot.png');
 
 ### Violin plot:
 
+##### Data prep
 
 ```python
-sns.plt.figure(figsize=(8,5))
-sns.set(style="whitegrid", palette="pastel", color_codes=True);
-sns.violinplot(x='Income group',
-               y='Secondary 2008-2014',
-               width=0.6,
-               inner='quart',
-               color='b',
-               order=['Low income','Lower middle income',
-                     'Upper middle income','High income'],
-               data=data);
-sns.plt.title('Life Expectancy (by income group)');
-sns.plt.ylabel('Life expectancy at birth (years)');
+selected_indicators = [ 'CO2 emissions from gaseous fuel consumption (% of total)',
+                        'CO2 emissions from liquid fuel consumption (% of total)']
+
+countries = data_countries.CountryCode[data_countries.Region!=''].unique()
+condition = data_indicators.IndicatorName.isin(selected_indicators)
+
+data_plot = data_indicators.loc[condition,:]
+condition = data_plot.CountryCode.isin(countries)
+data_plot = data_plot.loc[condition,:]
+data_plot.sort_values(['CountryName','IndicatorName','Year'], inplace=True)
+
+data_plot = data_plot.groupby(['CountryName','IndicatorName'], as_index=False).last()
+data_plot.reset_index(inplace=True, drop=True)
+data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
 ```
 
-
-![png](\images\blog\distributions\output_13_0.png){: .center-image height="500px" width="750px"}
-
-
-An interesting variation of violin plot that I use for comparing two distributions across multiple groups is by splitting them in two regions, one for each distribution. By default, `seaborn` supports this by taking in the `hue` parameter. The way we compare two different variables is by reshaping our dataset as shown below.
-
+##### Plot
 
 ```python
-variables = {'Primary-2008-2014':'b','Secondary 2008-2014':'y'}
-data_plot = pd.melt(data,
-                    value_vars=variables.keys(),
-                    id_vars=['countryName','Income group'])
+import matplotlib.patches as mpatches
 
-sns.plt.figure(figsize=(10,8))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
-sns.violinplot(x='Income group',
-               y='value',
-               hue='variable',
-               split=True,
+columns_order = sort(data_plot.Region.unique())
+
+sns.set(style="white",
+        palette="pastel",
+        color_codes=True,
+        rc={
+            'figure.figsize':(16,10),'figure.dpi':250
+           })
+sns.violinplot(x ='Region',
+               y='Value',
+               hue='IndicatorName',
+               linewidth=0.25,
                inner="quart",
-               order=['Low income','Lower middle income',
-                     'Upper middle income','High income'],
-               palette=variables,
-               data=data_plot,);
-sns.plt.title('Primary & Secondary enrollment (by income)');
-sns.plt.ylabel('');
+               palette={"CO2 emissions from gaseous fuel consumption (% of total)": "y",
+                        "CO2 emissions from liquid fuel consumption (% of total)": "b"},
+               data=data_plot,
+               split=True)
+plt.grid(color='black',linestyle='-.', linewidth=0.25)
+plt.title('CO$_2$ emission')
+plt.ylabel('% of total')
+
+gas_patch = mpatches.Patch(color='yellow', label='Gaseous',alpha=0.5)
+liquid_patch = mpatches.Patch(color='skyblue', label='Liquid')
+plt.legend(handles=[gas_patch, liquid_patch], bbox_to_anchor=(0.2, 0.99), fontsize='x-large')
+plt.savefig('./plots/05.violinplot.png', dpi=250, bbox_inches='tight');
 ```
 
-
-![png](\images\blog\distributions\output_15_0.png){: .center-image height="500px" width="750px"}
-
-
-
-```python
-variables = {'Primary-2008-2014':'b','Secondary 2008-2014':'y'}
-data_plot = pd.melt(data,
-                    value_vars=variables.keys(),
-                    id_vars=['countryName','Region'])
-
-sns.plt.figure(figsize=(10,8))
-sns.set(style="whitegrid", palette="pastel", color_codes=True)
-sns.violinplot(x='Region',
-               y='value',
-               hue='variable',
-               split=True,
-               inner="quart",
-               palette=variables,
-               data=data_plot,);
-sns.plt.title('Primary & Secondary enrollment (by income)');
-sns.plt.ylabel('');
-sns.plt.xticks(rotation=30);
-```
-
-
-![png](\images\blog\distributions\output_16_0.png){: .center-image height="500px" width="750px"}
-
+![png](\images\blog\distributions\05.violinplot.png){: .center-image height="750px" width="950px"}
 
 ### Heatmap:
 
