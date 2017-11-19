@@ -10,7 +10,6 @@ image:
 date: 2017-03-04T05:10:55-01:00
 modified: 2017-07-10T15:09:55-04:00
 ---
-If you don't know, in short - [Numpy](http://www.numpy.org) is a python library which provides support for fast computations over arrays (vectors, matrices, tensors). Its faster compared to structuring the same computation in base python because operations are vectorized & in general you end up writing code that is pretty close to mathematical notation of your operations instead of writing low level code & dealing with errors & overheads that might creep in during these operations.
 
 ## Index
 
@@ -25,6 +24,9 @@ If you don't know, in short - [Numpy](http://www.numpy.org) is a python library 
  - [Generate a matrix](#create-a-matrix)
  - [Matrix operations](#matrix-operations)
  - [Subset a matrix](#subset-a-matrix)
+
+
+ If you don't know, in short - [Numpy](http://www.numpy.org) is a python library which provides support for fast computations over arrays (vectors, matrices, tensors). Its faster compared to structuring the same computation in base python because operations are vectorized & in general you end up writing code that is pretty close to mathematical notation of your operations instead of writing low level code & dealing with errors & overheads that might creep in during these operations.
 
 ##### Import numpy  package for current session
 
