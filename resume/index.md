@@ -499,9 +499,9 @@ date: 2017-02-03
              transform="scale(1,-1)"><tspan
                id="tspan244"
                y="0"
-               x="0 40.751999 61.074001">May</tspan></text>
+               x="0 33.0975 53.459999">Dec</tspan></text>
 </g><g
-           transform="matrix(0.24,0,0,0.24,87.17002,701.76)"
+           transform="matrix(0.24,0,0,0.24,84.71543,701.76)"
            id="g246"><text
              id="text248"
              style="font-variant:normal;font-weight:normal;font-size:45px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -510,7 +510,7 @@ date: 2017-02-03
                y="0"
                x="0">’</tspan></text>
 </g><g
-           transform="matrix(0.24,0,0,0.24,90.83311,701.76)"
+           transform="matrix(0.24,0,0,0.24,88.37852,701.76)"
            id="g252"><text
              id="text254"
              style="font-variant:normal;font-weight:normal;font-size:45px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -519,16 +519,16 @@ date: 2017-02-03
                y="0"
                x="0">1</tspan></text>
 </g><g
-           transform="matrix(0.24,0,0,0.24,96.3331,701.76)"
+           transform="matrix(0.24,0,0,0.24,93.87852,701.76)"
            id="g258"><text
              id="text260"
              style="font-variant:normal;font-weight:normal;font-size:45px;font-family:Times;-inkscape-font-specification:Times-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
              transform="scale(1,-1)"><tspan
                id="tspan262"
                y="0"
-               x="0">8</tspan></text>
+               x="0">7</tspan></text>
 </g><g
-           transform="matrix(0.24,0,0,0.24,101.8331,701.76)"
+           transform="matrix(0.24,0,0,0.24,99.37851,701.76)"
            id="g264" /></g></g><g
        id="g266"><g
          clip-path="url(#clipPath270)"
