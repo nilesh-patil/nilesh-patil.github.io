@@ -6,25 +6,36 @@ categories: blog
 excerpt: 'Implementing scalable k-means clustering using distributed computing frameworks'
 tags: [machine-learning, clustering, distributed-computing, python, pyspark, dask]
 image:
-  feature:
+  feature: blog/distributed-kmeans/clusters.jpeg
 date: 2020-05-20T10:00:00-00:00
 modified: 2020-05-20T10:00:00-00:00
 ---
 
-## Index
+## Sections
 
-[Introduction](#introduction)
-[K-Means Algorithm Overview](#k-means-algorithm-overview)
-[Challenges with Large-Scale Data](#challenges-with-large-scale-data)
-[Distributed K-Means with PySpark](#distributed-k-means-with-pyspark)
-[Distributed K-Means with Dask](#distributed-k-means-with-dask)
-[Performance Comparison](#performance-comparison)
-[Best Practices](#best-practices)
-[Conclusion](#conclusion)
+- [Sections](#sections)
+- [Introduction](#introduction)
+- [K-Means Algorithm Overview](#k-means-algorithm-overview)
+- [Challenges with Large-Scale Data](#challenges-with-large-scale-data)
+- [Distributed K-Means Implementations](#distributed-k-means-implementations)
+  - [Distributed K-Means with PySpark](#distributed-k-means-with-pyspark)
+    - [Setting Up PySpark Environment](#setting-up-pyspark-environment)
+    - [Implementing Distributed K-Means](#implementing-distributed-k-means)
+    - [Advanced PySpark K-Means with Custom Initialization](#advanced-pyspark-k-means-with-custom-initialization)
+  - [Distributed K-Means with Dask](#distributed-k-means-with-dask)
+    - [Setting Up Dask Environment](#setting-up-dask-environment)
+    - [Implementing Distributed K-Means with Dask](#implementing-distributed-k-means-with-dask)
+    - [Incremental K-Means with Dask](#incremental-k-means-with-dask)
+- [Performance Comparison](#performance-comparison)
+- [Best Practices](#best-practices)
+  - [1. Data Preprocessing](#1-data-preprocessing)
+  - [2. Optimal Number of Clusters](#2-optimal-number-of-clusters)
+  - [3. Memory Management](#3-memory-management)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
-K-means clustering is one of the most widely used unsupervised machine learning algorithms for partitioning data into k clusters. While the algorithm is conceptually simple and computationally efficient for moderate-sized datasets, it faces significant challenges when dealing with big data scenarios where datasets can contain millions or billions of data points.
+[K-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) is one of the most widely used unsupervised machine learning algorithms for partitioning data into k-clusters. While the algorithm is conceptually simple and computationally efficient for moderate-sized datasets, it faces significant challenges when dealing with large datasets where each iteration can contain millions or billions of data points.
 
 In this post, we'll explore how to implement distributed k-means clustering in Python using popular frameworks like **PySpark** and **Dask**, enabling us to handle massive datasets that don't fit into memory on a single machine.
 
@@ -32,10 +43,11 @@ In this post, we'll explore how to implement distributed k-means clustering in P
 
 Before diving into distributed implementations, let's quickly review the standard k-means algorithm:
 
-1. **Initialize** k cluster centroids randomly
+1. **Initialization**: Sample k-cluster centroids randomly
 2. **Assignment Step**: Assign each data point to the nearest centroid
 3. **Update Step**: Recalculate centroids as the mean of assigned points
-4. **Repeat** steps 2-3 until convergence or maximum iterations reached
+4. **Verify** : Check for stop condition
+5. **Repeat** : steps 2-3 until convergence or maximum iterations reached
 
 ```python
 import numpy as np
@@ -65,18 +77,20 @@ def standard_kmeans_example():
 
 ## Challenges with Large-Scale Data
 
-When dealing with big data, traditional k-means implementations face several challenges:
+When dealing with large datasets, traditional k-means implementations face several challenges:
 
-1. **Memory Constraints**: Large datasets may not fit into memory
-2. **Computational Complexity**: O(n*k*d*i) time complexity becomes prohibitive
-3. **I/O Bottlenecks**: Reading massive datasets from disk
-4. **Scalability**: Single-machine limitations
+1. **Memory Constraints**: Large datasets may not fit into memory of a single machine
+2. **Computational Complexity**: $O(n \times k \times d \times i)$ time complexity becomes prohibitive where `n` is the number of data points, `k` is the number of clusters, `d` is the dimensionality, and `i` is the number of iterations
+3. **I/O Bottlenecks**: Reading massive datasets from disk creates slow data transfer between disk and memory
+4. **Scalability**: Single-machine limitations prevent processing datasets beyond hardware capacity
 
-## Distributed K-Means with PySpark
+## Distributed K-Means Implementations
 
-Apache Spark provides excellent support for distributed k-means clustering through its MLlib library. Here's how to implement it:
+### Distributed K-Means with PySpark
 
-### Setting Up PySpark Environment
+[Apache Spark](https://spark.apache.org/) provides good support for distributed k-means clustering through its MLlib library. Here's how to implement it:
+
+#### Setting Up PySpark Environment
 
 ```python
 from pyspark.sql import SparkSession
@@ -97,7 +111,7 @@ def create_spark_session():
     return spark
 ```
 
-### Implementing Distributed K-Means
+#### Implementing Distributed K-Means
 
 ```python
 def distributed_kmeans_pyspark(spark, data_path, k=3, max_iter=100):
@@ -192,7 +206,7 @@ def run_pyspark_example():
     return model, predictions
 ```
 
-### Advanced PySpark K-Means with Custom Initialization
+#### Advanced PySpark K-Means with Custom Initialization
 
 ```python
 def advanced_kmeans_pyspark(spark, df, k=3, init_method="k-means++"):
@@ -222,11 +236,11 @@ def advanced_kmeans_pyspark(spark, df, k=3, init_method="k-means++"):
     return model, predictions
 ```
 
-## Distributed K-Means with Dask
+### Distributed K-Means with Dask
 
-Dask provides another excellent framework for distributed computing in Python, with a more Pythonic API:
+Dask provides another robust framework for distributed computing in Python, with a more Pythonic API and specifically targeting numerical computing applications :
 
-### Setting Up Dask Environment
+#### Setting Up Dask Environment
 
 ```python
 import dask.dataframe as dd
@@ -244,7 +258,7 @@ def create_dask_client(n_workers=4):
     return client
 ```
 
-### Implementing Distributed K-Means with Dask
+#### Implementing Distributed K-Means with Dask
 
 ```python
 def distributed_kmeans_dask(data_path, k=3, max_iter=100, chunk_size="100MB"):
@@ -363,7 +377,7 @@ def run_dask_example():
         client.close()
 ```
 
-### Incremental K-Means with Dask
+#### Incremental K-Means with Dask
 
 ```python
 def incremental_kmeans_dask(data_stream, k=3, batch_size=10000):
@@ -569,5 +583,3 @@ def complete_distributed_kmeans_pipeline(data_path, framework='dask'):
         finally:
             spark.stop()
 ```
-
-This comprehensive approach to distributed k-means clustering will help you tackle large-scale clustering problems efficiently and effectively. 
