@@ -1,0 +1,41 @@
+{% include base_path %}
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav" aria-label="Site navigation">
+        <button type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="greedy-nav-overflow"><span class="navicon" aria-hidden="true"></span></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
+            <a href="{{ base_path }}/">{{ site.title }}</a>
+          </li>
+          {% for link in site.data.navigation.main %}
+            {% comment %}
+              `requires_flag` gates a nav entry on a site-level flag.
+              Pages still build at their permalinks; only the nav entry is hidden.
+            {% endcomment %}
+            {% assign show_link = true %}
+            {% if link.requires_flag and site[link.requires_flag] != true %}
+              {% assign show_link = false %}
+            {% endif %}
+            {% if show_link %}
+              {% if link.url contains 'http' %}
+                {% assign domain = '' %}
+              {% else %}
+                {% assign domain = base_path %}
+              {% endif %}
+              <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
+                <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if site.dark_mode %}
+            <li id="theme-toggle" class="masthead__menu-item persist tail">
+              <button type="button" title="Cycle theme: light → dark → sepia" aria-label="Cycle color theme (light, dark, sepia)"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i></button>
+            </li>
+          {% endif %}
+        </ul>
+        <ul class="hidden-links hidden" id="greedy-nav-overflow"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

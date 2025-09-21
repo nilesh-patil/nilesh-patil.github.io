@@ -1,0 +1,20 @@
+{% include base_path %}
+
+{%- comment -%}
+  Comments are giscus-only on this site. The dead-provider cases that
+  shipped with academicpages (disqus, facebook, google-plus, staticman,
+  custom) were dropped in the perf-pass cleanup along with their
+  corresponding files under _includes/comments-providers/. Re-adding a
+  provider means re-adding both a case here and the matching include.
+
+  The heading was promoted from <h4> to <h2> to match the surrounding
+  page sections and fix the h2 → h4 heading-order skip flagged by axe.
+{%- endcomment -%}
+
+{% if site.comments.provider == "giscus" %}
+  <div class="page__comments">
+    {% capture comments_label %}{{ site.data.ui-text[site.locale].comments_label | default: "Comments" }}{% endcapture %}
+    <h2 class="page__comments-title">{{ comments_label }}</h2>
+    {% include /comments-providers/giscus.html %}
+  </div>
+{% endif %}
