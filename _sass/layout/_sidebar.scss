@@ -1,0 +1,379 @@
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+
+/*
+   Default
+   ========================================================================== */
+
+.sidebar {
+  -webkit-transform: translate3d(0, 0 , 0);
+          transform: translate3d(0, 0 , 0);
+
+  @include clearfix();
+  margin-bottom: 1em;
+
+  @media (orientation: portrait) {
+    margin-top: 1em;
+  }
+
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    /*
+     * Sticky (not fixed) so the sidebar scrolls naturally with the page
+     * hero / breadcrumbs at the top, then pins to viewport top once it
+     * reaches the masthead-bottom edge. Symmetric with .sidebar__right
+     * so both panes stick at the same y as the user scrolls. The
+     * `top: $masthead-height` puts them just below the fixed masthead.
+     */
+    position: sticky;
+    top: $masthead-height;
+    max-height: calc(100vh - #{$masthead-height});
+    overflow-y: auto;               // scroll if the sidebar outgrows the viewport
+  }
+
+  @include breakpoint($large) {
+    @include span(2 of 12);
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in-out;
+            transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @include breakpoint($x-large) {
+    max-width: $sidebar-link-max-width;
+    padding-right: 0;
+  }
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    font-family: $sans-serif-narrow;
+  }
+
+  h3, h4 {
+    font-size: $type-size-5;
+  }
+
+  p, li {
+    font-family: $sans-serif;
+    font-size: $type-size-6;
+    line-height: 1.5;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.sidebar__right {
+  /*
+   * RHS column mirroring .sidebar (LHS author profile). Wraps the auto-
+   * generated TOC. At <$large viewports the TOC stacks above the article
+   * in normal flow. At $large+ it takes the right 2-of-12 Susy column —
+   * matching the suffix(2 of 12) already reserved by .page (see
+   * _sass/layout/_page.scss:19-23). At $sidebar-screen-min-width it
+   * becomes fixed-position with its own scroll, like the LHS sidebar,
+   * so it stays visible while the article scrolls.
+   */
+  margin-bottom: 1em;
+
+  @include breakpoint($large) {
+    @include span(2 of 12 last);
+    z-index: 10;
+  }
+
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    /*
+     * Sticky (matching .sidebar / LHS). Pins to viewport top below the
+     * masthead once the user scrolls past the hero / breadcrumbs.
+     * `top: $masthead-height` keeps it at the same y as the LHS pane.
+     */
+    position: sticky;
+    top: $masthead-height;
+    max-height: calc(100vh - #{$masthead-height});
+    overflow-y: auto;               // scroll if TOC outgrows the viewport
+  }
+
+  @include breakpoint($x-large) {
+    max-width: $sidebar-link-max-width;
+  }
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    font-family: $sans-serif-narrow;
+  }
+
+  h3, h4 {
+    font-size: $type-size-5;
+  }
+}
+
+
+/*
+   Table of contents
+   ========================================================================== */
+
+.toc {
+  background-color: var(--global-toc-bg-color);
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 1em;
+
+  .nav__title {
+    color: var(--global-text-color);
+    font-size: $type-size-6;
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .toc__menu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    font-size: $type-size-6;
+
+    a {
+      display: block;
+      padding: 0.25rem 0;
+      color: var(--global-text-color);
+      font-size: $type-size-7;
+      font-weight: normal;
+      line-height: 1.5;
+      border-bottom: 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    > li > a {
+      font-weight: bold;
+    }
+
+    li ul > li a {
+      padding-left: 1rem;
+      font-weight: normal;
+    }
+
+    li ul li ul > li a {
+      padding-left: 2rem;
+    }
+
+    li ul li ul li ul > li a {
+      padding-left: 3rem;
+    }
+
+    /*
+     * WCAG 2.5.5 touch-target size. On coarse pointers (touchscreens),
+     * the TOC links would otherwise be ~24-28 px tall, below the 44 px
+     * minimum. Restricted to coarse pointers so the desktop visual
+     * density stays unchanged.
+     */
+    @media (pointer: coarse) {
+      a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
+/*
+   Author profile and links
+   ========================================================================== */
+
+.author__avatar {
+  display: table-cell;
+  vertical-align: top;
+  width: 36px;
+  // set width only, for non-square avatars
+  // height: 36px;
+
+  @include breakpoint($large) {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  img {
+    max-width: 175px;
+    border-radius: 50%;
+
+    @include breakpoint($large) {
+      padding: 5px;
+      border: 1px solid var(--global-border-color);
+    }
+  }
+}
+
+.author__content {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 15px;
+  padding-right: 25px;
+  line-height: 1;
+
+  @include breakpoint($large) {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.author__name {
+  margin: 0;
+  /*
+   * Pin the font-size so the sidebar author name renders at h3-equivalent
+   * size regardless of the actual heading element used. The element was
+   * promoted from <h3> to <h2> to fix the h1→h3 heading-order skip; this
+   * keeps the visual baseline (docs/perf/baseline/screenshots/) intact.
+   */
+  font-size: $type-size-4;
+
+  @include breakpoint($large) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+.sidebar .author__name {
+  font-family: $sans-serif;
+  font-size: $type-size-5;
+}
+
+.sidebar .author__desktop {
+  display: none;
+  @media screen and (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.author__pronouns {
+  margin: 0;
+
+  @include breakpoint($large) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.author__bio {
+  margin: 0;
+
+  @include breakpoint($large) {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.author__urls-wrapper {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  font-family: $sans-serif;
+  z-index: 10;
+  position: relative;
+  cursor: pointer;
+
+  li:last-child {
+    a {
+      margin-bottom: 0;
+    }
+  }
+
+  @include breakpoint($large) {
+    display: block;
+  }
+
+  button {
+    margin-bottom: 0;
+
+    @include breakpoint($large) {
+      display: none;
+    }
+  }
+}
+
+.author__urls {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 15px;
+  padding: 10px;
+  list-style-type: none;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  background: var(--global-bg-color);
+  z-index: -1;
+  box-shadow: 0 0 10px rgba(#000, 0.25);
+  cursor: default;
+
+  @include breakpoint($large) {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -11px;
+    left: calc(50% - 10px);
+    width: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: var(--global-border-color) transparent;
+    z-index: 0;
+
+    @include breakpoint($large) {
+      display: none;
+    }
+  }
+
+  &:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    width: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: #fff transparent;
+    z-index: 1;
+
+    @include breakpoint($large) {
+      display: none;
+    }
+  }
+
+  li {
+    white-space: nowrap;
+  }
+
+  a {
+    display: block;
+    margin-bottom: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: inherit;
+    font-size: $type-size-5;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
