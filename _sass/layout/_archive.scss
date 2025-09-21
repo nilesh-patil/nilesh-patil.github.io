@@ -1,0 +1,402 @@
+/* ==========================================================================
+   ARCHIVE
+   ========================================================================== */
+
+.archive {
+  margin-bottom: 2em;
+
+  @include breakpoint($medium) {
+    @include span(12 of 12);
+  }
+
+  @include breakpoint($large) {
+    @include span(10 of 12 last);
+    @include prefix(0.5 of 12);
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: underline;
+
+      img {
+        box-shadow: 0 0 10px rgba(#000, 0.25);
+      }
+    }
+  }
+}
+
+.archive__subtitle {
+  margin: 1.414em 0 0;
+  padding-bottom: 0.5em;
+  font-size: $type-size-5;
+  color: var(--global-text-color-light);
+  border-bottom: 1px solid var(--global-border-color);
+
+  + .list__item .archive__item-title {
+    margin-top: 0.5em;
+  }
+}
+
+.archive__item-title {
+  margin-bottom: 0.25em;
+  font-family: $sans-serif-narrow;
+
+  a + a {
+    opacity: 0.5;
+  }
+}
+
+/* remove border*/
+.page__content {
+
+  .archive__item-title {
+    margin-top: 1em;
+    border-bottom: none;
+  }
+}
+
+.archive__item-excerpt {
+  margin-top: 0;
+  font-size: $type-size-6;
+
+  & + p {
+    text-indent: 0;
+  }
+}
+
+.archive__item-teaser {
+  border-radius: $border-radius;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.archive__item:hover {
+  .archive__item-teaser {
+    box-shadow: 0 0 10px rgba(#000, 0.25);
+  }
+
+  .archive__item-title {
+    text-decoration: underline;
+  }
+}
+
+
+/*
+   Compact listing rows — home page AND every archive / collection page
+   --------------------------------------------------------------------------
+   One line per entry: a fixed-width, muted, monospace DATE column followed by
+   the TITLE link (thenumb.at-style), no excerpt and no card. Shared by the
+   home page (`.taxonomy__index`, hand-rolled in _pages/home.md) and all the
+   collection / archive pages (`.archive__item`, emitted by
+   _includes/archive-single.html). Both carry the `.post-row` class so the two
+   stay pixel-identical from a single rule. (`.taxonomy__index` is the Minimal
+   Mistakes tag-index component, repurposed here as the home listing.)
+   ========================================================================== */
+
+.taxonomy__index {
+  margin: 0 0 1.5em;
+  padding: 0;
+  list-style: none;
+}
+
+.post-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  margin: 0 0 0.4em;
+  line-height: 1.5;
+
+  // date and title share the body sans font; the date sits at the base ink
+  // (very slightly softened) and the title is the same hue at full strength,
+  // so the title reads as just a touch darker without going bold.
+  &__date {
+    // fixed-width column so every title starts at the same x. Full month names
+    // vary a lot ("May" vs "September"), so size for the widest possible month
+    // ("September 30") to keep alignment stable whatever month a post lands in.
+    flex: 0 0 7.25em;
+    font-family: inherit;
+    font-size: 0.9em;
+    color: var(--global-text-color);
+    opacity: 0.82;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+
+    // year-only dates (publications) size to content, no wide empty gap
+    &--year { flex-basis: auto; }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 400;
+    font-family: inherit;
+    line-height: inherit;
+    color: var(--global-text-color);
+  }
+
+  // beat `.archive a { text-decoration: underline }` (0,1,1) with 0,2,0
+  .post-row__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/*
+   Rich listing rows — ONLY the /publications/ and /portfolio/ listings
+   --------------------------------------------------------------------------
+   Same date column + title link as the bare `.post-row`, but the title and a
+   second muted meta line (venue / one-line description + an external link) are
+   stacked in `.post-row__body`. These selectors are scoped to classes that
+   appear ONLY on publications/portfolio rows (`--rich`, `__body`, `__meta`,
+   `__venue`, `__desc`, `__ext`), so blog rows, the archives, and the home page
+   listing — which reuse `.post-row`/`.post-row__*` base classes — are untouched.
+   ========================================================================== */
+
+.post-row--rich {
+  // keep the date baseline-aligned with the title (first line of the body)
+  align-items: baseline;
+
+  .post-row__body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; // allow long venues/descriptions to wrap, not overflow
+  }
+
+  .post-row__meta {
+    margin-top: 0.1em;
+    font-size: 0.82em;
+    line-height: 1.4;
+    color: var(--global-text-color-light);
+  }
+
+  .post-row__venue,
+  .post-row__desc {
+    color: var(--global-text-color-light);
+  }
+
+  // separate the venue/description from the trailing external link
+  .post-row__venue + .post-row__ext,
+  .post-row__desc + .post-row__ext {
+    margin-left: 0.5em;
+  }
+
+  .post-row__ext {
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--global-link-color);
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+
+/*
+   CV timeline — date / era column on the left, content on the right
+   --------------------------------------------------------------------------
+   Mirrors the muted monospace date column of `.post-row` (and the left-margin
+   dates of the printed CV in files/nilesh-patil.pdf). Scoped to `.cv-entry`,
+   which only appears on /cv/, so no other page is affected.
+   ========================================================================== */
+
+.cv-entry {
+  display: flex;
+  gap: 1.5em;
+  margin: 0 0 1.6em;
+
+  @media (max-width: 37.5em) {
+    flex-direction: column;
+    gap: 0.15em;
+    margin-bottom: 1.4em;
+  }
+}
+
+.cv-entry__when {
+  flex: 0 0 8.5em;
+  padding-top: 0.2em;
+  font-family: $monospace;
+  font-size: 0.78em;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+
+  @media (max-width: 37.5em) {
+    padding-top: 0;
+  }
+}
+
+.cv-entry__what {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  > :first-child { margin-top: 0; }
+  p { margin: 0 0 0.5em; }
+  ul { margin: 0.35em 0 0; }
+  li { margin-bottom: 0.3em; }
+}
+
+
+/*
+   List view
+   ========================================================================== */
+
+.list__item {
+  @include breakpoint($medium) {
+    padding-right: $right-sidebar-width-narrow;
+  }
+
+  @include breakpoint($large) {
+    padding-right: $right-sidebar-width;
+  }
+
+  @include breakpoint($x-large) {
+    padding-right: $right-sidebar-width-wide;
+  }
+
+  .page__meta {
+    margin: 0 0 4px;
+  }
+}
+
+
+/*
+   Grid view
+   ========================================================================== */
+
+.grid__item {
+  margin-bottom: 2em;
+
+  .page__meta {
+    margin: 0 0 4px;
+  }
+
+  .archive__item-title {
+    margin-top: 0.5em;
+    font-size: $type-size-5;
+  }
+
+  .archive__item-excerpt {
+    display: none;
+  }
+
+  @include breakpoint($small) {
+    @include gallery(5 of 10);
+    .archive__item-teaser {
+      max-height: 200px;
+    }
+  }
+
+  @include breakpoint($medium) {
+    margin-left: 0; /* reset before mixin does its thing*/
+    margin-right: 0; /* reset before mixin does its thing*/
+    @include gallery(2.5 of 10);
+
+    .archive__item-teaser {
+      max-height: 120px;
+    }
+
+    .archive__item-excerpt {
+      display: block;
+      font-size: $type-size-6;
+    }
+  }
+}
+
+
+/*
+   Features
+   ========================================================================== */
+
+.feature__wrapper {
+  @include clearfix();
+  margin-bottom: 2em;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.feature__item {
+  margin-bottom: 2em;
+  font-size: 1.25rem;
+
+  @include breakpoint($small) {
+    margin-bottom: 0;
+    @include gallery(4 of 12);
+
+    .feature__item-teaser {
+      max-height: 200px;
+      overflow: hidden;
+    }
+  }
+
+  &--left {
+    @include full();
+    font-size: 1.25rem;
+
+    .archive__item-teaser {
+      margin-bottom: 2em;
+    }
+
+    @include breakpoint($small) {
+      .archive__item-teaser {
+        @include span(5 of 12);
+      }
+
+      .archive__item-body {
+        @include span(7 of 12 last);
+        @include prefix(0.5 of 12);
+        @include suffix(1 of 12);
+      }
+    }
+  }
+
+  &--right {
+    @include full();
+    font-size: 1.25rem;
+
+    .archive__item-teaser {
+      margin-bottom: 2em;
+    }
+
+    @include breakpoint($small) {
+      text-align: right;
+
+      .archive__item-teaser {
+        @include span(5 of 12 rtl);
+      }
+
+      .archive__item-body {
+        @include span(7 of 12 last rtl);
+        @include prefix(0.5 of 12);
+        @include suffix(1 of 12);
+      }
+    }
+  }
+
+  &--center {
+    @include full();
+    font-size: 1.25rem;
+
+    .archive__item-teaser {
+      margin-bottom: 2em;
+    }
+
+    @include breakpoint($small) {
+      text-align: center;
+
+      .archive__item-teaser {
+        margin: 0 auto;
+        width: span(5 of 12);
+      }
+
+      .archive__item-body {
+        margin: 0 auto;
+        width: span(7 of 12);
+      }
+    }
+  }
+}

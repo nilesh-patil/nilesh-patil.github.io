@@ -1,0 +1,81 @@
+/* ==========================================================================
+    DEFAULT THEME — SEPIA (long-read paper)
+    ==========================================================================
+    Cream/paper background with dark sepia text, modeled on e-reader
+    "sepia" modes. Aimed at sustained reading sessions where pure-white
+    backgrounds feel cold and pure-black text feels harsh.
+
+      bg     : #f4ecd8  warm cream paper
+      text   : #5b4636  dark sepia brown
+      accent : #8b5a2b  warm brown link color
+      code   : #ede4cc  slightly tinted paper, keeps code from "popping"
+    Contrast ratio body text : background ≈ 8.7:1 (WCAG AAA for body).
+   ========================================================================== */
+
+/* Brand colors (kept for token compatibility with the rest of the theme) */
+$primary-color              : #8b5a2b;          // warm brown
+$primary-color-strong       : #6b4119;
+$gray                       : #8a7a66;
+$dark-gray                  : mix(#000, $gray, 35%);
+$darker-gray                : mix(#000, $gray, 55%);
+$light-gray                 : mix(#fff, $gray, 40%);
+
+/* Sepia surfaces */
+$bg                         : #f4ecd8;          // body, "paper"
+$bg-elevated                : #f8f1e0;          // sidebar, cards, slightly brighter
+$bg-deeper                  : #ebe1c3;          // footer, code blocks, slight contrast
+$border                     : #c8b899;
+$border-soft                : #ddd1b2;
+
+/* Text */
+$text                       : #5b4636;          // body, dark sepia brown
+/* C-017: #7d6a52 on #f4ecd8 was 4.40:1 — fails WCAG AA for small text.
+   #6f5d45 on #f4ecd8 ≈ 5.2:1 — same warm hue, slightly darker. */
+$text-muted                 : #6f5d45;
+$text-dim                   : #9a8c72;
+
+/* Link */
+$link                       : $primary-color;
+$link-hover                 : $primary-color-strong;
+$link-visited               : #7a4b8a;          // distinct, plum
+
+/* Status colors (warmer in sepia) */
+$danger-color               : #c0392b;
+$info-color                 : $primary-color;
+$notice-color               : $text-muted;
+$success-color              : #4f8a3d;
+$warning-color              : #d18516;
+
+/* Other basic settings (must match light/dark to keep layout sizes stable) */
+$border-radius              : 4px;
+$box-shadow                 : none;  /* Ollama: flat — no drop-shadow elevation */
+$global-transition          : all 0.2s ease-in-out;
+$masthead-height            : 70px;
+$navicon-width              : 28px;
+$navicon-height             : 4px;
+$sidebar-link-max-width     : 250px;
+$sidebar-screen-min-width   : 1024px;
+
+/* Sepia mode for the site */
+html[data-theme="sepia"] {
+    /* Ollama reader: warm cream paper, dark-sepia ink, hairline borders.
+       Links sit at the body ink and rely on the content underline for
+       affordance; active pills fill dark-brown with cream text. */
+    --global-base-color                 : #3b2f23;   /* dark brown ink — fills active pills */
+    --on-accent                         : #f4ecd8;   /* cream text on a brown pill */
+    --global-bg-color                   : #{$bg};
+    --global-footer-bg-color            : #{$bg-deeper};
+    --global-border-color               : #{$border-soft};
+    --global-dark-border-color          : #{$border};
+    --global-code-background-color      : #{$bg-deeper};
+    --global-code-text-color            : #{$dark-gray};
+    --global-fig-caption-color          : #{$text-dim};
+    --global-link-color                 : #5b4636;
+    --global-link-color-hover           : #3b2f23;
+    --global-link-color-visited         : #7a4b8a;
+    --global-masthead-link-color        : #5b4636;
+    --global-masthead-link-color-hover  : #3b2f23;
+    --global-text-color                 : #{$text};
+    --global-text-color-light           : #{$text-muted};
+    --global-thead-color                : #{$bg-elevated};
+}

@@ -1,0 +1,14 @@
+---
+layout: archive
+title: "Side projects"
+permalink: /portfolio/
+author_profile: true
+---
+
+{% include base_path %}
+
+{% assign side_projects = site.portfolio | sort: 'date' | reverse %}
+{% for post in side_projects %}
+  {% include archive-single.html %}
+{% endfor %}
+
