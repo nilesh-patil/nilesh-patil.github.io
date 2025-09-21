@@ -1,0 +1,12 @@
+---
+# Frontmatter triggers Liquid processing. RFC 9309 requires the
+# Sitemap line to be an absolute URL — even in local dev, where
+# _config.dev.yml empties site.url to make canonicals point at
+# localhost, we still emit the production URL here so the file
+# is valid in both environments.
+layout: null
+---
+User-agent: *
+Allow: /
+
+Sitemap: https://www.nilesh42.science/sitemap.xml
