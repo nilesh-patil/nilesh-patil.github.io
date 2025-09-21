@@ -1,48 +1,252 @@
-# Site wide configuration
+# =============================================================================
+# Site identity
+# =============================================================================
+title: "Nilesh Patil"
+subtitle: "AI systems & applied research"
+title_separator: "-"
+name: "Nilesh Patil"
+description: >-
+  AI leader building deployable AI systems, agentic workflows, and
+  organizational adoption in regulated and large-scale environments.
+url: "https://nilesh-patil.github.io"
+baseurl: ""
+repository: "nilesh-patil/nilesh-patil.github.io"
+logo: "/images/ensembledme.jpg"
+masthead_title: " "
+locale: "en-US"
+timezone: "Asia/Kolkata"
+words_per_minute: 200
 
-title: Data Curious
-locale: en_US
-description: ""
-logo: ensembledme.jpg
-url: https://nilesh-patil.github.io
+# =============================================================================
+# Author profile (sidebar via author_profile: true)
+# NOTE: email omitted intentionally — contact is via LinkedIn / GitHub only.
+# =============================================================================
+author:
+  name: "Nilesh Patil"
+  avatar: "ensembledme.jpg"   # template prepends /images/
+  bio: "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
+  location: "Mumbai, India"
+  employer: "DreamStreet"
+  googlescholar: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+  github: "nilesh-patil"
+  twitter: "ensembledme"
+  medium: "https://medium.com/@ensembledme"
+  # `linkedin:` and `stackoverflow:` intentionally omitted (see _data/authors.yml).
 
-# Jekyll configuration
-
-permalink:   /:categories/:title/
-markdown:    kramdown
+# =============================================================================
+# Build
+# =============================================================================
+markdown: kramdown
+remote_theme: false
 highlighter: rouge
-sass:
-  sass_dir: _sass
-  style: compressed
-gems:
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 
+include:
+  - .htaccess
+  - _pages
+
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gemfile.lock
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - package-lock.json
+  - Rakefile
+  - README
+  - tmp
+  - vendor
+  - docs
+
+# Conversion / Markdown
 kramdown:
   input: GFM
+  hard_wrap: false
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
-  toc_levels: 1..2
+  toc_levels: 1..3
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-mathjax: true
+sass:
+  sass_dir: _sass
+  style: compressed
 
-include: [".htaccess"]
-exclude: ["lib","config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
+# =============================================================================
+# Plugins
+# =============================================================================
+plugins:
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jemoji
+  - jekyll-redirect-from
 
-comments: true
+whitelist:
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jemoji
+  - jekyll-redirect-from
 
-# Site owner
-owner:
-  name: Nilesh Patil
-  avatar: ensembledme.jpg
-  email: nilesh5760@gmail.com
-  disqus-shortname: dataCurious
-  twitter: ensembledme
-  github: nilesh-patil
-  medium: https://medium.com/@ensembledme
-  stackexchange: https://stats.stackexchange.com/users/36581/nilesh
-  google:
-    analytics: UA-42632518-2
+# =============================================================================
+# Archives
+# =============================================================================
+category_archive:
+  type: liquid
+  path: /category-archive/
+tag_archive:
+  type: liquid
+  path: /tag-archive/
+
+# =============================================================================
+# Collections
+# =============================================================================
+collections:
+  posts:
+    output: true
+    permalink: /posts/:title/             # → /posts/<slug>/  (drops date prefix)
+  publications:
+    output: true
+    permalink: /:collection/:path/
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+  talks:
+    output: true
+    permalink: /:collection/:path/
+  teaching:
+    output: true
+    permalink: /:collection/:path/
+
+# =============================================================================
+# Defaults
+# =============================================================================
+defaults:
+  - scope: { path: "", type: posts }
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      toc: true
+      toc_sticky: true
+  - scope: { path: "", type: publications }
+    values:
+      layout: single
+      author_profile: true
+      share: false
+  - scope: { path: "", type: portfolio }
+    values:
+      layout: single
+      author_profile: true
+      share: true
+  - scope: { path: "", type: talks }
+    values:
+      layout: talk
+      author_profile: true
+  - scope: { path: "", type: teaching }
+    values:
+      layout: single
+      author_profile: true
+  - scope: { path: "_pages" }
+    values:
+      layout: single
+      author_profile: true
+
+# =============================================================================
+# Pagination
+# =============================================================================
+paginate: 5
+paginate_path: /page:num/
+
+# =============================================================================
+# Comments — giscus
+# Run https://giscus.app once after enabling Discussions on the repo
+# to fill repo_id and category_id below. Theme follows site dark-mode toggle.
+# =============================================================================
+comments:
+  provider: giscus
+  giscus:
+    repo: "nilesh-patil/nilesh-patil.github.io"
+    hide_button: false
+    default_message: true
+    repo_id: ""                  # paste from giscus.app
+    category_name: "General"
+    category_id: ""              # paste from giscus.app
+    discussion_term: "pathname"
+    reactions_enabled: "1"
+    theme: "preferred_color_scheme"
+
+# =============================================================================
+# Search — Pagefind (build-time, not a Jekyll plugin)
+# Run `npx pagefind --site _site` after Jekyll builds. See _includes/search/.
+# =============================================================================
+search: false
+
+# =============================================================================
+# Math — KaTeX (loaded only on pages with math: true)
+# Replaces academicpages MathJax default.
+# =============================================================================
+math_engine: katex
+
+# =============================================================================
+# Theme — academicpages built-in dark mode
+# Light/dark variants are paired in _sass/theme/_default_{light,dark}.scss.
+# A pre-paint script in _includes/head.html sets data-theme before render
+# to prevent FOUC; the masthead toggle persists preference in localStorage.
+# =============================================================================
+site_theme: "default"
+dark_mode: true
+
+# =============================================================================
+# Custom feature flags
+# Flip in this file to surface Talks / Teaching in the nav.
+# =============================================================================
+show_talks: false
+show_teaching: false
+
+# =============================================================================
+# Footer
+# =============================================================================
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/nilesh-patil"
+    - label: "Medium"
+      icon: "fab fa-fw fa-medium"
+      url: "https://medium.com/@ensembledme"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+    # LinkedIn intentionally omitted until handle is provided.
+
+# =============================================================================
+# Analytics: OMITTED — zero outbound telemetry
+# (No google.analytics, no GA4, no Plausible, no GoatCounter, no CF analytics.)
+# =============================================================================

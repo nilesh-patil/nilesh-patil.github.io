@@ -1,10 +1,20 @@
-_site
+# Build output
+_site/
+.sass-cache/
+.jekyll-cache/
+
+# macOS
 .DS_Store
-*.sublime-project
-*.sublime-workspace
-codekit-config.json
-node_modules
-.sass-cache
-.jekyll-metadata
-.bundle
-.jekyll-cache
+
+# Editors / IDEs
+.vscode/
+local/
+
+# Bundler / Ruby
+.bundle/
+/vendor/
+Gemfile.lock
+
+# Node
+node_modules/
+package-lock.json

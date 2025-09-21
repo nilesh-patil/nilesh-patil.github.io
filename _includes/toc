@@ -1,0 +1,41 @@
+{%- comment -%}
+  Server-side auto-TOC. Scans page.content for <h2 id=> and <h3 id=>
+  tags emitted by kramdown's auto_ids and renders an unordered list.
+
+  kramdown's native {:toc} syntax doesn't expand inside HTML includes;
+  doing it in Liquid avoids that limitation and keeps everything static.
+{%- endcomment -%}
+{%- assign content_for_toc = page.content -%}
+{%- assign headings = "" | split: "" -%}
+{%- assign chunks = content_for_toc | split: "<h" -%}
+{%- for chunk in chunks -%}
+  {%- assign level = chunk | slice: 0, 1 -%}
+  {%- if level == "2" or level == "3" -%}
+    {%- assign rest = chunk | split: ">" -%}
+    {%- assign tag = rest | first -%}
+    {%- if tag contains 'id="' -%}
+      {%- assign id_part = tag | split: 'id="' | last | split: '"' | first -%}
+      {%- assign inner = rest[1] | split: "</h" | first | strip_html | strip -%}
+      {%- capture entry -%}{{ level }}|{{ id_part }}|{{ inner }}{%- endcapture -%}
+      {%- assign headings = headings | push: entry -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if headings.size > 0 -%}
+<aside class="sidebar__right">
+<nav class="toc">
+<header><h4 class="nav__title"><i class="fa fa-{{ include.icon | default: 'list-ul' }}" aria-hidden="true"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label | default: 'Contents' }}</h4></header>
+<ul class="toc__menu">
+{%- for h in headings -%}
+  {%- assign parts = h | split: "|" -%}
+  {%- if parts[0] == "3" -%}
+    <li style="padding-left:1rem"><a href="#{{ parts[1] }}">{{ parts[2] }}</a></li>
+  {%- else -%}
+    <li><a href="#{{ parts[1] }}">{{ parts[2] }}</a></li>
+  {%- endif -%}
+{%- endfor -%}
+</ul>
+</nav>
+</aside>
+{%- endif -%}

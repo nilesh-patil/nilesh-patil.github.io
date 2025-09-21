@@ -1,24 +1,32 @@
 {
-  "name": "so-simple-theme",
-  "author": "Michael Rose <michael@mademistakes.com>",
-  "homepage": "http://mmistakes.github.io/so-simple-theme/",
+  "name": "nilesh-patil.github.io",
+  "version": "1.0.0",
+  "description": "Personal site (Jekyll + academicpages) with Pagefind search.",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/mmistakes/so-simple-theme.git"
+    "url": "https://github.com/nilesh-patil/nilesh-patil.github.io"
   },
-  "bugs": {
-    "url": "https://github.com/mmistakes/so-simple-theme/issues"
-  },
+  "license": "MIT",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 18"
+  },
+  "dependencies": {
+    "fitvids": "^2.1.1",
+    "jquery": "^3.7.1",
+    "jquery-smooth-scroll": "^2.2.0",
+    "plotly.js-dist-min": "^3.3.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-jshint": "~0.6.3",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-watch": "~0.5.2",
-    "grunt-contrib-imagemin": "~0.2.0",
-    "grunt-svgmin": "~0.2.0"
+    "onchange": "^7.1.0",
+    "pagefind": "^1.1.0",
+    "uglify-js": "^3.17.4"
+  },
+  "scripts": {
+    "uglify": "uglifyjs node_modules/jquery/dist/jquery.min.js node_modules/fitvids/dist/fitvids.min.js node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js node_modules/plotly.js-dist-min/plotly.min.js assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js -c -m -o assets/js/main.min.js",
+    "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
+    "build:js": "npm run uglify",
+    "pagefind": "pagefind --site _site",
+    "build": "bundle exec jekyll build && npm run pagefind"
   }
 }
