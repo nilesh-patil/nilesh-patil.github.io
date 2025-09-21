@@ -1,0 +1,11 @@
+# Curated Dream11 co-author names — one per line — for the arxiv
+# supplementary fetch. Optional and non-blocking per docs/specs.md §15.
+#
+# Google Scholar (profile IIabY1sAAAAJ) already covers the main publication
+# graph; this list widens coverage of Dream11 *preprints* that may not yet
+# appear on Scholar. Add or remove names freely; rerun:
+#
+#   python scripts/fetch_publications.py --refresh
+#
+# (Names below are placeholders; fill in real co-authors as the team
+#  publishes preprints.)
