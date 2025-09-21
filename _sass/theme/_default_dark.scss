@@ -1,0 +1,79 @@
+/* ==========================================================================
+    DEFAULT THEME — DARK (reading-friendly)
+    ==========================================================================
+    Replaces the academicpages stock dark palette (#474747 bg + pure #fff
+    text — 19:1 contrast and slightly cool, which causes halation on long
+    reading sessions). New palette:
+      bg     : #1d2128  warm charcoal (not pitch black)
+      text   : #d6d3cc  off-white with a hint of warmth
+      accent : #7fb3d5  softer cyan-blue, easier on the eye than #0ea1c5
+      code   : #161a20  slightly darker than body, for separation
+    Contrast ratio body text : background ≈ 11.5:1 (still WCAG AAA, but no
+    longer harsh).
+   ========================================================================== */
+
+/* Brand colors (kept for token compatibility with the rest of the theme) */
+$primary-color              : #7fb3d5;          // softer than stock #0ea1c5
+$primary-color-strong       : #5fa3cc;
+$gray                       : #7a8288;
+$dark-gray                  : mix(#000, $gray, 40%);
+$darker-gray                : mix(#000, $gray, 60%);
+$light-gray                 : mix(#fff, $gray, 50%);
+
+/* Dark surfaces */
+$bg                         : #1d2128;          // body
+$bg-elevated                : #262b33;          // cards, sidebar, hero overlay surfaces
+$bg-deeper                  : #161a20;          // footer, code blocks
+$border                     : #3a4047;
+$border-soft                : #2c323a;
+
+/* Text */
+$text                       : #d6d3cc;          // body
+$text-muted                 : #a8a39a;          // captions, meta
+$text-dim                   : #888279;          // figcaptions
+
+/* Link */
+$link                       : $primary-color;
+$link-hover                 : #a8cee5;
+$link-visited               : #c4a3d6;          // distinct, slightly violet
+
+/* Status colors */
+$danger-color               : #ee6f6b;
+$info-color                 : $primary-color;
+$notice-color               : $text-muted;
+$success-color              : #7ad07c;
+$warning-color              : #f0a946;
+
+/* Other basic settings (must match _light to keep layout sizes stable) */
+$border-radius              : 4px;
+$box-shadow                 : none;  /* Ollama: flat — no drop-shadow elevation */
+$global-transition          : all 0.2s ease-in-out;
+$masthead-height            : 70px;
+$navicon-width              : 28px;
+$navicon-height             : 4px;
+$sidebar-link-max-width     : 250px;
+$sidebar-screen-min-width   : 1024px;
+
+/* Reading-friendly dark mode */
+html[data-theme="dark"] {
+    /* Ollama dark: keep the reading-friendly warm-charcoal surface, but swap
+       the cyan accent for a near-white "ink" so filled pills invert cleanly
+       (light pill + dark text — Ollama's button-pill-on-dark). */
+    --global-base-color                 : #ededed;   /* light ink — fills active pills */
+    --on-accent                         : #171717;   /* dark text on a light pill */
+    --global-bg-color                   : #{$bg};
+    --global-footer-bg-color            : #{$bg-deeper};
+    --global-border-color               : #{$border-soft};
+    --global-dark-border-color          : #{$border};
+    --global-code-background-color      : #{$bg-deeper};
+    --global-code-text-color            : #e6e1d4;
+    --global-fig-caption-color          : #{$text-dim};
+    --global-link-color                 : #ededed;
+    --global-link-color-hover           : #ffffff;
+    --global-link-color-visited         : #c2c2c2;
+    --global-masthead-link-color        : #{$text};
+    --global-masthead-link-color-hover  : #ffffff;
+    --global-text-color                 : #{$text};
+    --global-text-color-light           : #{$text-muted};
+    --global-thead-color                : #{$bg-elevated};
+}

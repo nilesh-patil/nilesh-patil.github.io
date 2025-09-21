@@ -1,0 +1,2 @@
+# Keep _teaching/ tracked while empty so flipping show_teaching: true is a one-line change.
+# Real entries go alongside the draft below. See docs/specs.md §11 + ROADMAP Phase 7.
