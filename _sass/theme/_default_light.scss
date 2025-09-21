@@ -1,0 +1,53 @@
+/* ==========================================================================
+    DEFAULT THEME - LIGHT VERSION
+    ========================================================================== */
+/* Color codes used for the theme */
+$primary-color              : #2f7f93;
+$gray                       : #7a8288;
+$dark-gray                  : mix(#000, $gray, 40%);
+$darker-gray                : mix(#000, $gray, 60%);
+$light-gray                 : mix(#fff, $gray, 50%);
+$lighter-gray               : mix(#fff, $gray, 90%);
+
+/* Color codes used for the site */
+$danger-color               : #ee5f5b;
+$info-color                 : #2f7f93;
+$notice-color               : #7a8288;
+$success-color              : #62c462;
+$warning-color              : #f89406;
+
+/* Other basic settings for the template */
+$border-radius              : 4px;
+$box-shadow                 : none;  /* Ollama: flat — no drop-shadow elevation */
+$global-transition          : all 0.2s ease-in-out;
+$masthead-height            : 70px;
+$navicon-width              : 28px;
+$navicon-height             : 4px;
+$sidebar-link-max-width     : 250px;
+$sidebar-screen-min-width   : 1024px;
+
+/* Default light theme for the site — Ollama "paper-white README":
+   white canvas, monochrome ink, #e5e5e5 hairlines, no accent hue. Links are
+   near-ink and rely on the underline added in layout/_ollama.scss for
+   affordance. Contrast: ink #171717 ~17:1, body #1f1f1f ~15:1, muted
+   #737373 ~4.6:1 — all WCAG AA+ on white. */
+:root {
+    --global-base-color                 : #0a0a0a;   /* ink — fills active pills/CTAs */
+    --on-accent                         : #ffffff;   /* text on a filled ink surface */
+    --global-bg-color                   : #ffffff;
+    --global-footer-bg-color            : #ffffff;
+    --global-border-color               : #e5e5e5;   /* hairline */
+    --global-dark-border-color          : #d4d4d4;   /* hairline-strong */
+    --global-code-background-color      : #fafafa;   /* surface-soft */
+    --global-code-text-color            : #171717;
+    --global-fig-caption-color          : #737373;
+    --global-link-color                 : #171717;
+    --global-link-color-hover           : #000000;
+    --global-link-color-visited         : #404040;
+    --global-masthead-link-color        : #171717;
+    --global-masthead-link-color-hover  : #000000;
+    --global-text-color                 : #1f1f1f;   /* body ink */
+    --global-text-color-light           : #737373;   /* muted (AA on white) */
+    --global-thead-color                : #fafafa;
+}
+

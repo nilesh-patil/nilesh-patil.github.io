@@ -1,0 +1,32 @@
+{%- assign g = site.comments.giscus -%}
+{%- assign repo = g.repo | default: site.repository_giscus | default: site.repository -%}
+{% if g.repo_id == "" or g.category_id == "" %}
+  <p class="notice--warning">
+    <strong>Comments are not yet wired.</strong>
+    The site is configured for <a href="https://giscus.app">giscus</a> but the
+    <code>repo_id</code> and <code>category_id</code> in <code>_config.yml</code> have
+    not been filled in yet. Enable Discussions on
+    <code>{{ repo }}</code> and run the
+    <a href="https://giscus.app">giscus.app</a> wizard to get the IDs.
+  </p>
+{% else %}
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ repo }}"
+          data-repo-id="{{ g.repo_id }}"
+          data-category="{{ g.category_name | default: 'General' }}"
+          data-category-id="{{ g.category_id }}"
+          data-mapping="{{ g.discussion_term | default: 'pathname' }}"
+          data-strict="0"
+          data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="{{ g.theme | default: 'preferred_color_scheme' }}"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+  <noscript>
+    Please enable JavaScript to view <a href="https://giscus.app">giscus</a> comments.
+  </noscript>
+{% endif %}

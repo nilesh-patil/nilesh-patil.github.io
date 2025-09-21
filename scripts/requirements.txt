@@ -1,0 +1,6 @@
+# Pinned per docs/specs.md §8.
+# scholarly is a DOM scraper; Scholar UI changes break it ~every 6 months —
+# pin to a known-good version and bump on breakage.
+scholarly==1.7.11
+arxiv==2.1.0
+python-frontmatter==1.0.1
