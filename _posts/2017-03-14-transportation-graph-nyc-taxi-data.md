@@ -14,26 +14,17 @@ header:
 redirect_from:
   - /blog/transportation-graph-nyc-taxi-data/
 ---
-###### Sections:
-* [1. Introduction](#introduction)
-* [2. Prior Work](#prior-Work)
-* [3. Data Description](#data-description)
-* [4. Exploratory Analysis](#exploratory-analysis)
-* [5. Full Network analysis](#full-network-analysis)
-* [6. Final comments](#final-comments)
-* [References](#references)
-
-##### Introduction:
+## Introduction
 
 Transportation networks offer a fascinating opportunity to identify local population’s travel habits, daily routines and a usage-data driven way to augment city-planning decisions. In our analysis, we focus on exploring travel patterns of New York City residents using 146+ million taxi trips taken for the year 2015. The complete code, visualizations & reports are available in the [**Github Repository**](https://github.com/nilesh-patil/TransportationFlowNetwork)
 
-##### Prior work:
+## Prior work
 
 GPS based transportation networks have been studied in detail for traffic flow analysis and determining social dynamics<sup>[1]</sup>. Bike sharing datasets have been used for clustering locations based on the usage profile<sup>[2]</sup> and predicting bike demand<sup>[3]</sup> GPS based taxi datasets have been used to identify mobility patterns in Shanghai, China<sup>[4]</sup>.
 
 In<sup>[4]</sup>, the trip distribution has been characterized as combination of 3 independent types and non-negative matrix factorization has been used to identify 3 patterns from 1.58 million trips in Shanghai, China. This is the core of our approach, as we are attempting to characterize taxi usage in New York City with a similar dataset. Prior analysis has also been done to produce transportation network graphs from street geometries<sup>[5]</sup> and subway maps<sup>[6]</sup>.
 
-##### Data Description:
+## Data Description
 
 a)  *Raw data :*
 
@@ -62,7 +53,7 @@ Same location : multiple close nodes
 
 We finally decided to merge our dataset with US Census Bureau census tracts which removed the above problem. We have 580+ nodes in the final network and are worked with analyzing census tract as node and number of trips between two census tracts represented as an edge.
 
-##### Exploratory Analysis:
+## Exploratory Analysis
 
 1 . Trips taken in each month(fig-i) peaks between March-May and drops substantially during June onwards. This can be attributed directly to the weather pattern, as commuters are expected to avoid walking long distances during low temperatures or rainy weather.
 
@@ -88,7 +79,7 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 
 ![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="500px" width="500px"}
 
-##### Full Network analysis
+## Full Network analysis
 
 ![Taxi-Graph](\images\blog\graphs\nycTaxiData\image7.png){: .center-image height="750px" width="750px"}
 
@@ -119,7 +110,7 @@ We divided the network into 3 communities, using multilevel community detection 
 
 We plotted a snapshot of the trips leaving major NYC areas and this shows, Manhattan is the most connected of all, whereas most trips from Lower east side, East village & Brooklyn end up towards northern sides of NYC. With a small fraction ending up within the community itself.
 
-##### Final comments
+## Final comments
 
 - Cities are different from other networks in the sense that minor rerouting is usually pretty straighforward i.e. a detour of one block is easy to take and usually does not lead to significant change in cost, time or length of the route.
 
@@ -127,7 +118,7 @@ We plotted a snapshot of the trips leaving major NYC areas and this shows, Manha
 
 - Another interesting observation from the analysis is that East village & below is similar to suburbs in terms of taxi usage. This is surprising because as stated by Tobler, the first law of geography is "everything is related to everything else, but near things are more related than distant things."<sup>[12]</sup> & this first law is the foundation of spatial dependence and spatial autocorrelation utilized specifically for the inverse distance weighting method for spatial interpolation<sup>[13]</sup>.
 
-##### *References:*
+## References
 
 1. P. S. Castro, D. Zhang, C. Chen, S. Li, and G. Pan. From taxi gps traces to social and community dynamics: A survey.ACM Comput. Surv, December 2013.
 2. C. Etienne and O. Latifa. Model-based count series clustering for bike sharing system usage mining. ACM Trans. Intell. Syst. Technol., July 2014

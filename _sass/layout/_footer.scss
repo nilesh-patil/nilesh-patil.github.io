@@ -14,12 +14,10 @@
   width: 100%;
   clear: both;
 
-  /* keep footer in normal document flow so custom widgets do not overlap content */
+  /* keep footer in normal document flow so it does not overlap article content */
+  /* (a previous position:fixed override caused the footer to sit on top of
+     post-list rows 4+ on the home page — see docs/perf/budgets.json) */
   height: auto;
-
-  /* keep the footer on the bottom of the page */
-  position: fixed;
-  bottom: 0;
 
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;

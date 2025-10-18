@@ -17,6 +17,16 @@ layout: default
 <div id="main" role="main">
   {% include sidebar.html %}
 
+  {%- comment -%}
+    TOC is rendered as a sibling of the LHS sidebar and the article so it
+    can become its own RHS column (instead of floating inside the article
+    content area). Empty when the post has no <h2>/<h3> headings — that
+    case emits no markup at all (see _includes/toc:25).
+  {%- endcomment -%}
+  {% if page.toc %}
+    {% include toc icon="list-ul" title="Contents" %}
+  {% endif %}
+
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -43,10 +53,6 @@ layout: default
         {% endif %}    
         </header>
       {% endunless %}
-
-      {% if page.toc %}
-        {% include toc icon="list-ul" title="Contents" %}
-      {% endif %}
 
       <section class="page__content" itemprop="text">
         {{ content }}
@@ -101,7 +107,10 @@ layout: default
   {% if page.id and page.related and site.related_posts.size > 0 %}
     <div class="page__related">
       {% if site.data.ui-text[site.locale].related_label %}
-        <h4 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h4>
+        {%- comment -%}Promoted from <h4> to <h2> so heading order stays
+        h1 → h2 sequential; the visual is pinned by .page__related-title's
+        font-size in _sass/layout/_page.scss.{%- endcomment -%}
+        <h2 class="page__related-title">{{ site.data.ui-text[site.locale].related_label | default: "You May Also Enjoy" }}</h2>
       {% endif %}
       <div class="grid__wrapper">
         {% for post in site.related_posts limit:4 %}

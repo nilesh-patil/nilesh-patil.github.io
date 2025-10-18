@@ -1,5 +1,19 @@
 <script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
 
-{% include analytics.html %}
+{%- comment -%}
+  Three-mode theme cycle. Loaded after the academicpages bundle so the
+  click handler it binds on #theme-toggle overrides the stock 2-mode
+  toggle (light/dark only) with light → dark → sepia → light cycling.
+  `defer` lets HTML parsing finish before this runs (it only binds a
+  click handler, so it's fine to delay until after DOMContentLoaded).
+{%- endcomment -%}
+{% if site.dark_mode %}
+<script src="{{ base_path }}/assets/js/theme-cycle.js" defer></script>
+{% endif %}
 
-{% include comments-providers/scripts.html %}
+{%- comment -%}
+  No analytics dispatcher: site has a zero-telemetry policy (see
+  docs/perf/recon-constraints.md). The giscus comment widget is loaded
+  conditionally from _includes/comments.html when page.comments == true,
+  so no provider dispatcher is needed here.
+{%- endcomment -%}

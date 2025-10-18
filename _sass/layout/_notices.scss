@@ -98,3 +98,32 @@
 .notice--danger {
   @include notice($danger-color);
 }
+
+/*
+ * Contrast overrides for axe-checker compliance. The stock mixin sets
+ * `color: var(--global-code-text-color)` and `a { color: $notice-color }`,
+ * which on a 90%-white-mix background fails WCAG AA contrast for both
+ * body text and links inside .notice--warning (and to a lesser extent
+ * the other low-saturation notices). Lift body to the regular text color
+ * and link to a darkened mix of the notice tint.
+ */
+.notice,
+.notice--primary,
+.notice--info,
+.notice--warning,
+.notice--success,
+.notice--danger {
+  color: var(--global-text-color);
+
+  strong,
+  code {
+    color: var(--global-text-color);
+  }
+}
+
+.notice--warning a { color: mix(#000, $warning-color, 35%); }
+.notice--danger  a { color: mix(#000, $danger-color, 35%); }
+.notice--info    a { color: mix(#000, $info-color, 35%); }
+.notice--success a { color: mix(#000, $success-color, 35%); }
+.notice--primary a { color: mix(#000, $notice-color, 35%); }
+.notice          a { color: mix(#000, $notice-color, 35%); }

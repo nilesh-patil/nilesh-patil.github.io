@@ -2,7 +2,12 @@
 
 <section class="page__share">
   {% if site.data.ui-text[site.locale].share_on_label %}
-    <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "Share on" }}</h4>
+    {%- comment -%}
+      Use <h2> so this section title is at the same level as content section
+      headings, instead of the previous <h4> which axe flagged as a heading-
+      order jump.
+    {%- endcomment -%}
+    <h2 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "Share on" }}</h2>
   {% endif %}
 
   <a href="https://bsky.app/intent/compose?text={{ base_path }}{{ page.url }}" class="btn btn--bluesky" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i><span> Bluesky</span></a>

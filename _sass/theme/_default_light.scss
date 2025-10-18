@@ -36,13 +36,23 @@ $sidebar-screen-min-width   : 1024px;
     --global-code-background-color      : #fafafa;
     --global-code-text-color            : #{$darker-gray};
     --global-fig-caption-color          : mix(#fff,  #{$dark-gray}, 25%);
-    --global-link-color                 : #52adc8;
-    --global-link-color-hover           : mix(#000, #2f7f93, 25%);
-    --global-link-color-visited         : mix(#fff, #2f7f93, 25%);  
+    /* Darkened from the original #52adc8 (~3:1 on white) to #1d6275
+       (~6.5:1 on white) so inline post links meet WCAG AA. Same teal
+       hue family — visually similar, just deeper. Hover stays darker. */
+    --global-link-color                 : #1d6275;
+    --global-link-color-hover           : mix(#000, #1d6275, 30%);
+    --global-link-color-visited         : mix(#000, #1d6275, 15%);
     --global-masthead-link-color        : #{$dark-gray};
     --global-masthead-link-color-hover  : mix(#000, #{$gray}, 25%);    
     --global-text-color                 : #{$dark-gray};
-    --global-text-color-light           : #{$light-gray};
+    /* Was #{$light-gray} (≈ #bdc1c4, ~1.8:1 on white) — fails WCAG AA
+       for all the "muted" body text (page__meta date/read-time,
+       footer Follow links, pagination labels, archive grid metadata,
+       fig-caption). Darkened to #6c6f73 (~5.4:1 on white) so muted
+       text is still visibly muted but readable. Dark and sepia
+       themes have their own --global-text-color-light values which
+       already meet AA against their backgrounds. */
+    --global-text-color-light           : #6c6f73;
     --global-thead-color                : #{$lighter-gray};
 }
 

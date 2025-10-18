@@ -15,15 +15,18 @@
 {% if site.dark_mode %}
 <script>
   // Pre-paint theme application: runs synchronously before <body> renders to
-  // prevent a flash of unstyled content when the user prefers/has-stored dark.
-  // The richer toggle/listener logic lives in assets/js/_main.js.
+  // prevent a flash of unstyled content. Three modes: light (default), dark,
+  // sepia. Cycle + persistence logic lives in assets/js/theme-cycle.js
+  // (loaded after the academicpages bundle to override the stock 2-state
+  // toggle).
   (function () {
     try {
       var stored = localStorage.getItem('theme');
+      var allowed = stored === 'dark' || stored === 'light' || stored === 'sepia';
       var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var theme = (stored === 'dark' || stored === 'light') ? stored : (prefersDark ? 'dark' : 'light');
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+      var theme = allowed ? stored : (prefersDark ? 'dark' : 'light');
+      if (theme === 'dark' || theme === 'sepia') {
+        document.documentElement.setAttribute('data-theme', theme);
       }
     } catch (_) { /* localStorage may be blocked; fall through to light. */ }
   })();
