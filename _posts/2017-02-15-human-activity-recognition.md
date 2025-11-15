@@ -23,14 +23,15 @@ We used the data provided by Human Activity Recognition research project, which 
 Data was collected for 30 volunteers whose age was between 19-48 years. Each record in the data represents information about features like acceleration along x,y,z axes, velocity along a,y,z axes, 561 attributes derived from these basic measurements, identifier variable for the user & the activity being performed.
 
 There are 6 categories of activities being performed:
- 1. 'standing'
- 2. 'sitting'
- 3. 'laying'
- 4. 'walka)
- 5. 'walkdown'
- 6. 'walkup'
 
-The raw db)ta has separate text files for most of the variable groups & we have used the dataset that was saved as RData file. In this dataset, a single column(‘subject’) is used to identify a user and the last column(‘activity’) was used to identify the activity being performed when the measurements were taken. All other attributes are available in the same column oriented data format. This is important to know, because, the values in the dataset have been normalized.
+1. `standing`
+2. `sitting`
+3. `laying`
+4. `walking`
+5. `walking-downstairs`
+6. `walking-upstairs`
+
+The raw data has separate text files for most of the variable groups; we used the dataset packaged as a single `.RData` file. In this dataset, a single column(‘subject’) is used to identify a user and the last column(‘activity’) was used to identify the activity being performed when the measurements were taken. All other attributes are available in the same column oriented data format. This is important to know, because, the values in the dataset have been normalized.
 
 ## Exploratory Analysis
 
@@ -43,7 +44,7 @@ b) *Correlation Check:*
 We built a correlation matrix for all 561 variables in one got to identify any apparent patterns in the relationships. We see that most of these features are highly correlated with each other and it’s a good decision to drop most of these highly correlated features since we can get the same information from some other feature with high correlation to a group of them.
 
 <center><figure class="full">
-	<img src="\images\blog\activityRecognition\image8.png" alt="image" height="1000px" width="1000px">
+	<img src="/images/blog/activityRecognition/image8.png" alt="image" height="1000px" width="1000px">
 	<figcaption>Fig 01. Correlation Matrix between all 561 features</figcaption>
 </figure></center>
 
@@ -60,7 +61,7 @@ e) *Visual exploration:*
 We also started out with basic visual exploration of the dataset by plotting distributions for the variables for each category, but given the large number involved, we dropped the idea. Though, in general there are two distinct major groups which we can see through the distributions as shown in:
 
 <center><figure class="full">
-	<img src="\images\blog\activityRecognition\image9.png" alt="image" height="750px" width="750px">
+	<img src="/images/blog/activityRecognition/image9.png" alt="image" height="750px" width="750px">
 	<figcaption>Representative distribution</figcaption>
 </figure></center>
 
@@ -95,7 +96,7 @@ We started out with all 561 variables & reduced the total features to 5 in our f
        categories
 
 <center><figure class="full">
-	<img src="\images\blog\activityRecognition\image10.png" alt="image" height="400px" width="750px">
+	<img src="/images/blog/activityRecognition/image10.png" alt="image" height="400px" width="750px">
 	<figcaption>Variable important scores</figcaption>
 </figure></center>
 
@@ -104,8 +105,8 @@ We started out with all 561 variables & reduced the total features to 5 in our f
 
 <center>
  <figure class="half">
-  	<img src="\images\blog\activityRecognition\image2.png" alt="image" height="400px" width="350px">
-  	<img src="\images\blog\activityRecognition\image1.png" alt="image" height="350px" width="350px">
+  	<img src="/images/blog/activityRecognition/image2.png" alt="image" height="400px" width="350px">
+  	<img src="/images/blog/activityRecognition/image1.png" alt="image" height="350px" width="350px">
   	<figcaption>Determining optimal number of variables & trees for training</figcaption>
  </figure>
 </center>
@@ -132,7 +133,7 @@ Using the previously described feature selection, we determined that the followi
 The final model had importance scores are as shown in the figure:
 
 <center><figure class="full">
-	<img src="\images\blog\activityRecognition\image3.png" alt="image" height="500px" width="500px">
+	<img src="/images/blog/activityRecognition/image3.png" alt="image" height="500px" width="500px">
 	<figcaption>Scores</figcaption>
 </figure></center>
 
@@ -153,19 +154,19 @@ The final model had importance scores are as shown in the figure:
 
 <center>
   <figure class="half">
-   	<img src="\images\blog\activityRecognition\08.a.ConfusionMatrix-Test_RF.png" alt="image">
-   	<img src="\images\blog\activityRecognition\08.b.ConfusionMatrix-Test_SVM.png" alt="image">
+   	<img src="/images/blog/activityRecognition/08.a.ConfusionMatrix-Test_RF.png" alt="image">
+   	<img src="/images/blog/activityRecognition/08.b.ConfusionMatrix-Test_SVM.png" alt="image">
   	 <figcaption>Confusion matrix for test dataset</figcaption>
   </figure>
 </center>
 
 
-3. Given the high score we get on test dataset, we are confident in using RandomForest based model for deticting human activity from smartphone dataset.
+3. Given the high accuracy we get on the test dataset, we are confident in using a RandomForest-based model for detecting human activity from the smartphone dataset.
 
 
 4. From the final model, we also see that some categories are fairly straightforward to classify compared to others. We have shown this using a scatterplot matrix colored by category as shown the figure:
 <center><figure class="full">
-	<img src="\images\blog\activityRecognition\image11.png" alt="image" height="750px" width="750px">
+	<img src="/images/blog/activityRecognition/image11.png" alt="image" height="750px" width="750px">
 	<figcaption>Fig 04. Distribution of tBodyAccJerk-std()-X across all 6 categories</figcaption>
 </figure></center>
 

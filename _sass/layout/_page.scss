@@ -17,10 +17,20 @@
 }
 
 .page {
+  /*
+   * 3-column row at $large+: LHS sidebar (span 2 of 12, float:left) +
+   * .page (span 8 of 12, float:left) + .sidebar__right (span 2 of 12 last,
+   * float:right). Previously .page was `span(10 of 12 last)` with
+   * `suffix(2 of 12)` — that pushed it to float:right with an internal
+   * right gutter, and combined with the RHS sidebar's own float:right
+   * it exceeded 12 cols and wrapped the article to a new row below the
+   * sidebars (article y=845 vs sidebar y=372 on a 1440 px viewport).
+   * The 8/12 content column with a 0.5/12 left gutter keeps the article
+   * vertically aligned with both sidebars.
+   */
   @include breakpoint($large) {
-    @include span(10 of 12 last);
+    @include span(8 of 12);
     @include prefix(0.5 of 12);
-    @include suffix(2 of 12);
   }
 
   .page__inner-wrap {

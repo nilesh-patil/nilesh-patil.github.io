@@ -6,6 +6,7 @@ last_modified_at: 2017-07-15T19:48:19-04:00
 categories: [blog]
 tags: [deep learning, galaxy, computer-vision, machine learning, neural networks]
 excerpt: "Training a deep neural net to understand galactic structure"
+math: true
 header:
   overlay_image: /images/blog/feature/galaxy.jpg
   overlay_filter: 0.5
@@ -14,49 +15,38 @@ header:
 redirect_from:
   - /blog/galactic-morphology-using-deep-learning/
 ---
-###### Sections:
-* [1. Introduction](#introduction)
-* [2. Data Description](#data-description)
-* [3. Fully Convolutional Model](#fully-convolutional-classifier)
-* [4. Densenet Based Classifier](#densenet-classifier)
-* [References](#references)
-
-##### Introduction:
+## Introduction
 
 Astronomy has historically been one of the most data intensive fields & a major chunk of this data is collected as images collected by a number of telescopes - terrestrial as well as in space. A BIG data-project which aims to collate this data from various sources to form a coherent picture of the universe is [Sloan Digital Sky Survey](http://www.sdss.org/).
 
 
-To quote the project website :
+To quote the project website:
 
-<c>
-`
-The Sloan Digital Sky Survey has created the most detailed three-dimensional maps of the Universe ever made, with deep multi-color images of one third of the sky, and spectra for more than three million astronomical objects. Learn and explore all phases and surveys—past, present, and future—of the SDSS.
-`
-</c>
+> The Sloan Digital Sky Survey has created the most detailed three-dimensional maps of the Universe ever made, with deep multi-color images of one third of the sky, and spectra for more than three million astronomical objects. Learn and explore all phases and surveys — past, present, and future — of the SDSS.
 
 
 A citizen science project called [Galaxy zoo](https://www.galaxyzoo.org) was launched in 2007, through this project thousands of volunteers classified 100k+ images of galaxies. A flow-chart of questions asked to volunteers shown on the project website is as follows.
 
-![](\images\blog\galaxyzoo\00.galaxyzoo-tree.png){: .center-image height="850px" width="1050px"}
+![Galaxy Zoo decision tree](/images/blog/galaxyzoo/00.galaxyzoo-tree.png){: .center-image height="850px" width="1050px"}
 
 
-##### Data Description:
+## Data Description
 
 The dataset consists of 100k+ jpeg images and the corresponding score vector for each image. The score vector has 37 values where each value represents the weighted score from volunteers in the project.
 
 The important point to remember is that the scores aren't probability score per se. They are weighted scores & so they vary from 0 to 1 but all sub scores for a question don't necessarily sum up to 1 as a rule.
 
-Each image is of size `424x424x3` & each value is between `0-255`. A good practice is to rescale the data. In our experiments, we normalize the images by calculating $$\mu_{channel}$$ and $$\sigma_{channel}$$ over the full dataset and then normalizing each channel using their correspodning $$\mu$$ and $$\sigma$$. The channels & cell values do not represent the physical aspect of data collection, but are standardized to the accepted image formats between 0-255 and so the normalization is more of a hack for better gradient updates and not adomain  knowledge based modification.
+Each image is of size `424×424×3` and each value is between `0`–`255`. A good practice is to rescale the data. In our experiments, we normalize the images by computing $\mu_\text{channel}$ and $\sigma_\text{channel}$ over the full dataset, then normalizing each channel using its corresponding $\mu$ and $\sigma$. The channels and cell values do not represent the physical aspect of data collection — they are standardized to the accepted image format range of `0`–`255` — so the normalization is more of a hack for better gradient updates than a domain-knowledge-based modification.
 
 A few sample images from the dataset:
 
-![Galaxy sample](\images\blog\galaxyzoo\01.galaxies.png){: .center-image}
+![Galaxy sample](/images/blog/galaxyzoo/01.galaxies.png){: .center-image}
 
 These images are read in as `numpy` arrays in python with the following representation:
 
-![Numpy array](\images\blog\galaxyzoo\02.numpy_array.png){: .center-image height="250px" width="350px"}
+![Numpy array](/images/blog/galaxyzoo/02.numpy_array.png){: .center-image height="250px" width="350px"}
 
-##### Fully Convolutional Classifier:
+## Fully Convolutional Classifier
 
 A convolutional network takes in your image array as input extracts features from this array which best represents the task at hand & then gives out a classification/regression output. Standard classification models use one-vs-rest scheme to represent output for an elegant representation of the classification task. In this form, the correct class is assigned `1` while other possible classes in the dataset are assigned `0`. The output vector is of length `c`, where `c` is total number of classes in the dataset.
 
@@ -70,26 +60,23 @@ The model takes in a normalized array representing input image. This array passe
 
 3. *Activation* : Activation functions are used to introduce non-linearity in the model. This layer applies a given function to each element of input array. Standard activation functions used in models are 'relu', 'softmax', 'sigmoid', 'tanh' etc.
 
-4. *Dropout* : Dropout is a technique developed to reduce overfitting in deep neural networks. The effect of adding this layer is equal to setting activations for a fraction of neurons to `zero` during training time & during test time, using that fraction as weighted average for the weights being used i.e. during training time, a particualr unit 'll is present with probability `p` & during prediction, the weights learnt for this particular unit are multiplied by `p`.
-Below, (a) represents a standard net with no dropout and (b) represents dropout applied to the same network. After droput, each layer has some fraction of activations set to zero, thus effectively reducing the impact of that neuron in the final model.
-![Droput Network](\images\blog\galaxyzoo\03.droput_representation.png){: .center-image height="250px" width="500px"}
+4. *Dropout*: a regularization technique developed to reduce overfitting in deep neural networks. At training time, the activations of a randomly chosen fraction of neurons are set to `zero`; at prediction time, the weights learnt for those units are multiplied by the keep-probability `p`. Below, (a) shows a standard fully-connected network and (b) shows the same network with dropout applied — at each training step a different subset of activations is zeroed, which prevents any single neuron from dominating the learned representation.
 
-5. *Batch normalization* : A major problem encountered while training neural networks is the variation in distribution of input values to successive layers. Due to this, a large number of updates with an extremely small update rate are required. By using batch-normalization, we normalize the input at each layer to *&mu;<sub>x</sub> = 0* & *&sigma;<sub>x</sub> = 1*. Effectively, we end up with higher learning rates giving the same results.
-Effectively, `Batchnormalization` implements the following transform :
+   ![Dropout network](/images/blog/galaxyzoo/03.droput_representation.png){: .center-image height="250px" width="500px"}
 
-$$X_{out} = \gamma*\frac{X_{in}-\mu_X}{\sigma_X}+\beta$$
+5. *Batch normalization*: a major problem during training is that the distribution of inputs to each successive layer shifts as the parameters of preceding layers update. This *internal covariate shift* forces small learning rates and slow convergence. Batch normalization addresses it by normalizing each channel's activations to $\mu_x = 0$ and $\sigma_x = 1$ across the current mini-batch, then applying a learned affine transform:
 
-Here, &mu;<sub>X</sub> and &sigma;<sub>X</sub> are calculated and applied channelwise. Hence, the normalization is effectively channelwise normalization of the representation generated by the previous layer and being provided to the next layer.
+   $$X_\text{out} = \gamma \cdot \frac{X_\text{in} - \mu_X}{\sigma_X} + \beta$$
 
-#### Setup :
+   Here $\mu_X$ and $\sigma_X$ are computed channelwise. The effect is that subsequent layers see a more stable input distribution, which permits larger learning rates and faster training.
 
-The layers in a neural network are stacked one afer the other to be used as a module & we experiment with different network structures starting with some well tested & prevalent ones to some recently pulished. The last few layers are `Dense` layers, i.e. they are fully connected layers and their final output is compared with the expected output to calculate error value for the observation in focus. This error is `back-propagated` to give higher or lower importance to the learnt features of convolutional layers & nodes of dense layers. With each bacward pass of these error values, the expectation is that given enough data, our network structure learns optimal features for solving the problem at hand.
+### Setup
 
-In our setup, the intermediate features are extracted successeivel from the raw galaxy image & then the corresponding regression is done to match human generated score for the the same image. This score is a vector of `37` values, each representing a physical aspect of the galaxy, termed as galaxy morphology.
+The layers above are stacked into a module and we experiment with several network structures, starting from well-established architectures and moving toward more recently published ones. The final layers are `Dense` (fully connected) layers; their output is compared with the expected output to compute the loss for each observation. The loss is back-propagated to update the convolutional kernel weights and the dense layer weights, with the expectation that, given enough data, the network learns features that are optimal for the task at hand.
 
-### References :
+In our setup, features are extracted successively from the raw galaxy image and a regression head matches the human-generated score vector for the same image. The score is a vector of length `37`, where each entry encodes one physical aspect of the galaxy — together describing its morphology.
 
-1. Dropout : [Dropout: A Simple Way to Prevent Neural Networks from
-Overfitting](!https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf)
+## References
 
-2. BatchNormalization : [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](!https://arxiv.org/abs/1502.03167)
+1. Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf). *Journal of Machine Learning Research*, 15.
+2. Ioffe, S. & Szegedy, C. (2015). [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167). *Proceedings of the 32nd International Conference on Machine Learning*.

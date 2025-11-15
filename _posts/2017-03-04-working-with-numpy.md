@@ -5,15 +5,13 @@ date: 2017-03-04T05:10:55-01:00
 last_modified_at: 2017-07-10T15:09:55-04:00
 categories: [blog]
 tags: [numpy, python]
-excerpt: "Building a fully connected neural network in python"
+excerpt: "Vectors, matrices, and basic linear algebra with NumPy"
 math: true
 redirect_from:
   - /blog/working-with-numpy/
 ---
 
-If you don't know, in short - [Numpy](http://www.numpy.org) is a python library which provides support for fast computations over arrays (vectors, matrices, tensors). Its faster compared to structuring the same computation in base python because operations are vectorized & in general you end up writing code that is pretty close to mathematical notation of your operations instead of writing low level code & dealing with errors & overheads that might creep in during these operations.
-
-##### Import numpy  package for current session
+[NumPy](http://www.numpy.org) is a Python library that provides fast computation over arrays (vectors, matrices, tensors). It is faster than the equivalent base-Python because operations are vectorized, and the resulting code stays close to the mathematical notation of the underlying operation — without the bookkeeping and overhead of element-wise loops.
 
 ```python
 import numpy as np
@@ -57,7 +55,9 @@ print(x)
 
 ### Single vector operations
 
-###### Sum of a sequence : $$Sum = \displaystyle\sum_{i=1}^{n} x_i$$
+#### Sum of a sequence
+
+$$\text{Sum} = \displaystyle\sum_{i=1}^{n} x_i$$
 
 
 ```python
@@ -71,7 +71,9 @@ x.sum()
 
 
 
-###### Adding a constant to each element of vector : $$x_{i_{new}} = \displaystyle x_i+c$$
+#### Adding a constant to each element of a vector
+
+$$x_{i,\text{new}} = x_i + c$$
 
 
 ```python
@@ -84,7 +86,9 @@ print(X_new)
     [ 2  2 11  4  5  8  7  6  3  2]
 
 
-###### Multiplying a constant to each element of vector : $$x_{i_{new}} = \displaystyle x_i*c$$
+#### Multiplying every element of a vector by a constant
+
+$$x_{i,\text{new}} = x_i \cdot c$$
 
 
 ```python
@@ -97,7 +101,7 @@ print(X_new)
     [ 0  0 45 10 15 30 25 20  5  0]
 
 
-###### Reverse a vector
+#### Reverse a vector
 
 
 ```python
@@ -110,7 +114,7 @@ print(S_new)
 
 ### Calculate basic statistical measures
 
-###### Mean ($$\mu$$)
+#### Mean ($\mu$)
 
 
 ```python
@@ -127,7 +131,7 @@ x.mean(dtype=np.float32)
 
 
 
-###### Standard deviation ($$\sigma$$)
+#### Standard deviation ($\sigma$)
 
 
 ```python
@@ -141,7 +145,7 @@ x.std(dtype=np.float32)
 
 
 
-###### Variance ($$\sigma^2$$)
+#### Variance ($\sigma^2$)
 
 
 ```python
@@ -157,7 +161,7 @@ x.var(dtype=np.float32)
 
 ### Subset a vector
 
-###### Index for maximum & minimum values in a sequence
+#### Index for maximum & minimum values in a sequence
 
 
 ```python
@@ -183,7 +187,7 @@ x.argmin()
 
 
 
-###### Subset using index
+#### Subset using index
 
 
 ```python
@@ -197,7 +201,7 @@ x[2:5]
 
 ### Create a matrix
 
-###### Get a matrix of particular shape by providing numbers
+#### Get a matrix of particular shape by providing numbers
 
 
 ```python
@@ -218,7 +222,7 @@ x
 
 
 
-###### Transpose of a matrix
+#### Transpose of a matrix
 
 
 ```python
@@ -236,7 +240,7 @@ y
 
 
 
-###### Get a matrix of particular shape
+#### Get a matrix of particular shape
 
 
 ```python
@@ -278,7 +282,7 @@ np.ones_like(x)
 
 ### Matrix operations
 
-##### Multiply a matrix by constant
+#### Multiply a matrix by constant
 
 
 ```python
@@ -291,7 +295,7 @@ np.ones_like(x)
 
 
 
-###### Multiply a matrix by another
+#### Multiply a matrix by another
 
 
 ```python

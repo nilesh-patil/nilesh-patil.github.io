@@ -11,20 +11,10 @@ redirect_from:
   - /blog/visualizing-%26-comparing-distributions/
 ---
 
-###### Sections:
-
-* [1. Histogram](#histogram)
-* [2. Scatter plot](#scatter-plot)
-* [3. Density plot](#density-plot)
-* [4. Boxplot](#boxplot)
-* [5. Violin-plot](#violin-plot)
-* [6. Heatmap](#heatmap)
-* [7. Rugs](#rugs)
-
 Once you have your data, usually you start by building summaries, checking for outliers, anomalies in the data & visualizing it from different angles. Here, we'll look at a few common approaches to visualize distributions (in a highly general sense).
 
 
-### Connect to data:
+## Connect to data
 
 ```python
 %pylab inline
@@ -47,9 +37,9 @@ data_indicators = pd.read_sql_query('select * from Indicators',conn)
 
 ```
 
-### Histogram:
+## Histogram
 
-##### Data Prep
+### Data Prep
 ```python
 selected_indicators = ['Life expectancy at birth, female (years)',
                        'Life expectancy at birth, male (years)',
@@ -68,7 +58,7 @@ data_plot.reset_index(inplace=True, drop=True)
 ```
 
 
-##### Plot
+### Plot
 ```python
 nbins = 15
 sns.set(style="white",
@@ -87,12 +77,12 @@ plt.title('Life expectancy at birth ( In years )')
 ```
 
 
-![Histogram](\images\blog\distributions\01.histogram.png){: .center-image height="300px" width="850px"}
+![Histogram](/images/blog/distributions/01.histogram.png){: .center-image height="300px" width="850px"}
 
 
-### Scatter Plot:
+## Scatter Plot
 
-##### Data Prep
+### Data Prep
 ```python
 
 selected_indicators = ['Unemployment, female (% of female labor force)',
@@ -115,7 +105,7 @@ data_plot = data_plot.pivot_table(values='Value',index='CountryName',columns='ty
 
 ```
 
-##### Plot
+### Plot
 ```python
 sns.set(style="white",
         palette="pastel",
@@ -131,12 +121,12 @@ plt.savefig('./plots/02.scatter.png',orientation='landscape',dpi=500);
 ```
 
 
-![png](\images\blog\distributions\02.scatter.png){: .center-image height="500px" width="750px"}
+![png](/images/blog/distributions/02.scatter.png){: .center-image height="500px" width="750px"}
 
 
-### Density plot:
+## Density plot
 
-##### Data Prep
+### Data Prep
 ```python
 selected_indicators = ['Mortality rate, adult, female (per 1,000 female adults)',
                        'Mortality rate, adult, male (per 1,000 male adults)']
@@ -157,7 +147,7 @@ data_plot['type'] = data_plot.type.str.replace(' \(per 1,000 male adults\)','')
 data_plot = data_plot.pivot_table(values='Value',index='CountryName',columns='type')
 ```
 
-##### Plot
+### Plot
 ```python
 sns.set(style="white",
         palette="pastel",
@@ -177,12 +167,12 @@ plt.savefig('./03.density.png');
 ```
 
 
-![png](\images\blog\distributions\03.density.png){: .center-image height="500px" width="750px"}
+![png](/images/blog/distributions/03.density.png){: .center-image height="500px" width="750px"}
 
 
-### Boxplot:
+## Boxplot
 
-##### Data prep
+### Data prep
 ```python
 selected_indicators = ['Merchandise trade (% of GDP)']
 
@@ -199,7 +189,7 @@ data_plot.reset_index(inplace=True, drop=True)
 data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
 ```
 
-##### Plot
+### Plot
 ```python
 scolumns_order = sort(data_plot.Region.unique())
 
@@ -225,12 +215,12 @@ plt.savefig('./04.boxplot.png');
 ```
 
 
-![png](\images\blog\distributions\04.boxplot.png){: .center-image height="500px" width="950px"}
+![png](/images/blog/distributions/04.boxplot.png){: .center-image height="500px" width="950px"}
 
 
-### Violin plot:
+## Violin plot
 
-##### Data prep
+### Data prep
 
 ```python
 selected_indicators = [ 'CO2 emissions from gaseous fuel consumption (% of total)',
@@ -249,7 +239,7 @@ data_plot.reset_index(inplace=True, drop=True)
 data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
 ```
 
-##### Plot
+### Plot
 
 ```python
 import matplotlib.patches as mpatches
@@ -281,12 +271,12 @@ plt.legend(handles=[gas_patch, liquid_patch], bbox_to_anchor=(0.2, 0.99), fontsi
 plt.savefig('./plots/05.violinplot.png', dpi=250, bbox_inches='tight');
 ```
 
-![png](\images\blog\distributions\05.violinplot.png){: .center-image height="750px" width="950px"}
+![png](/images/blog/distributions/05.violinplot.png){: .center-image height="750px" width="950px"}
 
-### Heatmap:
+## Heatmap
 
 
-##### Data prep
+### Data prep
 
 ```python
 selected_indicators_export = [
@@ -337,7 +327,7 @@ data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how=
 data_import = data_plot.pivot_table(values='Value',columns='Region',index='IndicatorName')
 ```
 
-##### Plot
+### Plot
 
 ```python
 sns.set(style="white",
@@ -374,12 +364,12 @@ fig.colorbar(mappable, ax = [imports,exports],orientation = 'vertical')
 plt.savefig('./plots/06.heatmap.png', dpi=250, bbox_inches='tight');
 ```
 
-![png](\images\blog\distributions\06.heatmap.png){: .center-image height="500px" width="1000px"}
+![png](/images/blog/distributions/06.heatmap.png){: .center-image height="500px" width="1000px"}
 
 
-### Rugs:
+## Rugs
 
-##### Data prep
+### Data prep
 
 ```python
 selected_indicators = ['Merchandise trade (% of GDP)']
@@ -397,7 +387,7 @@ data_plot.reset_index(inplace=True, drop=True)
 data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how='left')['Region']
 ```
 
-##### Plot
+### Plot
 
 ```python
 columns_order = sort(data_plot.Region.unique())
@@ -417,4 +407,4 @@ g.map(sns.distplot, "Value", hist=False, rug=True);
 plt.savefig('./plots/07.rugplot.png', dpi=500, bbox_inches='tight');
 ```
 
-![png](\images\blog\distributions\07.rugplot.png){: .center-image height="600px" width="1000px"}
+![png](/images/blog/distributions/07.rugplot.png){: .center-image height="600px" width="1000px"}

@@ -66,16 +66,20 @@
   }
 }
 
+/*
+ * The active/selected nav tab. Visually distinguished by weight + underline
+ * but remains a clickable link (returns the user to the section landing
+ * page, e.g. "Blog" → /posts/ from within a post). The previous override
+ * applied `pointer-events: none` here, which made the active tab inert
+ * and broke nav behavior on every post and section page.
+ */
 .masthead__menu-item.selected a {
   color: var(--global-text-color);
   font-weight: 700;
   border-bottom: 2px solid var(--global-text-color);
-  pointer-events: none; /* Move this here */
-  cursor: default; /* Move this here too */
 }
 
 .masthead__menu-item.selected a:hover {
   color: var(--global-text-color);
   border-bottom: 2px solid var(--global-text-color);
-  /* No need to repeat pointer-events and cursor here */
 }
