@@ -10,10 +10,9 @@
   employer    : "DreamStreet"
   github      : "nilesh-patil"
   twitter     : "ensembledme"
-  medium      : "https://medium.com/@ensembledme"
+  medium      : "https://nilesh-patil.medium.com/"
   googlescholar : "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
-  # `linkedin:` omitted intentionally until handle is provided — empty value
-  # would render a broken https://www.linkedin.com/in/ link.
+  linkedin    : "ensembledme"             # template prepends https://www.linkedin.com/in/
   # `stackoverflow:` omitted: profile lives on stats.stackexchange, not
   # stackoverflow.com, and the template prepends the wrong host. The
   # link is reachable from the About page instead.
