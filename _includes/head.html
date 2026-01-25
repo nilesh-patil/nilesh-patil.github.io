@@ -14,11 +14,14 @@
 
 {% if site.dark_mode %}
 <script>
-  // Pre-paint theme application: runs synchronously before <body> renders to
-  // prevent a flash of unstyled content. Three modes: light (default), dark,
-  // sepia. Cycle + persistence logic lives in assets/js/theme-cycle.js
-  // (loaded after the academicpages bundle to override the stock 2-state
-  // toggle).
+  /* Pre-paint theme application: runs synchronously before <body> renders to
+     prevent a flash of unstyled content. Three modes: light (default), dark,
+     sepia. Cycle + persistence logic lives in assets/js/theme-cycle.js
+     (loaded after the academicpages bundle to override the stock 2-state
+     toggle). Keep this block free of // line comments: the HTML compressor
+     flattens this script to a single line, so a // would comment out the
+     rest of the IIFE and silently kill theme restore (esp. sepia, which the
+     stock academicpages bundle does not know how to re-apply on load). */
   (function () {
     try {
       var stored = localStorage.getItem('theme');
