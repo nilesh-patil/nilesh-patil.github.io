@@ -1,140 +1,284 @@
 ---
-layout: post
-title: "Characterizing & analyzing networks : NYC taxi data"
-comments: true
-categories: blog
-excerpt: 'Analyzing a real world graph : transportation network in NYC'
-tags: [graph, network, visualization, nyc, trasnportation]
-image:
-  feature: blog/feature/nyc_network.png
+layout: single
+title: "Flow-network analysis - functional city structure from NYC yellow-taxi trips"
 date: 2017-03-14T15:39:55-04:00
-modified: 2017-03-14T19:48:19-04:00
+last_modified_at: 2026-02-17T22:14:07+05:30
+categories: [blog]
+tags: [graph, network, visualization, nyc, transportation]
+excerpt: "146 million taxi trips collapse into a 262-node graph. The neighborhood the gravity model calls a suburb turns out to be a nightlife district, and the shape survives a six-fold swing in volume."
+redirect_from:
+  - /blog/transportation-graph-nyc-taxi-data/
+header:
+  overlay_image: /images/blog/headers/transportation-graph-nyc-taxi-data.jpg
+  overlay_filter: 0.4
+  teaser: /images/blog/headers/transportation-graph-nyc-taxi-data.jpg
 ---
-###### Sections:
-* [1. Introduction](#introduction)
-* [2. Prior Work](#prior-Work)
-* [3. Data Description](#data-description)
-* [4. Exploratory Analysis](#exploratory-analysis)
-* [5. Full Network analysis](#full-network-analysis)
-* [6. Final comments](#final-comments)
-* [References](#references)
 
-##### Introduction:
+<style>
+a.btn-soft {
+  display: inline-block;
+  margin: 0 0.5rem 0.55rem 0;
+  padding: 0.5em 1.05em;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(128, 128, 128, 0.30);
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  background: rgba(128, 128, 128, 0.06);
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+a.btn-soft:hover {
+  text-decoration: none;
+  border-color: rgba(128, 128, 128, 0.55);
+  border-color: color-mix(in srgb, currentColor 42%, transparent);
+  background: rgba(128, 128, 128, 0.12);
+  background: color-mix(in srgb, currentColor 11%, transparent);
+}
+a.btn-soft--primary {
+  font-weight: 600;
+  border-color: rgba(128, 128, 128, 0.55);
+  border-color: color-mix(in srgb, currentColor 42%, transparent);
+}
+.page__content { overflow-wrap: break-word; }
+</style>
 
-Transportation networks offer a fascinating opportunity to identify local population’s travel habits, daily routines and a usage-data driven way to augment city-planning decisions. In our analysis, we focus on exploring travel patterns of New York City residents using 146+ million taxi trips taken for the year 2015. The complete code, visualizations & reports are available in the [**Github Repository**](https://github.com/nilesh-patil/TransportationFlowNetwork)
+[Explore the interactive project]({{ site.baseurl }}/transportation-flow-network/){: .btn-soft .btn-soft--primary} [Browse the code on GitHub](https://github.com/nilesh-patil/transportation-flow-network){: .btn-soft}
 
-##### Prior work:
+## From trips to a graph
 
-GPS based transportation networks have been studied in detail for traffic flow analysis and determining social dynamics<sup>[1]</sup>. Bike sharing datasets have been used for clustering locations based on the usage profile<sup>[2]</sup> and predicting bike demand<sup>[3]</sup> GPS based taxi datasets have been used to identify mobility patterns in Shanghai, China<sup>[4]</sup>.
+A trip becomes a directed edge from its pickup node to its dropoff node, and every trip between the same pair collapses into one weighted edge whose weight is the trip count<sup>[1]</sup>. That is the whole move. The rest of the post is reading things off the object it produces.
 
-In<sup>[4]</sup>, the trip distribution has been characterized as combination of 3 independent types and non-negative matrix factorization has been used to identify 3 patterns from 1.58 million trips in Shanghai, China. This is the core of our approach, as we are attempting to characterize taxi usage in New York City with a similar dataset. Prior analysis has also been done to produce transportation network graphs from street geometries<sup>[5]</sup> and subway maps<sup>[6]</sup>.
+<figure>
+<svg viewBox="0 0 640 260" role="img" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;color:inherit" aria-labelledby="t2g-title t2g-desc">
+<title id="t2g-title">A taxi trip becomes a directed edge between two location nodes</title>
+<desc id="t2g-desc">On the left, several faint individual taxi trips run from a pickup area to a dropoff area. On the right, those trips collapse into one node-to-node arrow weighted by trip count.</desc>
+<g fill="none" stroke="currentColor">
+<g opacity="0.35" stroke-width="1.5">
+<line x1="60" y1="70" x2="230" y2="60"/>
+<line x1="55" y1="95" x2="235" y2="100"/>
+<line x1="62" y1="120" x2="228" y2="130"/>
+<line x1="58" y1="150" x2="232" y2="155"/>
+</g>
+<g opacity="0.35" fill="currentColor" stroke="none">
+<circle cx="60" cy="70" r="4"/><circle cx="55" cy="95" r="4"/><circle cx="62" cy="120" r="4"/><circle cx="58" cy="150" r="4"/>
+<circle cx="230" cy="60" r="4"/><circle cx="235" cy="100" r="4"/><circle cx="228" cy="130" r="4"/><circle cx="232" cy="155" r="4"/>
+</g>
+<text x="58" y="40" fill="currentColor" stroke="none" font-size="13" opacity="0.8">pickups</text>
+<text x="200" y="40" fill="currentColor" stroke="none" font-size="13" opacity="0.8">dropoffs</text>
+<text x="150" y="210" fill="currentColor" stroke="none" font-size="13" opacity="0.7" text-anchor="middle">raw trips</text>
+<line x1="300" y1="110" x2="350" y2="110" stroke-width="2" opacity="0.7"/>
+<polygon points="350,104 364,110 350,116" fill="currentColor" stroke="none" opacity="0.7"/>
+<circle cx="430" cy="110" r="22" stroke-width="2"/>
+<circle cx="580" cy="110" r="22" stroke-width="2"/>
+<text x="430" y="114" fill="currentColor" stroke="none" font-size="13" text-anchor="middle">A</text>
+<text x="580" y="114" fill="currentColor" stroke="none" font-size="13" text-anchor="middle">B</text>
+<line x1="452" y1="110" x2="552" y2="110" stroke-width="5"/>
+<polygon points="552,101 572,110 552,119" fill="currentColor" stroke="none"/>
+<text x="505" y="155" fill="currentColor" stroke="none" font-size="13" text-anchor="middle" opacity="0.85">one weighted edge</text>
+</g>
+</svg>
+<figcaption>Many individual taxi runs between the same two places collapse into one directed edge from A to B, weighted by the trip count.</figcaption>
+</figure>
 
-##### Data Description:
+What a node is took two tries, years apart. In 2017 the TLC files shipped raw pickup and dropoff coordinates, and my first graph put them on a grid of roughly 200m cells : 40,000+ nodes, too many to partition or even draw cleanly, and one real place kept splintering into several nodes. Penn Station has multiple entrances, each entrance collected its own cluster of pickups, and the busiest location in the city showed up in my graph as a handful of medium nodes. The fix then was joining the coordinates onto census tracts, which brought the graph down to about 580 nodes. The re-run of the pipeline years later, which is where every number in this post comes from, hit a surprise in the opposite direction. TLC has since re-coded the historical data : the 2015 parquet now ships zone ids instead of coordinates, the original lat/long files are no longer distributed, the old s3 bucket that held them returns HTTP 403, and trips arrive pre-aggregated to 263 taxi zones, unions of census tracts built for exactly this purpose. The problem I spent my 2017 cleanup on is solved upstream now, and the data it lived in is gone from distribution. So the node is a taxi zone. The zone-to-tract crosswalk I built to compare the two graphs says one zone overlaps about 19 census tracts on average, which puts a number on how much resolution the move gave up.
 
-a)  *Raw data :*
+Cleaning is conservative. Of 146,039,231 raw rows across the twelve monthly files, 142,199,201 survive (97.4%), after dropping invalid zone ids, non-positive durations, durations outside one to 360 minutes, fares outside a cent to a thousand dollars, and distances above a hundred miles. One count I cannot reconcile : my 2017 post reported 146,112,990 trips, the re-coded parquet holds 146,039,231 rows, and I do not know which 73,759 rows TLC dropped in the re-code. Intra-zone trips, pickup and dropoff in the same zone, are 4.54% of the total; they stay in the edge table but sit out every network and spatial metric, because a self-loop has zero distance and breaks the distance-based methods.
 
-New York city taxi & Limousine Commission has made the taxi trips dataset available for public use since 2009 onwards<sup>[7]</sup> . We used this dataset to perform our analysis. The complete dataset contains \~150 million trips for each year & each row represents one trip, with features for starting and stopping point, distance travelled, taxi-charge, time taken etc. We are using 2015 dataset which contains 146,112,990 trips in total. For combining the geolocation data to census tracts, we used the extremely helpful NYC landuse dataset<sup>[8]</sup>.
+The ingest is a single DuckDB pass over about 2 GB of parquet, the graph work is NetworkX and igraph, and the whole pipeline is pixi-locked, one `pixi run pipeline` from raw parquet to every figure below. What comes out carries about 135.7M trips across 262 active nodes and 42,347 directed edges, 7,945 of which carry more than 500 trips in the year, with a mean trip distance of 2.25 miles. Density is about 0.62, so most zone pairs exchange at least some taxis.
 
-b)  *Data transformation :*
+Rank the zones by in-flow and by out-flow and the two orderings do not match.
 
-We use the following variables for each trip:
-*  Trip starting timestamp
-*  Start point (Lat/Long)
-*  Trip stopping timestamp
-*  Stop point(Lat/Long)
-*  Charges
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/02_degree_distribution.png" alt="Rank plots of per-zone in-strength and out-strength, both heavy-tailed but with distinct shapes" />
+<figcaption>Per-zone in-strength and out-strength in rank order.</figcaption>
+</figure>
 
-Using these trips, we build our directed graph with start and stop location for a given trip as nodes. As an additional condition, we only used locations with high number trips (more than 500 in the year for a given pair of locations). From prior work we summarized that rounding off location coordinates to 2 decimal points is also an option and given our difficulties analyzing the dataset with 40,000+ nodes, we are now in the process of reducing our network by 2 separate approaches:
+Both curves are heavy-tailed and they are not mirror images of each other, so the flow is genuinely directed and a handful of zones dominate it.
 
-- One node for 5 manhattan blocks
-- Using 6 million most frequent trips to get 1275 most frequently travelled edges.
-- In our current network, each node represents 200m x 200m around it and each edge represents the total number of trips between two nodes in a given year.
+## Two kinds of hub
 
-We create features for month, day, wekday, period of the day etc from the timestamp. An issue that we faced during our initial analysis was that due to geography of the network itself, we had a network where multiple nodes represented the same location due to multiple entrances (e.g. Penn station ahs multiple entries and exits & our network had multiple nodes representing essentially the same real world location)
+Drawn on real geography, with node size set by out-strength and edge width by annual trips, the graph sorts the city into tiers<sup>[2]</sup>.
 
-Same location : multiple close nodes
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/05_hub_map_geographic.png" alt="The flow network drawn on Manhattan-core geography, node size set by out-strength and edge width by annual trips" />
+<figcaption>The flow network on its real geography. Node size encodes out-strength, edge width annual trips.</figcaption>
+</figure>
 
-![nycTaxiDataimage2](\images\blog\graphs\nycTaxiData\image2.png){: .center-image height="300px" width="300px"}
+The biggest nodes on the map are the transport hubs, office districts next. Two zones can also pull similar volume in completely different ways, and what separates them is trips per distinct source : in-strength divided by the number of distinct origins a zone draws from, cheap to compute off the weighted edge table.
 
-We finally decided to merge our dataset with US Census Bureau census tracts which removed the above problem. We have 580+ nodes in the final network and are worked with analyzing census tract as node and number of trips between two census tracts represented as an edge.
+<figure>
+<svg viewBox="0 0 640 280" role="img" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;color:inherit" aria-labelledby="hub-title hub-desc">
+<title id="hub-title">An inner-city hub versus an airport-style node</title>
+<desc id="hub-desc">Left: many arrows converge from a few clustered places into one high-in-degree hub. Right: arrows arrive from many scattered places into one node with a lower trips-per-source ratio.</desc>
+<g stroke="currentColor" fill="none">
+<g fill="currentColor" stroke="none" opacity="0.7">
+<circle cx="40" cy="110" r="5"/><circle cx="45" cy="135" r="5"/><circle cx="38" cy="160" r="5"/>
+</g>
+<g stroke-width="4" opacity="0.85">
+<line x1="45" y1="110" x2="150" y2="140"/>
+<line x1="50" y1="135" x2="150" y2="140"/>
+<line x1="43" y1="160" x2="150" y2="140"/>
+</g>
+<circle cx="175" cy="140" r="26" stroke-width="2"/>
+<text x="175" y="144" fill="currentColor" stroke="none" font-size="12" text-anchor="middle">hub</text>
+<text x="120" y="225" fill="currentColor" stroke="none" font-size="13" text-anchor="middle" opacity="0.85">few sources, huge in-degree</text>
+<text x="120" y="245" fill="currentColor" stroke="none" font-size="11" text-anchor="middle" opacity="0.65">Penn Station / MSG</text>
+<g fill="currentColor" stroke="none" opacity="0.7">
+<circle cx="400" cy="50" r="4"/><circle cx="370" cy="90" r="4"/><circle cx="420" cy="100" r="4"/>
+<circle cx="380" cy="140" r="4"/><circle cx="410" cy="180" r="4"/><circle cx="375" cy="210" r="4"/>
+<circle cx="430" cy="220" r="4"/>
+</g>
+<g stroke-width="1.5" opacity="0.7">
+<line x1="404" y1="52" x2="540" y2="135"/>
+<line x1="374" y1="92" x2="540" y2="135"/>
+<line x1="424" y1="100" x2="540" y2="135"/>
+<line x1="384" y1="140" x2="540" y2="135"/>
+<line x1="414" y1="180" x2="540" y2="135"/>
+<line x1="379" y1="210" x2="540" y2="135"/>
+<line x1="434" y1="220" x2="540" y2="135"/>
+</g>
+<circle cx="565" cy="135" r="22" stroke-width="2"/>
+<text x="565" y="139" fill="currentColor" stroke="none" font-size="11" text-anchor="middle">airport</text>
+<text x="470" y="250" fill="currentColor" stroke="none" font-size="13" text-anchor="middle" opacity="0.85">many scattered sources, lower ratio</text>
+</g>
+</svg>
+<figcaption>An inner-city draw pulls from a few nearby places and trips per source runs high. An airport pulls from everywhere and trips per source stays low.</figcaption>
+</figure>
 
-##### Exploratory Analysis:
+Midtown Center pulls 22,929 trips per distinct origin, Times Square 18,664, Penn Station 17,399, the East Village 16,143. These are the inner-city draws, enormous volume converging from a limited, mostly Manhattan set of origins. The airports invert the ratio, LaGuardia at 7,289 trips per source and JFK at only 4,510, because roughly 240 of the 260-odd origin zones feed each airport.
 
-1 . Trips taken in each month(fig-i) peaks between March-May and drops substantially during June onwards. This can be attributed directly to the weather pattern, as commuters are expected to avoid walking long distances during low temperatures or rainy weather.
+## Four districts
 
-![](\images\blog\graphs\nycTaxiData\image3.png){: .center-image height="300px" width="850px"}
-<center>(fig-i)</center>
+Community detection was the part I was most excited about in 2017, and it is the part I trust least now. The algorithm on the re-run is Leiden, which did not exist when the original post went up (it was published in 2019, after the original analysis), so this partition is a later-re-run product like every other number here. It gives four districts<sup>[3]</sup>.
 
-2 . For our full dataset, the degree distribution is shown in first plot whereas the second plot shows degree distribution for graph generated using edges with atleast 500 trips in 2015.
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/07_community_map.png" alt="The network colored into four Leiden communities, node size set by outgoing trips, districts cutting across borough boundaries" />
+<figcaption>Leiden communities on the 2015 graph, node size set by trips leaving each zone over the year.</figcaption>
+</figure>
 
-![](\images\blog\graphs\nycTaxiData\image4.png){: .center-image height="300px" width="850px"}
-<center>(fig-ii)</center>
+How much should you believe four? The resolution parameter decides the count. At 1.0, the value I used, you get four; my sweep over other resolutions came back with anything from four to seventeen. So the honest claim is smaller : at this resolution, the partition is stable. 100 random seeds, count stays three or four, mode four, mean Adjusted Rand Index between seed pairs 0.751.
 
-3 . The heat-map (fig iii) shows relative trip-density for each hour of the day in 2015. From this information, we summarize that the busiest hours are 6AM to 9AM. We attribute most of this traffic to users on their daily work-commute whereas there is a remarkable increase in density between 12AM to 4AM on weekends. We are looking for an approach to perform similar analysis on the network structure generated from our subset, to create temporal traffic density visualization.
+Q = 0.189 is the modularity, low as modularity numbers go. The reshuffle null puts it z = 13.8 out, though, and about half the trips never leave their district. Borough labels do not predict the partition well. Service-zone labels do not either. Whatever the taxi flow is organized around, it is not the administrative map.
 
-![](\images\blog\graphs\nycTaxiData\image5.png){: .center-image height="1000px" width="2000px"}
-<center>(fig-iii)</center>
+## Where Manhattan ends
 
-4 . We analyzed the cost vs duration relationship for the trips and found interesting abnormal number of constant cost trips. We are attributing these trips to:
+The East Village looks central on a geographic map. In the 2015 flow it kept showing up with the connectivity of somewhere much farther out, and I wanted to know whether that read was real. Getting there takes a distance-decay curve, then a gravity model, then a residual map.
 
-- Tips being rounded off to nearest 5/10
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/11_distance_decay.png" alt="Scatter of annual trips per origin-destination pair against centroid distance, with a fitted decay curve falling off steeply" />
+<figcaption>Annual trips per origin-destination pair against centroid distance, with the fitted decay curve.</figcaption>
+</figure>
 
-- Traffic delays within the same trips leading to delays
+Flow falls off steeply with distance<sup>[4]</sup>. For the model I used the doubly-constrained gravity form, the Furness version, because it conditions on what each zone sends and receives plus the pairwise distances and nothing else. Whatever it cannot predict is, by construction, the part volume and geography do not explain. The decay exponent calibrates to 1.146. I also fit an unconstrained Poisson version, which returns a gentler 0.72, but it leans on the very flows it is supposed to explain, so that number gets reported here and then ignored.
 
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/12_gravity_fit.png" alt="Scatter of observed origin-destination flows against doubly-constrained gravity-predicted flows, clustered along the diagonal" />
+<figcaption>Observed against predicted flows in the high-coverage core.</figcaption>
+</figure>
 
-![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="500px" width="500px"}
+Observed against predicted, the common part of commuters comes out at 0.816. As a one-number description of the city, that is fair.
 
-##### Full Network analysis
+Yellow-taxi pickups concentrate in the Manhattan core plus the airports. The residuals mean something inside that core and nothing outside it, which is why the rest of the map is greyed out. Even in the core there is a catch : by 2015 the East Village's nightlife crowd was increasingly in green cabs and ride-hail, so part of what reads as under-connected might just be invisible to yellow taxis.
 
-![Taxi-Graph](\images\blog\graphs\nycTaxiData\image7.png){: .center-image height="750px" width="750px"}
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/08_where_manhattan_ends.png" alt="Manhattan-core taxi zones colored by gravity-model deviance residual, under-connected zones blue and over-connected red" />
+<figcaption>Per-zone deviance residual from the doubly-constrained gravity model, scoped to the high-coverage core. Blue is under-connected given volume and location, red is over-connected, grey is too thinly observed to read.</figcaption>
+</figure>
 
-The full network is approximately represented on its actual geographic location and we have mapped out-degree to node size & trips as edge thickness. We observed that:
+The residuals span -20.3 to +9.4 across the core. The East Village comes in at -5.1, the 29th percentile, and Alphabet City at -4.3. Both sit well inside the under-connected tail, so the functional edge of Manhattan really does cut through neighborhoods the geographic map counts as central. The Lower East Side complicated the story for me : it lands at +0.8, right about where the model expects it, even though I would have lumped it with the East Village by eye. And the extreme ends of the scale were not where I looked for them. The most under-connected zones are uptown residential, Upper East Side North at -20.3, Upper West Side South at -16.3. The most over-connected are the commercial spine, Times Square at +9.4, Midtown South at +6.3.
 
--   The suburbs are served less than Manhattan, Upper east/west and downtown
--   Transportation hubs are also network hubs and office areas are the next closest central nodes
--   Surprisingly, east village & lower east side is also least connected of the complete network, even though these areas are not geographically separated like the suburbs
+## The flat-fare band
 
-![](\images\blog\graphs\nycTaxiData\image8.PNG){: .center-image height="750px" width="750px"}
+The points that miss the gravity diagonal have a mundane explanation. Plot fare against duration over the same trips and there is a flat strip, rides whose cost does not move with how long they took. My 2017 guess was tips rounded to the nearest five or ten dollars. The rate-code coloring says otherwise.
 
-When we divide our nodes into two subcategories by number of trips greater than or equal to 500 and less than 500 respectively, and plot them in-degree/out-degree against the total number of trips, two stark contrast appear. The top two graphs on Figure 5 speak for nodes with number of trips greater than or equal to 500, with blue graph marks the in-degree to trips ratio and the red graph for out-degree. The bottle two graphs are for nodes with number of trips less than 500.
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/04_cost_vs_duration.png" alt="Scatter of fare against duration, colored by rate code, with the flat band near 52 dollars highlighted as JFK flat-fare trips" />
+<figcaption>Fare against duration, colored by rate code. The flat band is the JFK flat fare (RatecodeID 2), a fixed $52 whatever the duration.</figcaption>
+</figure>
 
-For number of trips>=500, most of the outliers on the far right of the graphs have their physical locations in Madison Square Garden, Penn Station such inner city attractions. This means that a large number of people coming to these attractions from relatively small number of places and most of these in-coming places are located in Manhattan (e.g. 250,000 trips coming from about 200 places. On average 1250 trips from a single locale).
+It is the JFK flat fare : RatecodeID 2, a fixed fare regardless of how long the ride takes. 2.19% of all trips fall in the 49-to-53-dollar band, and 92.7% of those are flat-fare trips.
 
-For number of trips >=500, most of the outliers on the far right of the graphs have their physical locations in Airports (LaGuardia as well as JFK), and their trips versus degree ratio is much smaller, meaning that a small amount of people coming from all sorts of places. And we can easily identify places with low connectivity by looking at the "tail" of the plot, and we found out that the smaller this ratio is, the farther away the node is from Manhattan.
+## Day and night trade places
 
-![](\images\blog\graphs\nycTaxiData\image9.png){: height="750px" width="750px"}
+Build the same graph on morning trips and evening trips separately and the directional structure flips sign. A net-flow index, trips out minus trips in, normalised, runs Midtown Center at -0.567 in the morning and +0.128 in the evening : a sink at 9am, a source at 6pm, the classic central business district. The East Village is the mirror image, +0.492 in the morning and -0.168 in the evening.
 
-We divided the network into 3 communities, using multilevel community detection in igraph. The above plot has these communities mapped by size to number of trips leaving each node in the whole year. The 3 communities can be described as follows:
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/10_day_night_reversal.png" alt="Two-panel figure showing the morning-evening net-flow sign flip and the East Village rising from 42nd destination by day to 1st at night" />
+<figcaption>Net-flow index by daypart. Midtown fills in the morning and drains in the evening, the East Village does the opposite, and by late night the East Village is the city's busiest taxi destination.</figcaption>
+</figure>
 
--   The Blue labels represent **community** **A**, and the nodes neatly fall into Manhattan and adjoining New Jersey areas which turn out to be most well connected nodes. They are well connected to Manhattan (Manhattan as well as New Jersey locations) and the other two communities (Only Manhattan locations)
--   The Green labels represent **community B**, and it represents the locations with highest taxi connectivity to north parts of the city which in turn is due to least city transport connectivity (Bus/Metro etc) – towards north in general
-- The red labels represent **community C,** representing north NYC, Queens & Bronx which we understand are in the same community due to least connectivity towards south in general.
--   We wanted to show determine if the Suburb structure as determined by Dash & Rae<sup>[11]</sup> using national dataset holds true at a local level, and that’s why this result is interesting – based on our primary exploration our inference is, that within a city, it doesn’t hold up.
+From daytime to late night the East Village climbs from the 42nd-busiest destination to the 1st, the Lower East Side from 51st to 6th, and Clinton East from 22nd to 2nd, while the AM and late-night top-15 hub sets overlap at about 0.20 by Jaccard. The city runs two largely different sets of busiest places depending on the hour, and the suburb reading from the residual map turns out to be a daytime effect, written by where the nightlife is.
 
-![](\images\blog\graphs\nycTaxiData\image10.png){: .center-image height="750px" width="750px"}
+## Stress tests
 
-We plotted a snapshot of the trips leaving major NYC areas and this shows, Manhattan is the most connected of all, whereas most trips from Lower east side, East village & Brooklyn end up towards northern sides of NYC. With a small fraction ending up within the community itself.
+Most of the network-science toolbox assumes sparse graphs. Mine sits at density 0.62, close to complete, so before trusting any headline claims I spent a while checking which standard results even apply here. Four of those checks are worth writing down.
 
-##### Final comments
+First the scale-free question, because the strength plots practically beg it. I followed the Clauset-Shalizi-Newman recipe : discrete maximum-likelihood fits, a goodness-of-fit bootstrap, Vuong comparisons against alternative distributions.
 
-- Cities are different from other networks in the sense that minor rerouting is usually pretty straighforward i.e. a detour of one block is easy to take and usually does not lead to significant change in cost, time or length of the route.
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/17_degree_distribution_loglog.png" alt="Log-log complementary-CDF fits of in, out, and total strength with fitted power law and lognormal overlays" />
+<figcaption>Complementary CDFs of in-, out- and total strength on log-log axes, with the fitted power-law and lognormal overlays.</figcaption>
+</figure>
 
-- A city like New York won’t have a single critical location apart from the structural hubs (Metro hubs, airports & bus hubs) – this is pretty apparent from the degree centrality analysis. The closest thing to a central location in NYC is its avenues, specifically Broadway & 6th avenue. Broadway runs North to South whereas 6th Avenue runs South to North (one-way routes).
+The fitted exponents come out at 1.23, 1.35 and 1.33 for out-, in- and total strength, all below 2. Then the bootstrap rejects the power law outright, p_gof = 0, for all three, and each one ties with a lognormal under Vuong. What survives is the boring version : the tails beat an exponential decisively, and nothing stronger. With 262 nodes the tail is too short to call anything scale-free anyway, however tempting the label.
 
-- Another interesting observation from the analysis is that East village & below is similar to suburbs in terms of taxi usage. This is surprising because as stated by Tobler, the first law of geography is "everything is related to everything else, but near things are more related than distant things."<sup>[12]</sup> & this first law is the foundation of spatial dependence and spatial autocorrelation utilized specifically for the inverse distance weighting method for spatial interpolation<sup>[13]</sup>.
+Second, node removal. Molloy-Reed kappa comes out at 365.5 against a threshold of 2, which on a near-complete graph is a degenerate baseline rather than a resilience finding, and the graph basically cannot be disconnected by deleting zones. Trips are the axis where removal actually bites.
 
-##### *References:*
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/18_attack_vs_failure.png" alt="Robustness curves: largest weakly-connected component, weighted efficiency, and surviving-trip fraction under random failure versus targeted attack" />
+<figcaption>Largest component, flow-weighted efficiency and surviving-trip fraction as nodes are removed, random order against strength-targeted.</figcaption>
+</figure>
 
-1. P. S. Castro, D. Zhang, C. Chen, S. Li, and G. Pan. From taxi gps traces to social and community dynamics: A survey.ACM Comput. Surv, December 2013.
-2. C. Etienne and O. Latifa. Model-based count series clustering for bike sharing system usage mining. ACM Trans. Intell. Syst. Technol., July 2014
-3. D. Singhvi, S. Singhvi, P. Frazier, S. Henderson, E. Mahony, D. Shmoys, and D. Woodard. Predicting bike usage for new york city's bike sharing system. In AAAI Workshops, 2015.
-4. Peng C, Jin X, Wong K-C, Shi M, Lio P (2012) Collective Human Mobility Pattern from Taxi Trips in Urban Area. PLoS ONE 7(4): e34487.doi:10.1371/journal.pone.0034487
-5. P. Crucitti, V. Latora, and S. Porta. Centrality measures in spatial net-works of urban streets. PHYSICAL REVIEW E, 73(3):036125, 2006.
-6. Derrible S (2012) Network Centrality of Metro Systems. PLoS ONE 7(7): e40575. doi:10.1371/journal.pone.0040575
-7. NYC taxi data: http://www.nyc.gov/html/tlc/html/about/trip\_record\_data.shtml
-8. NYC land use: <https://www1.nyc.gov/site/planning/index.page>
-9. W. Cui, H. Zhou, H. Qu, P. C. Wong and X. Li, "Geometry-Based Edge Clustering for Graph Visualization," in *IEEE Transactions on visualization and Computer Graphics*, vol. 14, no. 6, pp. 1277-1284, Nov.-Dec. 2008 doi: 10.1109/TVCG.2008.135
-10. Holten, D, & Wijk, J 2009, 'Force-Directed Edge Bundling for Graph Visualization', *Computer Graphics Forum*, 28, 3, pp. 983-990, Business Source Premier, EBSCO*host*, viewed 12 November 2016.
-11. Dash Nelson G, Rae A (2016) An Economic Geography of the United States: From Commutes to Megaregions. PLoSONE11(11):e0166083.doi:10.1371/journal.pone.0166083
-12. Tobler W. A computer movie simulating urban growth in the Detroit region. Economic Geography 1970;46: 234–240.
-13. https://en.wikipedia.org/wiki/Tobler's\_first\_law\_of\_geography
+Take out a random 10% of zones and 82.2% of trips survive, with about 96% of weighted efficiency. Target the same 10% by strength instead, recomputing after each removal, and surviving trips drop to 13.0%, efficiency to about 17%. Meanwhile the unweighted largest-component curve barely moves off 0.90 in either case, separating nothing.
+
+Third, null models. The useful one keeps the observed topology fixed and only permutes trip weights across the existing edges.
+
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/19_nullmodel_overlay.png" alt="Null-model benchmarking: weight-preserving null on the left with observed reciprocity and efficiency far in the tail, topology nulls on the right" />
+<figcaption>Observed weighted reciprocity and cost-weighted efficiency against the weight-preserving null (left) and the topology nulls (right).</figcaption>
+</figure>
+
+The observed weighted reciprocity, 0.818, lands at z = +217 against that null, and the cost-weighted efficiency at z = -54. The heavy mutual corridors, Midtown and the airports, are about as far from random as a number can be. I also ran Erdos-Renyi and configuration nulls; on a graph this dense their z-scores are enormous and mean nothing.
+
+Last, geometry. Corridor circuity, network distance over straight-line distance, has a mean of 1.006 and a median of 1.000. Global efficiency is 0.173, which is 0.997 of the straight-line ideal, so the flow layout is about as direct as the map permits<sup>[5]</sup>.
+
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/20_spatial_efficiency_cascade.png" alt="Spatial efficiency diagnostics, a Motter-Lai cascade triggered at JFK, and a betweenness load map" />
+<figcaption>Circuity and straightness diagnostics, the betweenness load map, and the Motter-Lai cascade triggered at JFK.</figcaption>
+</figure>
+
+Betweenness load is concentrated, Gini 0.89 with the top-10 zones carrying 54.7%, but it is not spatially clustered (Moran's I = 0.028, p = 0.238); the load sits in scattered hubs, not one patch. The Motter-Lai cascade I triggered at JFK does collapse the giant component at every tolerance, and I discount my own result here : 149 of 259 nodes carry zero initial load, so any rerouting fails them by construction.
+
+## Ten years of the same graph
+
+This last section is a later revision : I came back years afterward and re-ran the identical pipeline on every year from 2015 to 2024, so the COVID collapse sits here on purpose, well past the year the original graph was built.
+
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/24_volume_timeline_multiyear.png" alt="Monthly yellow-taxi trip volume stitched into one continuous 2015 to 2024 timeline, with a steady pre-COVID decline and a sharp 2020 cliff" />
+<figcaption>Monthly yellow-taxi trips, 2015 to 2024, stitched into one continuous timeline.</figcaption>
+</figure>
+
+The mean is 69.7M trips a year, the low 22.8M, the high 135.7M, a coefficient of variation of 0.61. There is a 42% secular decline from 2015 to 2019 as ride-hailing eats the yellow-cab share, a 70.9% collapse into 2020 when COVID empties the streets, and a recovery to only 48.6% of the 2019 level by 2024. Trips per year change by a factor of about six.
+
+<figure>
+<img src="{{ site.baseurl }}/images/blog/transportation-graph-nyc-taxi-data/26_metric_evolution_panel.png" alt="Panel of per-year network metrics from 2015 to 2024 showing volume cratering while global efficiency, gravity fit, modularity, and community count stay nearly flat" />
+<figcaption>Per-year network metrics, 2015 to 2024. Volume craters while global efficiency, the gravity fit, modularity and the community count stay nearly flat.</figcaption>
+</figure>
+
+Against that, global efficiency has a CV of 0.004 and the gravity-fit quality a CV of 0.007, the two most stable quantities measured anywhere in this project, and the community count stays between three and four throughout. This is a different measure than the seed test from the districts section : that one shuffled random seeds on the single 2015 graph, this one compares each year's partition to the next year's. Consecutive partitions align at an average ARI of 0.883, and the 2019-to-2020 COVID boundary itself scores 0.943, meaning the functional districts did not re-draw under the shock. This is still yellow taxis only, TLC re-coded the trip schema along the way, and the 70.9% and the 42% are movements in yellow-taxi volume specifically, with a changing observation process folded in.
+
+The exception is the marquee. From 2020 on, the Upper East Side overtakes Midtown as the city's top arrival hub, as commuting and tourism fall away faster than residential travel. Everything else, the districts, the distance law, the efficiency, holds through a six-fold swing in the volume that built it.
+
+[Explore the interactive project]({{ site.baseurl }}/transportation-flow-network/){: .btn-soft .btn-soft--primary} [Browse the code on GitHub](https://github.com/nilesh-patil/transportation-flow-network){: .btn-soft}
+
+## References
+
+1. NYC taxi data: http://www.nyc.gov/html/tlc/html/about/trip\_record\_data.shtml
+2. Peng C, Jin X, Wong K-C, Shi M, Lio P (2012) Collective Human Mobility Pattern from Taxi Trips in Urban Area. PLoS ONE 7(4): e34487. doi:10.1371/journal.pone.0034487
+3. Dash Nelson G, Rae A (2016) An Economic Geography of the United States: From Commutes to Megaregions. PLoS ONE 11(11): e0166083. doi:10.1371/journal.pone.0166083
+4. Tobler W. A computer movie simulating urban growth in the Detroit region. Economic Geography 1970;46: 234-240.
+5. P. Crucitti, V. Latora, and S. Porta. Centrality measures in spatial networks of urban streets. Physical Review E, 73(3):036125, 2006.
