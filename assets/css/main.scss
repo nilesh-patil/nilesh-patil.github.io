@@ -1,55 +1,43 @@
 ---
-sitemap: false
 ---
 
 /*
+ * This file controls what is imported from /_sass
  *
- *  So Simple
- *
- *  Designer: Michael Rose
- *  Twitter: http://twitter.com/mmistakes
- *
-*/
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
 
-@import "variables";
+@import
+    "vendor/breakpoint/breakpoint",
 
-/*
-   Vendor
-   ========================================================================== */
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
 
-@import "vendor/bourbon/bourbon"; /* Bourbon mixins (bourbon.io) */
-@import "grid-settings"; /* Bourbon Neat settings */
-@import "vendor/neat/neat"; /* Bourbon Neat grid mixins (neat.bourbon.io) */
-@import "vendor/font-awesome/font-awesome"; /* Font Awesome icons */
-@import "vendor/magnific-popup/magnific-popup"; /* Magnific Popup lightbox */
+    "include/mixins",
+    "vendor/susy/susy",
 
-/*
-   Global
-   ========================================================================== */
+    "layout/reset",
+    "layout/base",
 
-@import "mixins";
-@import "reset";
-@import "base";
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
 
-/*
-   Components
-   ========================================================================== */
+    "layout/forms",
 
-@import "helpers";
-@import "buttons";
-@import "wells";
-@import "syntax";
-@import "forms";
-@import "notices"; /* notices and alerts */
-@import "animations";
-@import "masthead";
-@import "navigation";
-@import "search";
-@import "footer";
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    "layout/json_cv",
 
-/*
-   Page specific
-   ========================================================================== */
-
-@import "page"; /* layout and styles that apply to posts and pages */
-@import "archives"; /* archive pages (post/tag lists, etc) */
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands"
+;

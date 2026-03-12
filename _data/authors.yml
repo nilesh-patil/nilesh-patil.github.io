@@ -1,9 +1,19 @@
-# Authors
+# Author profile entries — referenced from frontmatter as `author: "Nilesh Patil"`.
+# When no author is specified, the site-level `author:` block in _config.yml is used.
+# NOTE: email omitted intentionally — contact via LinkedIn / GitHub only.
 
-billy_rick:
-  name: Nilesh Patil
-  web: http://nilesh-patil.github.io
-  email: nilesh5760@gmail.com
-  bio: ""
-  avatar: ensembledme.jpg
-  twitter: ensembledme
+"Nilesh Patil":
+  name        : "Nilesh Patil"
+  bio         : "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
+  avatar      : "ensembledme.jpg"          # the template prepends /images/
+  location    : "Mumbai, India"
+  employer    : "DreamStreet"
+  github      : "nilesh-patil"
+  twitter     : "ensembledme"
+  medium      : "https://medium.com/@ensembledme"
+  googlescholar : "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+  # `linkedin:` omitted intentionally until handle is provided — empty value
+  # would render a broken https://www.linkedin.com/in/ link.
+  # `stackoverflow:` omitted: profile lives on stats.stackexchange, not
+  # stackoverflow.com, and the template prepends the wrong host. The
+  # link is reachable from the About page instead.
