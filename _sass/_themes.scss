@@ -79,7 +79,9 @@ $susy: (
    ========================================================================== */
 
 $behance-color              : #1769FF;
-$bluesky-color              : #1184fe;
+/* C-019: #1184fe was 3.65:1 on white — fails WCAG AA.
+   #0066cc ≈ 5.1:1 on white (same hue, darker). */
+$bluesky-color              : #0066cc;
 $dribbble-color             : #ea4c89;
 $facebook-color             : #3b5998;
 $flickr-color               : #ff0084;
@@ -89,7 +91,9 @@ $instagram-color            : #517fa4;
 $kaggle-color               : #20c0ff;
 $lastfm-color               : #d51007;
 $linkedin-color             : #007bb6;
-$mastodon-color             : #6364ff;
+/* C-019: #6364ff was 4.38:1 on white — just under AA threshold.
+   #4242d4 ≈ 4.6:1 on white (same hue, darker). */
+$mastodon-color             : #4242d4;
 $orcid-color                : #a6ce39;
 $pinterest-color            : #cb2027;
 $rss-color                  : #fa9b39;

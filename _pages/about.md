@@ -31,11 +31,11 @@ M.S. Data Science, **University of Rochester** (2017). B.Tech, **IIT Roorkee** (
 
 ## Currently exploring
 
-AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products. Self-hosting SLMs and building agent tooling that survives contact with regulated production environments.
+Frontier model capabilities as building blocks for reliable products, agentic evaluation infrastructure, and developer tooling that survives contact with regulated production environments.
 
 ## Get in touch
 
-The best ways to reach me:
+LinkedIn is the fastest way to reach me &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme). Other profiles below.
 
 - **GitHub** &mdash; [@nilesh-patil](https://github.com/nilesh-patil)
 - **LinkedIn** &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme)

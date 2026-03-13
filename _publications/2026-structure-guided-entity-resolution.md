@@ -6,8 +6,8 @@ date: 2026-01-01
 venue: "Association for Computational Linguistics (ACL)"
 paper_url: "https://openreview.net/forum?id=rLisRb1T1Y"
 paperurl: "https://openreview.net/forum?id=rLisRb1T1Y"
-authors: "<strong>Nilesh Patil</strong>, et al."
-citation: "<strong>Patil, N.</strong> et al. (2026). Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts. Association for Computational Linguistics."
+authors: "Chourasia, A., Kapoor, S., &amp; Patil, N."
+citation: "Chourasia, A., Kapoor, S., &amp; Patil, N. (2026). Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts. Association for Computational Linguistics (ACL), Industry Track."
 excerpt: "Fine-tuning LLMs with structural guidance for robust entity resolution in linguistically diverse name-matching tasks."
 tags: [llm, entity-resolution, nlp, fine-tuning]
 ---

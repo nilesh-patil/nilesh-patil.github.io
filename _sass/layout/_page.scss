@@ -46,7 +46,8 @@
 
 .page__title {
   margin-top: 0;
-  line-height: 1;
+  /* C-023: was 1.0 — at 43.9px descenders clip ascenders on wrapped titles */
+  line-height: 1.2;
 
   & + .page__meta {
     margin-top: -0.5em;

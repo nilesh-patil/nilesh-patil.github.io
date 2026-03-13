@@ -39,13 +39,13 @@ We use the following variables for each trip:
 *  Stop point(Lat/Long)
 *  Charges
 
-Using these trips, we build our directed graph with start and stop location for a given trip as nodes. As an additional condition, we only used locations with high number trips (more than 500 in the year for a given pair of locations). From prior work we summarized that rounding off location coordinates to 2 decimal points is also an option and given our difficulties analyzing the dataset with 40,000+ nodes, we are now in the process of reducing our network by 2 separate approaches:
+Using these trips, we build our directed graph with start and stop location for a given trip as nodes. As an additional condition, we only used locations with high number of trips (more than 500 in the year for a given pair of locations). From prior work we summarized that rounding off location coordinates to 2 decimal points is also an option and given our difficulties analyzing the dataset with 40,000+ nodes, we are now in the process of reducing our network by 2 separate approaches:
 
-- One node for 5 manhattan blocks
+- One node for 5 Manhattan blocks
 - Using 6 million most frequent trips to get 1275 most frequently travelled edges.
 - In our current network, each node represents 200m x 200m around it and each edge represents the total number of trips between two nodes in a given year.
 
-We create features for month, day, wekday, period of the day etc from the timestamp. An issue that we faced during our initial analysis was that due to geography of the network itself, we had a network where multiple nodes represented the same location due to multiple entrances (e.g. Penn station ahs multiple entries and exits & our network had multiple nodes representing essentially the same real world location)
+We create features for month, day, weekday, period of the day etc from the timestamp. An issue that we faced during our initial analysis was that due to geography of the network itself, we had a network where multiple nodes represented the same location due to multiple entrances (e.g. Penn station has multiple entries and exits & our network had multiple nodes representing essentially the same real world location)
 
 Same location : multiple close nodes
 
@@ -60,7 +60,7 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 ![Monthly trip volume across the 2015 calendar year](/images/blog/graphs/nycTaxiData/image3.png){: .center-image height="300px" width="850px"}
 <center>(fig-i) Trips per month, 2015</center>
 
-2 . For our full dataset, the degree distribution is shown in first plot whereas the second plot shows degree distribution for graph generated using edges with atleast 500 trips in 2015.
+2 . For our full dataset, the degree distribution is shown in first plot whereas the second plot shows degree distribution for graph generated using edges with at least 500 trips in 2015.
 
 ![Degree distribution: full graph (left) and filtered to edges with ≥500 trips (right)](/images/blog/graphs/nycTaxiData/image4.png){: .center-image height="300px" width="850px"}
 <center>(fig-ii) Degree distribution, full vs. filtered network</center>
@@ -112,7 +112,7 @@ We plotted a snapshot of the trips leaving major NYC areas and this shows, Manha
 
 ## Final comments
 
-- Cities are different from other networks in the sense that minor rerouting is usually pretty straighforward i.e. a detour of one block is easy to take and usually does not lead to significant change in cost, time or length of the route.
+- Cities are different from other networks in the sense that minor rerouting is usually pretty straightforward i.e. a detour of one block is easy to take and usually does not lead to significant change in cost, time or length of the route.
 
 - A city like New York won’t have a single critical location apart from the structural hubs (Metro hubs, airports & bus hubs) – this is pretty apparent from the degree centrality analysis. The closest thing to a central location in NYC is its avenues, specifically Broadway & 6th avenue. Broadway runs North to South whereas 6th Avenue runs South to North (one-way routes).
 

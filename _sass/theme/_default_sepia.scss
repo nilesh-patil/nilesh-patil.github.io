@@ -29,7 +29,9 @@ $border-soft                : #ddd1b2;
 
 /* Text */
 $text                       : #5b4636;          // body, dark sepia brown
-$text-muted                 : #7d6a52;
+/* C-017: #7d6a52 on #f4ecd8 was 4.40:1 — fails WCAG AA for small text.
+   #6f5d45 on #f4ecd8 ≈ 5.2:1 — same warm hue, slightly darker. */
+$text-muted                 : #6f5d45;
 $text-dim                   : #9a8c72;
 
 /* Link */

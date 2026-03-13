@@ -11,7 +11,7 @@ description: >-
 url: "https://nilesh-patil.github.io"
 baseurl: ""
 repository: "nilesh-patil/nilesh-patil.github.io"
-logo: "/images/ensembledme.jpg"
+logo: "/images/nilesh-patil.jpg"
 masthead_title: " "
 locale: "en-US"
 timezone: "Asia/Kolkata"
@@ -23,11 +23,11 @@ words_per_minute: 200
 # Person JSON-LD `sameAs` links power Google knowledge-graph disambiguation
 # for the common name "Nilesh Patil".
 # =============================================================================
-og_image: "ensembledme.jpg"
+og_image: "nilesh-patil.jpg"
 og_description: "Head of AI at DreamStreet. Building compliance-aware AI systems for SEBI-regulated investor and trader workflows. Previously Head of Applied Research, Dream11."
 
 twitter:
-  username: ensembledme
+  username: optimistic_flw
 
 social:
   type: Person
@@ -36,8 +36,8 @@ social:
     - "https://github.com/nilesh-patil"
     - "https://x.com/optimistic_flw"
     - "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
-    - "https://twitter.com/nilesh-patil"
     - "https://nilesh-patil.medium.com/"
+    - "https://orcid.org/0000-0002-3438-8571"
 
 # =============================================================================
 # Author profile (sidebar via author_profile: true)
@@ -45,15 +45,16 @@ social:
 # =============================================================================
 author:
   name: "Nilesh Patil"
-  avatar: "ensembledme.jpg"   # template prepends /images/
+  avatar: "nilesh-patil.jpg"   # template prepends /images/
   bio: "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
   location: "Mumbai, India"
   employer: "DreamStreet"
   googlescholar: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
   github: "nilesh-patil"
-  twitter: "ensembledme"
+  twitter: "optimistic_flw"
   medium: "https://nilesh-patil.medium.com/"
   linkedin: "ensembledme"   # template prepends https://www.linkedin.com/in/
+  orcid: "https://orcid.org/0000-0002-3438-8571"
   # `stackoverflow:` intentionally omitted (see _data/authors.yml).
 
 # =============================================================================

@@ -47,10 +47,13 @@
     }
   }
 
+  /* U-009: added .fa (legacy class used by RSS icon) so it matches
+     the muted gray of all other footer icons (#fa9b39 orange → muted). */
   .fas,
   .fab,
   .far,
-  .fal {
+  .fal,
+  .fa {
     color: var(--global-text-color-light);
   }
 }

@@ -7,7 +7,9 @@
   outline: thin dotted $warning-color;
   /* Webkit*/
   outline: 5px auto $warning-color;
-  outline-offset: -2px;
+  /* U-010: was -2px (drew ring inside element, obscured by underline).
+     Positive offset draws it outside the element border. */
+  outline-offset: 3px;
 }
 
 /*

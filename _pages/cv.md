@@ -39,7 +39,7 @@ Particularly interested in AI harness design, developer productivity, and turnin
 ### Senior Principal Research Scientist / Head of Applied Research &mdash; Dream11 &mdash; *Mumbai* &mdash; 2019 — 2026
 
 - Built Dream Sports' collaboration with **Columbia University, NY** and helped establish a **multi-million-dollar research center** focused on ML, AI research, and real-world applications.
-- Headed applied AI research for Dream Sports and led a high-performing cross-continent team of research scientists, applied scientists, and ML engineers across India and New York.
+- Headed applied AI research for Dream Sports within a cross-functional research org spanning ML engineering, applied research, and data — across India and New York.
 - Led cross-team workshops to identify ~23 technical problems; converted 10 into funded projects over two years spanning sports robotics, LLM-based persona simulators, and agentic evaluators for personalization.
 - Delivered regular data, ML, and AI training sessions across Dream Sports for audiences ranging from ~10 to 200 participants.
 - Co-led *Sports x AI* sessions at Columbia University for students, post-docs, and faculty, translating industry problems into research and teaching material.
@@ -65,7 +65,7 @@ For the full and continuously-updated list, see [Publications]({{ '/publications
 
 ### Dream11 era (2019 — 2026)
 
-- **Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts.** 2026, Association for Computational Linguistics, USA. [openreview.net/forum?id=rLisRb1T1Y](https://openreview.net/forum?id=rLisRb1T1Y)
+- **Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts.** Chourasia, A., Kapoor, S., &amp; Patil, N. 2026, Association for Computational Linguistics (ACL), Industry Track. [openreview.net/forum?id=rLisRb1T1Y](https://openreview.net/forum?id=rLisRb1T1Y)
 - **Early Churn Prediction from Large Scale User-Product Interaction Time Series.** 2023 International Conference on Machine Learning and Applications (ICMLA), IEEE, 2023. [doi.org/10.1109/ICMLA58977.2023.00314](https://doi.org/10.1109/ICMLA58977.2023.00314)
 - **Optimizing Fantasy Sports Team Selection with Deep Reinforcement Learning.** Proceedings of CODS-COMAD '24, ACM, 284–291. [doi.org/10.1145/3703323.3703743](https://doi.org/10.1145/3703323.3703743)
 - *6+ additional team publications in causal ML, recommender systems, and LLM applications &mdash; see Google Scholar for the live list.*
@@ -76,8 +76,12 @@ For the full and continuously-updated list, see [Publications]({{ '/publications
 - **CXCL10+ Perivascular Clusters Nucleate Th1 Cell Tissue Entry and Activation in the Inflamed Skin.** Journal of Immunology. [jimmunol.org/content/204/1_Supplement/220.9](https://www.jimmunol.org/content/204/1_Supplement/220.9)
 - **CXCL10+ Peripheral Activation Niches Couple Preferred Sites of Th1 Entry with Optimal APC Encounter.** Cell Reports / preprint at [biorxiv.org/content/10.1101/2020.10.04.324525v1](https://www.biorxiv.org/content/10.1101/2020.10.04.324525v1.full)
 
+## Service
+
+*(To be added — peer review and program committee roles to be listed here.)*
+
 {% if site.show_talks %}
-## Talks & service
+## Talks
 
 See the [Talks]({{ '/talks/' | relative_url }}) section.
 {% endif %}

@@ -44,7 +44,7 @@ b) *Correlation Check:*
 We built a correlation matrix for all 561 variables in one got to identify any apparent patterns in the relationships. We see that most of these features are highly correlated with each other and it’s a good decision to drop most of these highly correlated features since we can get the same information from some other feature with high correlation to a group of them.
 
 <center><figure class="full">
-	<img src="/images/blog/activityRecognition/image8.png" alt="image" height="1000px" width="1000px">
+	<img src="/images/blog/activityRecognition/image8.png" alt="Correlation matrix for all 561 sensor features" height="1000px" width="1000px">
 	<figcaption>Fig 01. Correlation Matrix between all 561 features</figcaption>
 </figure></center>
 
@@ -61,7 +61,7 @@ e) *Visual exploration:*
 We also started out with basic visual exploration of the dataset by plotting distributions for the variables for each category, but given the large number involved, we dropped the idea. Though, in general there are two distinct major groups which we can see through the distributions as shown in:
 
 <center><figure class="full">
-	<img src="/images/blog/activityRecognition/image9.png" alt="image" height="750px" width="750px">
+	<img src="/images/blog/activityRecognition/image9.png" alt="Representative distribution of sensor features by activity category" height="750px" width="750px">
 	<figcaption>Representative distribution</figcaption>
 </figure></center>
 
@@ -96,8 +96,8 @@ We started out with all 561 variables & reduced the total features to 5 in our f
        categories
 
 <center><figure class="full">
-	<img src="/images/blog/activityRecognition/image10.png" alt="image" height="400px" width="750px">
-	<figcaption>Variable important scores</figcaption>
+	<img src="/images/blog/activityRecognition/image10.png" alt="Random forest variable importance scores for all 561 features" height="400px" width="750px">
+	<figcaption>Variable importance scores</figcaption>
 </figure></center>
 
     5. Determine optimal number of trees & variables by iterating over 0-150
@@ -105,8 +105,8 @@ We started out with all 561 variables & reduced the total features to 5 in our f
 
 <center>
  <figure class="half">
-  	<img src="/images/blog/activityRecognition/image2.png" alt="image" height="400px" width="350px">
-  	<img src="/images/blog/activityRecognition/image1.png" alt="image" height="350px" width="350px">
+  	<img src="/images/blog/activityRecognition/image2.png" alt="OOB error vs number of variables selected" height="400px" width="350px">
+  	<img src="/images/blog/activityRecognition/image1.png" alt="OOB error vs number of trees" height="350px" width="350px">
   	<figcaption>Determining optimal number of variables & trees for training</figcaption>
  </figure>
 </center>
@@ -133,8 +133,8 @@ Using the previously described feature selection, we determined that the followi
 The final model had importance scores are as shown in the figure:
 
 <center><figure class="full">
-	<img src="/images/blog/activityRecognition/image3.png" alt="image" height="500px" width="500px">
-	<figcaption>Scores</figcaption>
+	<img src="/images/blog/activityRecognition/image3.png" alt="Variable importance scores for the final 5 selected features" height="500px" width="500px">
+	<figcaption>Importance scores for final selected features</figcaption>
 </figure></center>
 
 *2. We used SVM & RandomForest for the final model & their accuracy scores along with confusion matrices are as shown:*
@@ -154,8 +154,8 @@ The final model had importance scores are as shown in the figure:
 
 <center>
   <figure class="half">
-   	<img src="/images/blog/activityRecognition/08.a.ConfusionMatrix-Test_RF.png" alt="image">
-   	<img src="/images/blog/activityRecognition/08.b.ConfusionMatrix-Test_SVM.png" alt="image">
+   	<img src="/images/blog/activityRecognition/08.a.ConfusionMatrix-Test_RF.png" alt="Confusion matrix for Random Forest on test set">
+   	<img src="/images/blog/activityRecognition/08.b.ConfusionMatrix-Test_SVM.png" alt="Confusion matrix for SVM on test set">
   	 <figcaption>Confusion matrix for test dataset</figcaption>
   </figure>
 </center>
@@ -166,7 +166,7 @@ The final model had importance scores are as shown in the figure:
 
 4. From the final model, we also see that some categories are fairly straightforward to classify compared to others. We have shown this using a scatterplot matrix colored by category as shown the figure:
 <center><figure class="full">
-	<img src="/images/blog/activityRecognition/image11.png" alt="image" height="750px" width="750px">
+	<img src="/images/blog/activityRecognition/image11.png" alt="Scatterplot matrix colored by activity category showing separability of classes" height="750px" width="750px">
 	<figcaption>Fig 04. Distribution of tBodyAccJerk-std()-X across all 6 categories</figcaption>
 </figure></center>
 

@@ -79,6 +79,28 @@ body:hover .visually-hidden button {
   list-style: none;
 }
 
+/* C-006: Skip-to-content link — visible only on focus (keyboard users).
+   The .visually-hidden base class clips the element; when focused,
+   we override to show it at top-left of viewport. */
+.skip-link.visually-hidden.focusable:focus,
+a.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  border: 2px solid var(--global-link-color);
+  border-radius: $border-radius;
+  clip: auto;
+  width: auto;
+  height: auto;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 
 /*
    Type
