@@ -6,10 +6,12 @@ last_modified_at: 2020-05-20T10:00:00-00:00
 categories: [blog]
 tags: [machine-learning, clustering, distributed-computing, python, pyspark, dask]
 excerpt: "Implementing scalable k-means clustering using distributed computing frameworks"
+math: true
 header:
   overlay_image: /images/blog/distributed-kmeans/clusters.jpeg
   overlay_filter: 0.5
   teaser: /images/blog/distributed-kmeans/clusters.jpeg
+  caption: "Cluster centroids visualization"
 redirect_from:
   - /blog/distributed-kmeans-clustering/
 ---

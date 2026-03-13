@@ -192,6 +192,7 @@ paginate_path: /page:num/
 comments:
   provider: giscus
   giscus:
+    repo: "nilesh-patil/nilesh-patil.github.io"
     hide_button: false
     default_message: true
     repo_id: ""                  # paste from giscus.app
@@ -200,8 +201,6 @@ comments:
     discussion_term: "pathname"
     reactions_enabled: "1"
     theme: "preferred_color_scheme"
-
-repository_giscus: "nilesh-patil/nilesh-patil.github.io"
 
 # =============================================================================
 # Search — Pagefind (build-time, not a Jekyll plugin)

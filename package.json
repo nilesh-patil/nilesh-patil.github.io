@@ -1,27 +1,15 @@
 {
-  "name": "academic-pages",
-  "version": "0.8.1.1",
-  "description": "Academic Pages Mistakes Jekyll theme npm build scripts",
+  "name": "nilesh-patil.github.io",
+  "version": "1.0.0",
+  "description": "Personal site (Jekyll + academicpages) with Pagefind search.",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/academicpages/academicpages.github.io"
+    "url": "https://github.com/nilesh-patil/nilesh-patil.github.io"
   },
-  "keywords": [
-    "jekyll",
-    "theme",
-    "minimal"
-  ],
-  "contributors": [
-    "Michael Rose",
-    "Robert Zupko"
-  ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/academicpages/academicpages.github.io/issues"
-  },
-  "homepage": "https://github.com/academicpages/academicpages.github.io",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 18"
   },
   "dependencies": {
     "fitvids": "^2.1.1",
@@ -31,11 +19,14 @@
   },
   "devDependencies": {
     "onchange": "^7.1.0",
+    "pagefind": "^1.1.0",
     "uglify-js": "^3.17.4"
   },
   "scripts": {
     "uglify": "uglifyjs node_modules/jquery/dist/jquery.min.js node_modules/fitvids/dist/fitvids.min.js node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js node_modules/plotly.js-dist-min/plotly.min.js assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js -c -m -o assets/js/main.min.js",
     "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
-    "build:js": "npm run uglify"
+    "build:js": "npm run uglify",
+    "pagefind": "pagefind --site _site",
+    "build": "bundle exec jekyll build && npm run pagefind"
   }
 }

@@ -11,22 +11,7 @@ redirect_from:
   - /blog/working-with-numpy/
 ---
 
-## Index
-
-[Vectors](#vectors)
-  - [Generate a sequence](#create-vectors-by-generating-different-sequence-of-numbers)
-  - [Operations on a single vector](#single-vector-operations)
-  - [Basics](#single-vector-operations)
-  - [Calculate statistical measures](#calculate-basic-statistical-measures)
-  - [Subset a vector](#subset-a-vector)
-
-[Matrices](#matrices)
- - [Generate a matrix](#create-a-matrix)
- - [Matrix operations](#matrix-operations)
- - [Subset a matrix](#subset-a-matrix)
-
-
- If you don't know, in short - [Numpy](http://www.numpy.org) is a python library which provides support for fast computations over arrays (vectors, matrices, tensors). Its faster compared to structuring the same computation in base python because operations are vectorized & in general you end up writing code that is pretty close to mathematical notation of your operations instead of writing low level code & dealing with errors & overheads that might creep in during these operations.
+If you don't know, in short - [Numpy](http://www.numpy.org) is a python library which provides support for fast computations over arrays (vectors, matrices, tensors). Its faster compared to structuring the same computation in base python because operations are vectorized & in general you end up writing code that is pretty close to mathematical notation of your operations instead of writing low level code & dealing with errors & overheads that might creep in during these operations.
 
 ##### Import numpy  package for current session
 

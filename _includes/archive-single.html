@@ -19,6 +19,9 @@
         <img src=
           {% if teaser contains "://" %}
             "{{ teaser }}"
+          {% elsif teaser contains "/" %}
+            {%- comment -%}absolute or relative path already; don't double-prepend{%- endcomment -%}
+            "{{ teaser | prepend: base_path }}"
           {% else %}
             "{{ teaser | prepend: "/images/" | prepend: base_path }}"
           {% endif %}

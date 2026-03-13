@@ -10,6 +10,7 @@ header:
   overlay_image: /images/blog/feature/nyc_network.png
   overlay_filter: 0.5
   teaser: /images/blog/feature/nyc_network.png
+  caption: "NYC taxi transportation network"
 redirect_from:
   - /blog/transportation-graph-nyc-taxi-data/
 ---

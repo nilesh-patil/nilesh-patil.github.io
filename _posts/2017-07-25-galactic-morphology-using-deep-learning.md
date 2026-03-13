@@ -10,6 +10,7 @@ header:
   overlay_image: /images/blog/feature/galaxy.jpg
   overlay_filter: 0.5
   teaser: /images/blog/feature/galaxy.jpg
+  caption: "Galaxy morphology classification"
 redirect_from:
   - /blog/galactic-morphology-using-deep-learning/
 ---

@@ -11,7 +11,7 @@ author_profile: true
 
 Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products.
 
-[More about me &rarr;](/about/) &nbsp; &middot; &nbsp; [Publications &rarr;](/publications/) &nbsp; &middot; &nbsp; [Portfolio &rarr;](/portfolio/) &nbsp; &middot; &nbsp; [CV &rarr;](/cv/)
+[More about me &rarr;](/about/) &nbsp; &middot; &nbsp; [Publications &rarr;](/publications/) &nbsp; &middot; &nbsp; [Portfolio &rarr;](/portfolio/) &nbsp; &middot; &nbsp; [CV &rarr;](/cv/) &nbsp; &middot; &nbsp; [Search &rarr;](/search/)
 
 ---
 

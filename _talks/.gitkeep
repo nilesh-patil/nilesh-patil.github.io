@@ -1,0 +1,2 @@
+# Keep _talks/ tracked while empty so flipping show_talks: true is a one-line change.
+# Real entries go alongside the draft below. See docs/specs.md §11 + ROADMAP Phase 7.

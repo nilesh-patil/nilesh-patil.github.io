@@ -44,6 +44,10 @@ layout: default
         </header>
       {% endunless %}
 
+      {% if page.toc %}
+        {% include toc icon="list-ul" title="Contents" %}
+      {% endif %}
+
       <section class="page__content" itemprop="text">
         {{ content }}
 
