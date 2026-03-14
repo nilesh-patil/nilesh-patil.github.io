@@ -9,6 +9,7 @@ _site/
 # Editors / IDEs
 .vscode/
 local/
+.claude/
 
 # Bundler / Ruby
 .bundle/
