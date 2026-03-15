@@ -61,18 +61,42 @@
 }
 
 .sidebar__right {
+  /*
+   * RHS column mirroring .sidebar (LHS author profile). Wraps the auto-
+   * generated TOC. At <$large viewports the TOC stacks above the article
+   * in normal flow. At $large+ it takes the right 2-of-12 Susy column —
+   * matching the suffix(2 of 12) already reserved by .page (see
+   * _sass/layout/_page.scss:19-23). At $sidebar-screen-min-width it
+   * becomes fixed-position with its own scroll, like the LHS sidebar,
+   * so it stays visible while the article scrolls.
+   */
   margin-bottom: 1em;
 
   @include breakpoint($large) {
-    position: relative;
-    float: right;
-    width: $right-sidebar-width-narrow;
-    margin-left: span(0.5 of 12);
+    @include span(2 of 12 last);
     z-index: 10;
   }
 
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    height: 100vh;
+    overflow-y: auto;               // scroll if TOC outgrows the viewport
+    position: fixed;
+    top: 0;                          // anchor at viewport top
+    right: 0;
+    padding-top: $masthead-height;   // content begins below the fixed masthead
+  }
+
   @include breakpoint($x-large) {
-    width: $right-sidebar-width;
+    max-width: $sidebar-link-max-width;
+  }
+
+  h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    font-family: $sans-serif-narrow;
+  }
+
+  h3, h4 {
+    font-size: $type-size-5;
   }
 }
 
@@ -133,6 +157,20 @@
     li ul li ul li ul > li a {
       padding-left: 3rem;
     }
+
+    /*
+     * WCAG 2.5.5 touch-target size. On coarse pointers (touchscreens),
+     * the TOC links would otherwise be ~24-28 px tall, below the 44 px
+     * minimum. Restricted to coarse pointers so the desktop visual
+     * density stays unchanged.
+     */
+    @media (pointer: coarse) {
+      a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 }
 
@@ -181,6 +219,13 @@
 
 .author__name {
   margin: 0;
+  /*
+   * Pin the font-size so the sidebar author name renders at h3-equivalent
+   * size regardless of the actual heading element used. The element was
+   * promoted from <h3> to <h2> to fix the h1→h3 heading-order skip; this
+   * keeps the visual baseline (docs/perf/baseline/screenshots/) intact.
+   */
+  font-size: $type-size-4;
 
   @include breakpoint($large) {
     margin-top: 10px;

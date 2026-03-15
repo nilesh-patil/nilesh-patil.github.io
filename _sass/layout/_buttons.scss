@@ -45,16 +45,23 @@
     }
   }
 
-  /* for dark backgrounds */
-
+  /*
+   * Ghost / outline button. The original `--inverse` styling used
+   * `--global-text-color-light` so the text matched a dark background,
+   * but the same button is rendered in the author-profile sidebar on a
+   * white background where that produced ~1.8:1 contrast and failed
+   * axe color-contrast. Use the regular text color (which inverts with
+   * the theme variables) so contrast holds on every theme variant.
+   */
   &--inverse {
-    color: var(--global-text-color-light) !important;
+    color: var(--global-text-color) !important;
     border: 1px solid var(--global-border-color) !important; /* override*/
     background-color: var(--global-bg-color);
 
     &:hover {
-      color: #fff !important;
-      border-color: var(--global-text-color-light);
+      color: var(--global-bg-color) !important;
+      background-color: var(--global-text-color);
+      border-color: var(--global-text-color);
     }
   }
 

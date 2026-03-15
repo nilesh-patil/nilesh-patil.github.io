@@ -25,7 +25,14 @@
 {%- if headings.size > 0 -%}
 <aside class="sidebar__right">
 <nav class="toc">
-<header><h4 class="nav__title"><i class="fa fa-{{ include.icon | default: 'list-ul' }}" aria-hidden="true"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label | default: 'Contents' }}</h4></header>
+{%- comment -%}
+  Use <h2> here so the TOC header matches the section-level headings of
+  the page it describes. Previously <h4>, which axe flagged as a heading-
+  order skip after the page's <h1> + content <h2>s. The visual is pinned
+  by .nav__title { font-size } so promoting the level doesn't grow the
+  text.
+{%- endcomment -%}
+<header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'list-ul' }}" aria-hidden="true"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label | default: 'Contents' }}</h2></header>
 <ul class="toc__menu">
 {%- for h in headings -%}
   {%- assign parts = h | split: "|" -%}

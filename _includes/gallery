@@ -31,7 +31,7 @@
           {% else %}
             "{{ img.image_path | prepend: "/images/" | prepend: base_path }}"
           {% endif %}
-          alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+          alt="{% if img.alt %}{{ img.alt }}{% endif %}" loading="lazy" decoding="async">
       </a>
     {% else %}
       <img src=
@@ -40,7 +40,7 @@
         {% else %}
           "{{ img.image_path | prepend: "/images/" | prepend: base_path }}"
         {% endif %}
-        alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+        alt="{% if img.alt %}{{ img.alt }}{% endif %}" loading="lazy" decoding="async">
     {% endif %}
   {% endfor %}
   {% if include.caption %}
