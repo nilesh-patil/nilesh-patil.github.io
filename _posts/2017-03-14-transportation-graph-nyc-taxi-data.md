@@ -4,7 +4,7 @@ title: "Characterizing & analyzing networks : NYC taxi data"
 date: 2017-03-14T15:39:55-04:00
 last_modified_at: 2017-03-14T19:48:19-04:00
 categories: [blog]
-tags: [graph, network, visualization, nyc, trasnportation]
+tags: [graph, network, visualization, nyc, transportation]
 excerpt: "Analyzing a real world graph : transportation network in NYC"
 header:
   overlay_image: /images/blog/feature/nyc_network.png
@@ -28,7 +28,7 @@ In<sup>[4]</sup>, the trip distribution has been characterized as combination of
 
 a)  *Raw data :*
 
-New York city taxi & Limousine Commission has made the taxi trips dataset available for public use since 2009 onwards<sup>[7]</sup> . We used this dataset to perform our analysis. The complete dataset contains \~150 million trips for each year & each row represents one trip, with features for starting and stopping point, distance travelled, taxi-charge, time taken etc. We are using 2015 dataset which contains 146,112,990 trips in total. For combining the geolocation data to census tracts, we used the extremely helpful NYC landuse dataset<sup>[8]</sup>.
+New York City's Taxi & Limousine Commission has made the taxi-trips dataset available for public use since 2009<sup>[7]</sup>. We used this dataset for our analysis. The complete dataset contains approximately 150 million trips per year & each row represents one trip, with features for starting and stopping point, distance travelled, taxi-charge, time taken etc. We are using 2015 dataset which contains 146,112,990 trips in total. For combining the geolocation data to census tracts, we used the extremely helpful NYC landuse dataset<sup>[8]</sup>.
 
 b)  *Data transformation :*
 
@@ -49,7 +49,7 @@ We create features for month, day, wekday, period of the day etc from the timest
 
 Same location : multiple close nodes
 
-![nycTaxiDataimage2](\images\blog\graphs\nycTaxiData\image2.png){: .center-image height="300px" width="300px"}
+![nycTaxiDataimage2](/images/blog/graphs/nycTaxiData/image2.png){: .center-image height="300px" width="300px"}
 
 We finally decided to merge our dataset with US Census Bureau census tracts which removed the above problem. We have 580+ nodes in the final network and are worked with analyzing census tract as node and number of trips between two census tracts represented as an edge.
 
@@ -57,18 +57,18 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 
 1 . Trips taken in each month(fig-i) peaks between March-May and drops substantially during June onwards. This can be attributed directly to the weather pattern, as commuters are expected to avoid walking long distances during low temperatures or rainy weather.
 
-![](\images\blog\graphs\nycTaxiData\image3.png){: .center-image height="300px" width="850px"}
-<center>(fig-i)</center>
+![Monthly trip volume across the 2015 calendar year](/images/blog/graphs/nycTaxiData/image3.png){: .center-image height="300px" width="850px"}
+<center>(fig-i) Trips per month, 2015</center>
 
 2 . For our full dataset, the degree distribution is shown in first plot whereas the second plot shows degree distribution for graph generated using edges with atleast 500 trips in 2015.
 
-![](\images\blog\graphs\nycTaxiData\image4.png){: .center-image height="300px" width="850px"}
-<center>(fig-ii)</center>
+![Degree distribution: full graph (left) and filtered to edges with ≥500 trips (right)](/images/blog/graphs/nycTaxiData/image4.png){: .center-image height="300px" width="850px"}
+<center>(fig-ii) Degree distribution, full vs. filtered network</center>
 
 3 . The heat-map (fig iii) shows relative trip-density for each hour of the day in 2015. From this information, we summarize that the busiest hours are 6AM to 9AM. We attribute most of this traffic to users on their daily work-commute whereas there is a remarkable increase in density between 12AM to 4AM on weekends. We are looking for an approach to perform similar analysis on the network structure generated from our subset, to create temporal traffic density visualization.
 
-![](\images\blog\graphs\nycTaxiData\image5.png){: .center-image height="1000px" width="2000px"}
-<center>(fig-iii)</center>
+![Hourly trip-density heatmap across the year — rows are days of the week, columns are hours of the day](/images/blog/graphs/nycTaxiData/image5.png){: .center-image height="1000px" width="2000px"}
+<center>(fig-iii) Trip density by hour of day and day of week</center>
 
 4 . We analyzed the cost vs duration relationship for the trips and found interesting abnormal number of constant cost trips. We are attributing these trips to:
 
@@ -77,11 +77,11 @@ We finally decided to merge our dataset with US Census Bureau census tracts whic
 - Traffic delays within the same trips leading to delays
 
 
-![](\images\blog\graphs\nycTaxiData\image6.png){: .center-image height="500px" width="500px"}
+![Cost-versus-duration scatter showing constant-cost outliers attributable to rounded tips and traffic delays](/images/blog/graphs/nycTaxiData/image6.png){: .center-image height="500px" width="500px"}
 
 ## Full Network analysis
 
-![Taxi-Graph](\images\blog\graphs\nycTaxiData\image7.png){: .center-image height="750px" width="750px"}
+![Taxi-Graph](/images/blog/graphs/nycTaxiData/image7.png){: .center-image height="750px" width="750px"}
 
 The full network is approximately represented on its actual geographic location and we have mapped out-degree to node size & trips as edge thickness. We observed that:
 
@@ -89,7 +89,7 @@ The full network is approximately represented on its actual geographic location 
 -   Transportation hubs are also network hubs and office areas are the next closest central nodes
 -   Surprisingly, east village & lower east side is also least connected of the complete network, even though these areas are not geographically separated like the suburbs
 
-![](\images\blog\graphs\nycTaxiData\image8.PNG){: .center-image height="750px" width="750px"}
+![In-degree and out-degree versus total trips, split by trip-volume tier](/images/blog/graphs/nycTaxiData/image8.PNG){: .center-image height="750px" width="750px"}
 
 When we divide our nodes into two subcategories by number of trips greater than or equal to 500 and less than 500 respectively, and plot them in-degree/out-degree against the total number of trips, two stark contrast appear. The top two graphs on Figure 5 speak for nodes with number of trips greater than or equal to 500, with blue graph marks the in-degree to trips ratio and the red graph for out-degree. The bottle two graphs are for nodes with number of trips less than 500.
 
@@ -97,7 +97,7 @@ For number of trips>=500, most of the outliers on the far right of the graphs ha
 
 For number of trips >=500, most of the outliers on the far right of the graphs have their physical locations in Airports (LaGuardia as well as JFK), and their trips versus degree ratio is much smaller, meaning that a small amount of people coming from all sorts of places. And we can easily identify places with low connectivity by looking at the "tail" of the plot, and we found out that the smaller this ratio is, the farther away the node is from Manhattan.
 
-![](\images\blog\graphs\nycTaxiData\image9.png){: height="750px" width="750px"}
+![Network laid out by geographic location; node size encodes out-degree, edge thickness encodes trip count](/images/blog/graphs/nycTaxiData/image9.png){: .center-image height="750px" width="750px"}
 
 We divided the network into 3 communities, using multilevel community detection in igraph. The above plot has these communities mapped by size to number of trips leaving each node in the whole year. The 3 communities can be described as follows:
 
@@ -106,7 +106,7 @@ We divided the network into 3 communities, using multilevel community detection 
 - The red labels represent **community C,** representing north NYC, Queens & Bronx which we understand are in the same community due to least connectivity towards south in general.
 -   We wanted to show determine if the Suburb structure as determined by Dash & Rae<sup>[11]</sup> using national dataset holds true at a local level, and that’s why this result is interesting – based on our primary exploration our inference is, that within a city, it doesn’t hold up.
 
-![](\images\blog\graphs\nycTaxiData\image10.png){: .center-image height="750px" width="750px"}
+![Community-detection partitioning of the trip network — each color is one community](/images/blog/graphs/nycTaxiData/image10.png){: .center-image height="750px" width="750px"}
 
 We plotted a snapshot of the trips leaving major NYC areas and this shows, Manhattan is the most connected of all, whereas most trips from Lower east side, East village & Brooklyn end up towards northern sides of NYC. With a small fraction ending up within the community itself.
 

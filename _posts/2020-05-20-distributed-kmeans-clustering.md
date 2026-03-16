@@ -79,6 +79,7 @@ When dealing with large datasets, traditional k-means implementations face sever
 from pyspark.sql import SparkSession
 from pyspark.ml.clustering import KMeans as SparkKMeans
 from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.evaluation import ClusteringEvaluator
 from pyspark.sql.functions import col
 import pyspark.sql.functions as F
 
@@ -459,16 +460,17 @@ def preprocess_for_clustering(df):
 ```python
 def find_optimal_k_distributed(X, max_k=10):
     """
-    Find optimal number of clusters using elbow method
+    Sweep k from 1..max_k and record the within-cluster sum of squares (inertia)
+    for each fit. Returns the k-range and the inertia curve for elbow inspection.
     """
     inertias = []
-    k_range = range(1, max_k + 1)
-    
+    k_range = list(range(1, max_k + 1))
+
     for k in k_range:
         kmeans = DaskKMeans(n_clusters=k, random_state=42)
         kmeans.fit(X)
         inertias.append(kmeans.inertia_)
-    
+
     # Plot elbow curve
     import matplotlib.pyplot as plt
     plt.figure(figsize=(10, 6))
@@ -477,6 +479,25 @@ def find_optimal_k_distributed(X, max_k=10):
     plt.ylabel('Inertia')
     plt.title('Elbow Method for Optimal k')
     plt.show()
+
+    return k_range, inertias
+
+
+def find_elbow_point(k_range, inertias):
+    """
+    Pick the k whose point on the inertia curve is farthest (in perpendicular
+    distance) from the straight line connecting the first and last points.
+    A simple, robust heuristic for elbow detection that avoids a manual eyeball.
+    """
+    import numpy as np
+    points = np.array(list(zip(k_range, inertias)), dtype=float)
+    line_vec = points[-1] - points[0]
+    line_vec_norm = line_vec / np.linalg.norm(line_vec)
+    vec_from_first = points - points[0]
+    scalar_proj = vec_from_first @ line_vec_norm
+    proj_points = np.outer(scalar_proj, line_vec_norm) + points[0]
+    distances = np.linalg.norm(points - proj_points, axis=1)
+    return int(k_range[int(np.argmax(distances))])
     
     return k_range, inertias
 ```
@@ -559,6 +580,14 @@ def complete_distributed_kmeans_pipeline(data_path, framework='dask'):
     elif framework == 'pyspark':
         spark = create_spark_session()
         try:
+            # k is selected here in the same way as the Dask branch, so the
+            # PySpark path also runs the elbow scan instead of relying on a
+            # name carried over from another branch.
+            df_spark = spark.read.csv(data_path, header=True, inferSchema=True)
+            X = df_spark.toPandas().values
+            k_range, inertias = find_optimal_k_distributed(X)
+            optimal_k = find_elbow_point(k_range, inertias)
+
             model, predictions = distributed_kmeans_pyspark(
                 spark, data_path, k=optimal_k
             )
