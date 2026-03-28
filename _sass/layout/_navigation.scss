@@ -226,14 +226,40 @@
     }
 
     #theme-toggle {
-      a {
-        /* C-016: was 25px wide; WCAG 2.5.8 recommends 44×44px touch targets */
+      /* Anchor for absolutely-positioned button below. Table-cell layout
+         doesn't reliably honour `vertical-align: middle` for block
+         children with explicit height, so we centre with abs-positioning
+         which IS reliable across all the table/inline-flex quirks. */
+      position: relative;
+      width: 44px; /* reserve the touch-target width in the table row */
+
+      button {
+        /* WCAG 2.5.8: 44×44px touch target. Reset native <button> chrome
+           (border, background, padding) so it doesn't render as an inset
+           control that splits the masthead row. */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 44px;
-        min-height: 44px;
+        height: 44px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        line-height: 1;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+
+        &:focus-visible {
+          outline: 2px solid var(--global-border-color);
+          outline-offset: 2px;
+          border-radius: 4px;
+        }
       }
     }
 

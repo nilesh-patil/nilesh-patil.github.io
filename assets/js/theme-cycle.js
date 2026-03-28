@@ -45,8 +45,12 @@
     if (!icon) return;
     icon.classList.remove("fa-sun", "fa-moon", "fa-book-open");
     icon.classList.add(ICONS[theme]);
-    var btn = icon.closest("[id='theme-toggle']") || icon.parentElement;
-    if (btn && btn.tagName === "A") {
+    // The interactive control is the <button> child of li#theme-toggle (the
+    // a11y fix made it a real <button>; previously it was <a role="button">).
+    // Update both title (hover tooltip) and aria-label (assistive announce)
+    // on whichever interactive ancestor is present.
+    var btn = icon.closest("button, a");
+    if (btn) {
       btn.setAttribute("title", LABELS[theme]);
       btn.setAttribute("aria-label", LABELS[theme]);
     }
