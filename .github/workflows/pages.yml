@@ -29,7 +29,7 @@ jobs:
           # fetches what it needs at runtime). Cache the pagefind binary with
           # actions/cache directly if CI time becomes an issue.
 
-      - uses: ruby/setup-ruby@e5517072e87f198d9533967ae13d97c11b604005 # v1.99.0
+      - uses: ruby/setup-ruby@v1 # mutable tag: prior SHA pin was an old version that maxes at Ruby 3.1; @v1 is the conventional usage and tracks current Ruby support
         with:
           ruby-version: "3.3"
           bundler-cache: true

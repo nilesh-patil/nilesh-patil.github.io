@@ -9,7 +9,7 @@ redirect_from:
 
 AI leader building deployable AI systems, agentic workflows, and organizational adoption in regulated and large-scale environments. Currently Head of AI at **DreamStreet**, building compliance-aware AI architecture for investor and trader workflows across research, brokerage, and advisory domains. Previously led applied AI research at **Dream Sports / Dream11**, including a Columbia University research center collaboration, cross-geography teams across India and New York, and production ML systems at 250M+ user scale.
 
-Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products.
+Particularly interested in AI harness design, developer productivity, and cooking up novel applications from emerging model capabilities and turning them into reliable workflows.
 
 ## Currently
 

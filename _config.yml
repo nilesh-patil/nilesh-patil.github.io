@@ -8,7 +8,7 @@ name: "Nilesh Patil"
 description: >-
   AI leader building deployable AI systems, agentic workflows, and
   organizational adoption in regulated and large-scale environments.
-url: "https://nilesh-patil.github.io"
+url: "https://www.nilesh42.science"
 baseurl: ""
 repository: "nilesh-patil/nilesh-patil.github.io"
 logo: "/images/nilesh-patil.jpg"
@@ -98,6 +98,8 @@ exclude:
   - tmp
   - vendor
   - docs
+  - CLAUDE.md
+  - AGENTS.md
 
 # Conversion / Markdown
 kramdown:

@@ -11,6 +11,7 @@ _site/
 .vscode/
 local/
 .claude/
+.superpowers/
 
 # Bundler / Ruby
 .bundle/
@@ -20,3 +21,4 @@ Gemfile.lock
 # Node
 node_modules/
 package-lock.json
+docs/data/*

@@ -17,68 +17,221 @@ toc_sticky: true
 
 ## Profile
 
-AI leader building deployable AI systems, agentic workflows, and organizational adoption in regulated and large-scale environments. Currently Head of AI at DreamStreet, building compliance-aware AI architecture for investor and trader workflows across research, brokerage, and advisory domains. Previously led applied AI research at Dream Sports / Dream11, including a Columbia University research center collaboration, cross-geography teams across India and New York, and production ML systems at 250M+ user scale.
+**AI** engineer building deployable AI systems, agentic workflows, and organizational adoption in regulated and large-scale environments. Currently Head of AI at DreamStreet, building compliance-aware AI architecture for investor and trader workflows across research, brokerage, and advisory domains. Previously led applied AI research at Dream Sports / Dream11, including a Columbia University research-center collaboration, cross-continent teams across India and New York, and production ML systems at 250M+ user scale.
 
 Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products.
 
 ## Education
 
-- **M.S. in Data Science**, University of Rochester &mdash; *Rochester, NY* &mdash; 2017
-- **Bachelor of Technology**, Indian Institute of Technology, Roorkee &mdash; *Roorkee, IN* &mdash; 2013
+<div class="cv-entry">
+<div class="cv-entry__when">2017</div>
+<div class="cv-entry__what" markdown="1">
+
+**M.S. in Data Science** &mdash; University of Rochester &nbsp;·&nbsp; *Rochester, NY*
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2013</div>
+<div class="cv-entry__what" markdown="1">
+
+**Bachelor of Technology** &mdash; Indian Institute of Technology, Roorkee &nbsp;·&nbsp; *Roorkee, IN*
+
+</div>
+</div>
 
 ## Experience
 
-### Head of AI &mdash; DreamStreet &mdash; *Mumbai* &mdash; 2026 — Present
+<div class="cv-entry">
+<div class="cv-entry__when">2026 — Present</div>
+<div class="cv-entry__what" markdown="1">
 
-- Built full-stack AI systems for Indian investors and traders spanning research, brokerage, and advisory workflows in a SEBI-regulated environment.
-- Led development of a compliance-aware AI harness for brokerage and advisory use cases, emphasizing reliability, controllability, and audit-friendly workflow design.
-- Translated domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots.
-- Drove AI adoption across the organization through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations.
-- Built Hermes-based in-house automation agents across Marketing, Finance, IT, Tech, and HR, and set up self-hosted SLMs and agent tooling across local, GCP, and AWS environments.
+**Head of AI** &mdash; DreamStreet &nbsp;·&nbsp; *Mumbai*
 
-### Senior Principal Research Scientist / Head of Applied Research &mdash; Dream11 &mdash; *Mumbai* &mdash; 2019 — 2026
+- Designed a compliance-aware orchestration framework for multi-step LLM agents in a SEBI-regulated financial setting &mdash; constrained tool-use, guardrail/policy enforcement, and end-to-end audit logging for controllability and traceability of agent decisions.
+- Deployed self-hosted open-source language models (Qwen 3.5 / 3.6 27B) with vLLM and an agent-tooling stack across on-prem, GCP, and AWS.
+- Built Hermes-based self-serve agents for in-house productivity &mdash; domain research reviews, alerts, and similar tasks &mdash; across Marketing, Finance, IT, Tech, and HR.
+- Built full-stack AI for investor and trader workflows across research, brokerage, and advisory, and drove organization-wide AI adoption through training, rapid prototypes, and agent-centric workflow redesign.
 
-- Built Dream Sports' collaboration with **Columbia University, NY** and helped establish a **multi-million-dollar research center** focused on ML, AI research, and real-world applications.
-- Headed applied AI research for Dream Sports within a cross-functional research org spanning ML engineering, applied research, and data — across India and New York.
-- Led cross-team workshops to identify ~23 technical problems; converted 10 into funded projects over two years spanning sports robotics, LLM-based persona simulators, and agentic evaluators for personalization.
-- Delivered regular data, ML, and AI training sessions across Dream Sports for audiences ranging from ~10 to 200 participants.
-- Co-led *Sports x AI* sessions at Columbia University for students, post-docs, and faculty, translating industry problems into research and teaching material.
-- Designed and built a deep-learning churn prediction system and LLM-based behavior simulation workflows for 250M+ user lifetime trajectories.
-- Conceptualized and led real-time forecasting for ~50k+ forecasts under strict latency constraints.
-- Led distributed recommendation, content tagging, text similarity search for ~100M entities, and feature-store systems supporting 250M+ users.
+</div>
+</div>
 
-### Staff Data Scientist &mdash; Center for Vaccine Biology, University of Rochester &mdash; *Rochester, NY* &mdash; 2017 — 2019
+<div class="cv-entry">
+<div class="cv-entry__when">2019 — 2026</div>
+<div class="cv-entry__what" markdown="1">
 
-Built automated and self-serve ML systems for bio-imaging research, including 3D reconstruction from hyper-spectral microscopic scans.
+**Senior Principal Research Scientist / Head of Applied Research** &mdash; Dream11 (Dream Sports) &nbsp;·&nbsp; *Mumbai &amp; New York*
 
-### Data Scientist &mdash; AXA Insurance &mdash; *Pune* &mdash; 2014 — 2016
+- Headed applied AI research for Dream Sports and built a high-performing cross-continent team of research scientists, applied scientists, and ML engineers across India and New York.
+- Established and led an industry–academia research partnership and research center with **Columbia University, NY** &mdash; co-defining research agendas at the intersection of ML and sports analytics and supporting joint work with faculty, post-docs, and PhD students.
+- Defined a multi-year applied-research portfolio &mdash; ~23 candidate research problems, 10 funded over two years &mdash; spanning sports robotics, LLM-based persona/behavior simulators, and agentic evaluators for personalization.
+- Developed deep-learning models for early churn prediction from large-scale user–product interaction time series (ICMLA 2023) and LLM-based behavioral simulation of user lifetime trajectories at population scale (250M+ users).
+- Built distributed recommendation, semantic similarity search over ~100M entities, and feature infrastructure for 250M+ users &mdash; seeding publications on personalization (UMAP '25, ECML-PKDD '25) and entity resolution (ACL 2026).
+- Designed a real-time probabilistic forecasting system producing 50k+ concurrent forecasts under strict latency constraints for production ML applications.
+- Delivered regular data, ML, and AI training across Dream Sports (audiences of ~10 to 200) and co-led *Sports × AI* sessions at Columbia for students, post-docs, and faculty.
 
-Built mortality-forecasting system and scaled statistical analysis pipelines with Spark and Python.
+</div>
+</div>
 
-### Data Analyst &mdash; AbsolutData Research & Analytics &mdash; *Gurgaon* &mdash; 2013 — 2014
+<div class="cv-entry">
+<div class="cv-entry__when">2017 — 2019</div>
+<div class="cv-entry__what" markdown="1">
 
-Built a multi-stage equipment-failure prediction ML system using sensor, oil-tests, and human-labeled alert data.
+**Staff Data Scientist** &mdash; David H. Smith Center for Vaccine Biology and Immunology, University of Rochester &nbsp;·&nbsp; *Rochester, NY*
+
+- Built automated, self-serve ML systems for bio-imaging research, including 3D reconstruction from hyperspectral microscopy &mdash; contributing computational methods to immunology research published in *Cell Reports* and the *Journal of Immunology*.
+- Automated ultrasound Doppler-angle estimation using deep neural networks (EMBC 2019).
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2014 — 2016</div>
+<div class="cv-entry__what" markdown="1">
+
+**Data Scientist** &mdash; AXA Insurance &nbsp;·&nbsp; *Pune*
+
+Built survival / mortality-forecasting models and scaled statistical pipelines (Spark, Python) for the US population (~300M+ entities).
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2013 — 2014</div>
+<div class="cv-entry__what" markdown="1">
+
+**Data Analyst** &mdash; AbsolutData Research &amp; Analytics &nbsp;·&nbsp; *Gurgaon*
+
+Developed a multi-stage predictive-maintenance model fusing sensor telemetry, oil-analysis, and human-labeled alerts.
+
+</div>
+</div>
 
 ## Selected publications
 
-For the full and continuously-updated list, see [Publications]({{ '/publications/' | relative_url }}) or [Google Scholar](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ).
+For the full, continuously-updated list, see [Publications]({{ '/publications/' | relative_url }}) or [Google Scholar](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ).
 
-### Dream11 era (2019 — 2026)
+<div class="cv-entry">
+<div class="cv-entry__when">2026</div>
+<div class="cv-entry__what" markdown="1">
 
-- **Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts.** Chourasia, A., Kapoor, S., &amp; Patil, N. 2026, Association for Computational Linguistics (ACL), Industry Track. [openreview.net/forum?id=rLisRb1T1Y](https://openreview.net/forum?id=rLisRb1T1Y)
-- **Early Churn Prediction from Large Scale User-Product Interaction Time Series.** 2023 International Conference on Machine Learning and Applications (ICMLA), IEEE, 2023. [doi.org/10.1109/ICMLA58977.2023.00314](https://doi.org/10.1109/ICMLA58977.2023.00314)
-- **Optimizing Fantasy Sports Team Selection with Deep Reinforcement Learning.** Proceedings of CODS-COMAD '24, ACM, 284–291. [doi.org/10.1145/3703323.3703743](https://doi.org/10.1145/3703323.3703743)
-- *6+ additional team publications in causal ML, recommender systems, and LLM applications &mdash; see Google Scholar for the live list.*
+**Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts.** Chourasia, A., Kapoor, S., &amp; Patil, N. &mdash; Association for Computational Linguistics (ACL), Industry Track. [openreview.net/forum?id=rLisRb1T1Y](https://openreview.net/forum?id=rLisRb1T1Y)
 
-### Rochester era (2016 — 2019)
+</div>
+</div>
 
-- **Automated Ultrasound Doppler Angle Estimation Using Deep Learning.** 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), pp. 28–31, IEEE, 2019. [pubmed.ncbi.nlm.nih.gov/31945837](https://pubmed.ncbi.nlm.nih.gov/31945837)
-- **CXCL10+ Perivascular Clusters Nucleate Th1 Cell Tissue Entry and Activation in the Inflamed Skin.** Journal of Immunology. [jimmunol.org/content/204/1_Supplement/220.9](https://www.jimmunol.org/content/204/1_Supplement/220.9)
-- **CXCL10+ Peripheral Activation Niches Couple Preferred Sites of Th1 Entry with Optimal APC Encounter.** Cell Reports / preprint at [biorxiv.org/content/10.1101/2020.10.04.324525v1](https://www.biorxiv.org/content/10.1101/2020.10.04.324525v1.full)
+<div class="cv-entry">
+<div class="cv-entry__when">2024</div>
+<div class="cv-entry__what" markdown="1">
 
-## Service
+**Optimizing Fantasy Sports Team Selection with Deep Reinforcement Learning.** Proceedings of CODS-COMAD '24, ACM, 284–291. [doi.org/10.1145/3703323.3703743](https://doi.org/10.1145/3703323.3703743)
 
-*(To be added — peer review and program committee roles to be listed here.)*
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2023</div>
+<div class="cv-entry__what" markdown="1">
+
+**Early Churn Prediction from Large Scale User-Product Interaction Time Series.** 2023 International Conference on Machine Learning and Applications (ICMLA), IEEE. [doi.org/10.1109/ICMLA58977.2023.00314](https://doi.org/10.1109/ICMLA58977.2023.00314)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2020</div>
+<div class="cv-entry__what" markdown="1">
+
+**CXCL10+ Perivascular Clusters Nucleate Th1 Cell Tissue Entry and Activation in the Inflamed Skin.** Journal of Immunology. [jimmunol.org/content/204/1_Supplement/220.9](https://www.jimmunol.org/content/204/1_Supplement/220.9)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2020</div>
+<div class="cv-entry__what" markdown="1">
+
+**CXCL10+ Peripheral Activation Niches Couple Preferred Sites of Th1 Entry with Optimal APC Encounter.** Cell Reports / preprint at [biorxiv.org/content/10.1101/2020.10.04.324525v1](https://www.biorxiv.org/content/10.1101/2020.10.04.324525v1.full)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2019</div>
+<div class="cv-entry__what" markdown="1">
+
+**Automated Ultrasound Doppler Angle Estimation Using Deep Learning.** 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), pp. 28–31, IEEE. [pubmed.ncbi.nlm.nih.gov/31945837](https://pubmed.ncbi.nlm.nih.gov/31945837)
+
+</div>
+</div>
+
+## Research supervision &amp; mentorship
+
+Publications led with researchers and engineers I mentored at Dream Sports:
+
+<div class="cv-entry">
+<div class="cv-entry__when">2026</div>
+<div class="cv-entry__what" markdown="1">
+
+**Driving Engagement in Daily Fantasy Sports with a Scalable and Urgency-Aware Ranking Engine.** Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 40, No. 47. [doi.org/10.1609/aaai.v40i47.41479](https://doi.org/10.1609/aaai.v40i47.41479)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2025</div>
+<div class="cv-entry__what" markdown="1">
+
+**Enhancing Personalisation in Fantasy Sports with Graph-Based Representations.** UMAP '25, ACM, 361–363. [doi.org/10.1145/3699682.3730974](https://doi.org/10.1145/3699682.3730974)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2025</div>
+<div class="cv-entry__what" markdown="1">
+
+**Personalized Contest Recommendation in Fantasy Sports.** ECML PKDD 2025, Applied Data Science Track, Part IX, Springer, 22–35. [doi.org/10.1007/978-3-032-06118-8_2](https://doi.org/10.1007/978-3-032-06118-8_2)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2024</div>
+<div class="cv-entry__what" markdown="1">
+
+**ForeCal: Random Forest-based Calibration for DNNs.** CODS-COMAD '24, ACM, 44–51. [doi.org/10.1145/3703323.3703330](https://doi.org/10.1145/3703323.3703330)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2023</div>
+<div class="cv-entry__what" markdown="1">
+
+**FENCE: Fairplay Ensuring Network Chain Entity for Real-Time Multiple ID Detection at Scale in Fantasy Sports.** AIMLSystems '23, ACM, Article 26. [doi.org/10.1145/3639856.3639882](https://doi.org/10.1145/3639856.3639882)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2023</div>
+<div class="cv-entry__what" markdown="1">
+
+**Maximizing Success Rate of Payment Routing using Non-stationary Bandits.** AIMLSystems '23, ACM, Article 27. [doi.org/10.1145/3639856.3639883](https://doi.org/10.1145/3639856.3639883)
+
+</div>
+</div>
+
+<div class="cv-entry">
+<div class="cv-entry__when">2023</div>
+<div class="cv-entry__what" markdown="1">
+
+**Accelerating Causal Algorithms for Industrial-scale Data: A Distributed Computing Approach with Ray.** AIMLSystems '23, ACM, Article 24. [doi.org/10.1145/3639856.3639880](https://doi.org/10.1145/3639856.3639880)
+
+</div>
+</div>
 
 {% if site.show_talks %}
 ## Talks

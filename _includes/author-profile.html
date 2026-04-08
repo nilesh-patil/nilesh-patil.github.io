@@ -16,7 +16,7 @@
     {% if author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}" width="712" height="720" fetchpriority="high" decoding="async" />
     {% else %}
-      {% assign _avatar_path = author.avatar | prepend: "/images/" | prepend: base_path %}
+      {% assign _avatar_path = author.avatar | prepend: "/images/" | prepend: site.baseurl %}
       {% assign _avatar_webp = _avatar_path | replace: ".jpg", ".webp" | replace: ".jpeg", ".webp" | replace: ".png", ".webp" %}
       <picture>
         <source srcset="{{ _avatar_webp }}" type="image/webp">
