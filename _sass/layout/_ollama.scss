@@ -1,0 +1,220 @@
+/* ==========================================================================
+   OLLAMA DESIGN LAYER
+   --------------------------------------------------------------------------
+   A minimal "documentation-first" surface applied on top of the existing
+   academicpages theme, shared across all three modes (light / dark / reader).
+   Adds: pill geometry, hairline flat surfaces (no shadows), rounded display
+   type, monochrome ink links with an underline affordance, and a calmer
+   vertical rhythm. Imported LAST in main.scss so it wins the cascade.
+
+   All colour comes from the per-mode custom properties set in
+   _sass/theme/_default_{light,dark,sepia}.scss:
+     --global-base-color  = the mode's "ink" (fills active pills / CTAs)
+     --on-accent          = readable text ON that ink (inverts per mode)
+   ========================================================================== */
+
+:root {
+  --radius-pill : 9999px;   /* Ollama rounded.full — every interactive control */
+  --radius-card : 12px;     /* Ollama rounded.lg   — cards, code blocks, TOC   */
+  --radius-chip : 6px;      /* Ollama rounded.sm   — inline code, small chips   */
+}
+
+/* ---- Display type: rounded, tight, no faux-bold -------------------------- */
+h1, h2, h3, h4, h5, h6,
+.page__title, .page__hero-title, .archive__item-title,
+.site-title, .author__name, .archive__subtitle {
+  font-family: $header-font-family;
+  letter-spacing: -0.01em;
+}
+h1, .page__title, .archive__item-title { font-weight: 600; }
+h2, h3, h4 { font-weight: 600; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Calmer reading rhythm: a touch more leading and section air. */
+.page__content {
+  p, li { line-height: 1.65; }
+  p { margin: 0 0 1.15em; }
+
+  h2 { margin-top: 2.4em; }
+  h3 { margin-top: 1.85em; }
+  > h2:first-child,
+  > h3:first-child { margin-top: 0; }
+}
+
+/* Section dividers (`---` / <hr>) become quiet hairlines, never heavy rules. */
+hr {
+  border: 0;
+  border-top: 1px solid var(--global-border-color);
+  margin: 2.4em 0;
+}
+
+/* ---- Links: monochrome ink + underline (the Ollama affordance) ----------- */
+.page__content a:not(.btn):not(.page__taxonomy-item):not(.tag) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--global-border-color);
+  transition: text-decoration-color 0.15s ease;
+
+  &:hover { text-decoration-color: currentColor; }
+}
+
+/* ---- Pills: every interactive control collapses to rounded.full ---------- */
+.btn {
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  box-shadow: none;
+  padding: 0.5em 1.25em;
+  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Default (non-modifier) button = the ink pill. Scoped with :not so the
+   brand-coloured social buttons (.btn--twitter etc.) keep their own fills. */
+.btn:not([class*="btn--"]) {
+  background-color: var(--global-base-color);
+  color: var(--on-accent) !important;
+
+  &:hover { background-color: var(--global-base-color); opacity: 0.86; }
+}
+
+.btn--inverse {
+  background-color: transparent;
+  color: var(--global-text-color) !important;
+  border: 1px solid var(--global-dark-border-color) !important;
+
+  &:hover {
+    background-color: var(--global-text-color);
+    color: var(--global-bg-color) !important;
+  }
+}
+
+/* Pagination → a connected pill group with pill caps. */
+.pagination li {
+  a { font-weight: 500; }
+
+  &:first-child a {
+    border-top-left-radius: var(--radius-pill);
+    border-bottom-left-radius: var(--radius-pill);
+    padding-left: 1.1em;
+  }
+  &:last-child a {
+    border-top-right-radius: var(--radius-pill);
+    border-bottom-right-radius: var(--radius-pill);
+    padding-right: 1.1em;
+  }
+  a.current {
+    background: var(--global-base-color);
+    color: var(--on-accent);
+    border-color: var(--global-base-color);
+  }
+}
+.pagination--pager { border-radius: var(--radius-pill); font-weight: 500; }
+
+/* Taxonomy / tag chips → soft-surface pills that fill with ink on hover.
+   NOTE: `.taxonomy__index a` is deliberately NOT included here. On this site
+   `.taxonomy__index` is repurposed as the home-page post/project listing, and
+   the pill radius turned each full-width listing link into a stadium "oval".
+   Those listings are styled flat (date » title) in layout/_archive.scss. */
+.page__taxonomy-item,
+a.page__taxonomy-item {
+  display: inline-block;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--global-border-color);
+  background: var(--global-code-background-color);
+  color: var(--global-text-color) !important;
+  padding: 0.25em 0.85em;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--global-base-color);
+    color: var(--on-accent) !important;
+    border-color: var(--global-base-color);
+  }
+}
+
+/* Search inputs (native + Pagefind UI) → pill. */
+input[type="search"],
+#search-input,
+.search-content__form input,
+.pagefind-ui__search-input {
+  border-radius: var(--radius-pill) !important;
+  border: 1px solid var(--global-dark-border-color);
+  background: var(--global-code-background-color);
+  padding-left: 1.1em;
+  padding-right: 1.1em;
+}
+.pagefind-ui__search-clear,
+.pagefind-ui__message { border-radius: var(--radius-pill); }
+
+/* ---- Flat surfaces & hairlines: nothing lifts, nothing floats ------------ */
+.toc,
+.notice, .notice--primary, .notice--info, .notice--warning,
+.notice--success, .notice--danger,
+.hidden-links,
+.archive__item-teaser,
+pre, .highlight, div.highlighter-rouge, figure.highlight {
+  box-shadow: none !important;
+}
+
+.toc {
+  border: 1px solid var(--global-border-color);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.toc .nav__title { color: var(--on-accent); border-radius: 0; }
+/* The stock toc hover assumed a mid-tone accent; with monochrome ink it would
+   render ink-on-ink. Invert it explicitly so it stays readable in every mode. */
+.toc__menu a:hover {
+  color: var(--global-bg-color);
+  background: var(--global-text-color);
+}
+
+.greedy-nav .hidden-links {
+  box-shadow: none;
+  border-radius: var(--radius-card);
+}
+
+/* Notices → neutral hairline cards (Ollama has no semantic colour fills). */
+.notice, .notice--primary, .notice--info,
+.notice--warning, .notice--success, .notice--danger {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--global-border-color);
+}
+
+/* Blockquotes (the TL;DR box) → quiet hairline rule, neutral ink. */
+blockquote {
+  border-left: 3px solid var(--global-dark-border-color);
+}
+
+/* ---- Code: soft-surface rounded.lg blocks; chip radius inline ------------ */
+pre, .highlight, div.highlighter-rouge, figure.highlight {
+  border-radius: var(--radius-card);
+}
+.highlight > pre,
+.highlighter-rouge .highlight { border-radius: var(--radius-card); }
+code { border-radius: var(--radius-chip); }
+
+/* ---- Filled-accent spots that hardcoded white text — invert per mode ----- */
+.nav__list .active,
+.nav__list .active:hover {
+  color: var(--on-accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ---- Masthead: flat doc header; quiet ink underline on nav hover --------- */
+.masthead { box-shadow: none; }
+.greedy-nav .visible-links a::before {
+  height: 2px;
+  background: var(--global-text-color);
+}
+.site-title,
+.greedy-nav .visible-links li:first-child a {
+  font-family: $header-font-family;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
