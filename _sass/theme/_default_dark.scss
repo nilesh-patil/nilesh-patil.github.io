@@ -46,7 +46,7 @@ $warning-color              : #f0a946;
 
 /* Other basic settings (must match _light to keep layout sizes stable) */
 $border-radius              : 4px;
-$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.25);
+$box-shadow                 : none;  /* Ollama: flat — no drop-shadow elevation */
 $global-transition          : all 0.2s ease-in-out;
 $masthead-height            : 70px;
 $navicon-width              : 28px;
@@ -56,7 +56,11 @@ $sidebar-screen-min-width   : 1024px;
 
 /* Reading-friendly dark mode */
 html[data-theme="dark"] {
-    --global-base-color                 : #{$primary-color};
+    /* Ollama dark: keep the reading-friendly warm-charcoal surface, but swap
+       the cyan accent for a near-white "ink" so filled pills invert cleanly
+       (light pill + dark text — Ollama's button-pill-on-dark). */
+    --global-base-color                 : #ededed;   /* light ink — fills active pills */
+    --on-accent                         : #171717;   /* dark text on a light pill */
     --global-bg-color                   : #{$bg};
     --global-footer-bg-color            : #{$bg-deeper};
     --global-border-color               : #{$border-soft};
@@ -64,11 +68,11 @@ html[data-theme="dark"] {
     --global-code-background-color      : #{$bg-deeper};
     --global-code-text-color            : #e6e1d4;
     --global-fig-caption-color          : #{$text-dim};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-hover};
-    --global-link-color-visited         : #{$link-visited};
+    --global-link-color                 : #ededed;
+    --global-link-color-hover           : #ffffff;
+    --global-link-color-visited         : #c2c2c2;
     --global-masthead-link-color        : #{$text};
-    --global-masthead-link-color-hover  : #{$primary-color};
+    --global-masthead-link-color-hover  : #ffffff;
     --global-text-color                 : #{$text};
     --global-text-color-light           : #{$text-muted};
     --global-thead-color                : #{$bg-elevated};

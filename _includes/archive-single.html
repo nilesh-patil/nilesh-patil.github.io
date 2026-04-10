@@ -1,87 +1,76 @@
-{% include base_path %}
+{% comment %}
+  Compact listing row shared by every collection / archive page (posts,
+  portfolio, publications, year/tag/category archives): a muted monospace DATE
+  column followed by the TITLE link — no excerpt, teaser, venue, citation or
+  download links. Those richer fields stay on each item's own detail page.
+  Styled via `.post-row` in _sass/layout/_archive.scss (same rule as the home
+  page listing). Keep this in sync with the markup in _pages/home.md.
 
-{% if post.header.teaser %}
-  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-{% else %}
-  {% assign teaser = site.teaser %}
-{% endif %}
-
+  Two collections get a slightly richer row (an extra muted meta line and an
+  external link), gated strictly on post.collection so the bare row that
+  /posts/ and every year/tag/category archive render stays byte-identical:
+    - publications: venue + (if paperurl) a "PDF ↗" link
+    - portfolio:    one-line description + (if repo) a "GitHub ↗" link
+  Every other collection falls through to the bare row in the {% else %} branch.
+{% endcomment %}
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
   {% assign title = post.title %}
 {% endif %}
-
+{% if post.collection == 'publications' %}
 <div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
-          {% elsif teaser contains "/" %}
-            {%- comment -%}absolute or relative path already; don't double-prepend{%- endcomment -%}
-            "{{ teaser | prepend: base_path }}"
-          {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
-          {% endif %}
-          alt="" loading="lazy" decoding="async">
-      </div>
-    {% endif %}
-
-    <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-      {% endif %}
-    </h2>
-    
-    {% if post.read_time %}
-      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
-
-        {% if post.collection == 'teaching' %}
-          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' %}
-          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+  <article class="archive__item post-row post-row--rich" itemscope itemtype="https://schema.org/CreativeWork">
+    <time class="post-row__date" itemprop="datePublished" datetime="{{ post.date | default: '1900-01-01' | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%Y" }}</time>
+    <div class="post-row__body">
+      <span class="post-row__title" itemprop="headline">
+        {% if post.link %}
+          <a class="post-row__link" href="{{ post.link }}">{{ title }}</a>
+        {% else %}
+          <a class="post-row__link" href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
         {% endif %}
-
-    {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
-    {% endif %}
-    
-    {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.paperurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.citation and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl}}">Download Bibtex</a></p>
-    {% elsif post.citation and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }}</p>
-    {% elsif post.paperurl and post.bibtexurl %}
-      <p><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.paperurl %}
-      <p><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.slidesurl and post.bibtexurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.slidesurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.bibtexurl %}
-      <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% endif %}
-
+      </span>
+      {% if post.venue or post.paperurl %}
+        <span class="post-row__meta">
+          {% if post.venue %}<span class="post-row__venue" itemprop="isPartOf">{{ post.venue }}</span>{% endif %}
+          {% if post.paperurl %}<a class="post-row__ext" href="{{ post.paperurl }}" rel="noopener" target="_blank">PDF&nbsp;&#8599;</a>{% endif %}
+        </span>
+      {% endif %}
+    </div>
   </article>
 </div>
+{% elsif post.collection == 'portfolio' %}
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item post-row post-row--rich" itemscope itemtype="https://schema.org/CreativeWork">
+    <time class="post-row__date" itemprop="datePublished" datetime="{{ post.date | default: '1900-01-01' | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%d %b %Y" }}</time>
+    <div class="post-row__body">
+      <span class="post-row__title" itemprop="headline">
+        {% if post.link %}
+          <a class="post-row__link" href="{{ post.link }}">{{ title }}</a>
+        {% else %}
+          <a class="post-row__link" href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+        {% endif %}
+      </span>
+      {% if post.excerpt or post.repo %}
+        <span class="post-row__meta">
+          {% if post.excerpt %}<span class="post-row__desc" itemprop="description">{{ post.excerpt | markdownify | strip_html | strip_newlines | strip }}</span>{% endif %}
+          {% if post.repo %}<a class="post-row__ext" href="{{ post.repo }}" rel="noopener" target="_blank">GitHub&nbsp;&#8599;</a>{% endif %}
+        </span>
+      {% endif %}
+    </div>
+  </article>
+</div>
+{% else %}
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item post-row" itemscope itemtype="https://schema.org/CreativeWork">
+    <time class="post-row__date" itemprop="datePublished" datetime="{{ post.date | default: '1900-01-01' | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%d %b %Y" }}</time>
+    <span class="post-row__title" itemprop="headline">
+      {% if post.link %}
+        <a class="post-row__link" href="{{ post.link }}">{{ title }}</a>
+      {% else %}
+        <a class="post-row__link" href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </span>
+  </article>
+</div>
+{% endif %}

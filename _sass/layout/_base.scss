@@ -270,6 +270,22 @@ figcaption {
   }
 }
 
+/* Markdown image captions.
+   An image followed on the very next line by an `*italic*` caption (no blank
+   line between) renders as a single paragraph: <p><img> <em>caption</em></p>.
+   So the caption is the <em> sitting right after the <img>, not a separate
+   paragraph. Drop it onto its own line and match the native figcaption styling.
+   `em:last-child` keeps the match to true captions (italic ending the para),
+   leaving inline emphasis elsewhere alone. */
+.page__content p > img + em:last-child {
+  display: block;
+  margin-top: 0.4em;
+  color: var(--global-fig-caption-color);
+  font-family: $caption-font-family;
+  font-size: $type-size-6;
+  line-height: 1.5;
+}
+
 
 /* Fix IE9 SVG bug */
 

@@ -86,6 +86,151 @@
 
 
 /*
+   Compact listing rows — home page AND every archive / collection page
+   --------------------------------------------------------------------------
+   One line per entry: a fixed-width, muted, monospace DATE column followed by
+   the TITLE link (thenumb.at-style), no excerpt and no card. Shared by the
+   home page (`.taxonomy__index`, hand-rolled in _pages/home.md) and all the
+   collection / archive pages (`.archive__item`, emitted by
+   _includes/archive-single.html). Both carry the `.post-row` class so the two
+   stay pixel-identical from a single rule. (`.taxonomy__index` is the Minimal
+   Mistakes tag-index component, repurposed here as the home listing.)
+   ========================================================================== */
+
+.taxonomy__index {
+  margin: 0 0 1.5em;
+  padding: 0;
+  list-style: none;
+}
+
+.post-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  margin: 0 0 0.4em;
+  line-height: 1.5;
+
+  &__date {
+    flex: 0 0 auto;
+    font-family: $monospace;
+    font-size: 0.78em;
+    color: var(--global-text-color-light);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  // beat `.archive a { text-decoration: underline }` (0,1,1) with 0,2,0
+  .post-row__link {
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/*
+   Rich listing rows — ONLY the /publications/ and /portfolio/ listings
+   --------------------------------------------------------------------------
+   Same date column + title link as the bare `.post-row`, but the title and a
+   second muted meta line (venue / one-line description + an external link) are
+   stacked in `.post-row__body`. These selectors are scoped to classes that
+   appear ONLY on publications/portfolio rows (`--rich`, `__body`, `__meta`,
+   `__venue`, `__desc`, `__ext`), so blog rows, the archives, and the home page
+   listing — which reuse `.post-row`/`.post-row__*` base classes — are untouched.
+   ========================================================================== */
+
+.post-row--rich {
+  // keep the date baseline-aligned with the title (first line of the body)
+  align-items: baseline;
+
+  .post-row__body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; // allow long venues/descriptions to wrap, not overflow
+  }
+
+  .post-row__meta {
+    margin-top: 0.1em;
+    font-size: 0.82em;
+    line-height: 1.4;
+    color: var(--global-text-color-light);
+  }
+
+  .post-row__venue,
+  .post-row__desc {
+    color: var(--global-text-color-light);
+  }
+
+  // separate the venue/description from the trailing external link
+  .post-row__venue + .post-row__ext,
+  .post-row__desc + .post-row__ext {
+    margin-left: 0.5em;
+  }
+
+  .post-row__ext {
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--global-link-color);
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+
+/*
+   CV timeline — date / era column on the left, content on the right
+   --------------------------------------------------------------------------
+   Mirrors the muted monospace date column of `.post-row` (and the left-margin
+   dates of the printed CV in files/nilesh-patil.pdf). Scoped to `.cv-entry`,
+   which only appears on /cv/, so no other page is affected.
+   ========================================================================== */
+
+.cv-entry {
+  display: flex;
+  gap: 1.5em;
+  margin: 0 0 1.6em;
+
+  @media (max-width: 37.5em) {
+    flex-direction: column;
+    gap: 0.15em;
+    margin-bottom: 1.4em;
+  }
+}
+
+.cv-entry__when {
+  flex: 0 0 8.5em;
+  padding-top: 0.2em;
+  font-family: $monospace;
+  font-size: 0.78em;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+
+  @media (max-width: 37.5em) {
+    padding-top: 0;
+  }
+}
+
+.cv-entry__what {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  > :first-child { margin-top: 0; }
+  p { margin: 0 0 0.5em; }
+  ul { margin: 0.35em 0 0; }
+  li { margin-bottom: 0.3em; }
+}
+
+
+/*
    List view
    ========================================================================== */
 

@@ -4,6 +4,7 @@ collection: portfolio
 permalink: /portfolio/datascience-environment/
 date: 2018-07-01
 excerpt: "Opinionated Dockerfile + compose setup for a reproducible Python/R data-science stack: Jupyter, common ML libraries, and a pre-wired notebook server."
+repo: https://github.com/nilesh-patil/datascience-environment
 header:
   teaser: /images/blog/feature/nyc_network.png
 tags: [docker, devops, jupyter, reproducibility, data-science]

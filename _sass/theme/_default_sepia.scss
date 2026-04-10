@@ -48,7 +48,7 @@ $warning-color              : #d18516;
 
 /* Other basic settings (must match light/dark to keep layout sizes stable) */
 $border-radius              : 4px;
-$box-shadow                 : 0 1px 1px rgba(91, 70, 54, 0.12);
+$box-shadow                 : none;  /* Ollama: flat — no drop-shadow elevation */
 $global-transition          : all 0.2s ease-in-out;
 $masthead-height            : 70px;
 $navicon-width              : 28px;
@@ -58,7 +58,11 @@ $sidebar-screen-min-width   : 1024px;
 
 /* Sepia mode for the site */
 html[data-theme="sepia"] {
-    --global-base-color                 : #{$primary-color};
+    /* Ollama reader: warm cream paper, dark-sepia ink, hairline borders.
+       Links sit at the body ink and rely on the content underline for
+       affordance; active pills fill dark-brown with cream text. */
+    --global-base-color                 : #3b2f23;   /* dark brown ink — fills active pills */
+    --on-accent                         : #f4ecd8;   /* cream text on a brown pill */
     --global-bg-color                   : #{$bg};
     --global-footer-bg-color            : #{$bg-deeper};
     --global-border-color               : #{$border-soft};
@@ -66,11 +70,11 @@ html[data-theme="sepia"] {
     --global-code-background-color      : #{$bg-deeper};
     --global-code-text-color            : #{$dark-gray};
     --global-fig-caption-color          : #{$text-dim};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-hover};
-    --global-link-color-visited         : #{$link-visited};
-    --global-masthead-link-color        : #{$dark-gray};
-    --global-masthead-link-color-hover  : #{$primary-color-strong};
+    --global-link-color                 : #5b4636;
+    --global-link-color-hover           : #3b2f23;
+    --global-link-color-visited         : #7a4b8a;
+    --global-masthead-link-color        : #5b4636;
+    --global-masthead-link-color-hover  : #3b2f23;
     --global-text-color                 : #{$text};
     --global-text-color-light           : #{$text-muted};
     --global-thead-color                : #{$bg-elevated};

@@ -15,8 +15,12 @@ $indent-var                 : 1.3em;
 
 /* System typefaces */
 $serif                      : Georgia, Times, serif;
-$sans-serif                 : -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace                  : Monaco, Consolas, "Lucida Console", monospace;
+$sans-serif                 : system-ui, -apple-system, "SF Pro Text", "Segoe UI", "Roboto", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace                  : ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+/* Rounded display stack for headings — Ollama's SF Pro Rounded, with
+   ui-rounded (Apple) and Nunito as the closest cross-platform substitutes. */
+$rounded-display            : "SF Pro Rounded", ui-rounded, "Nunito", "Quicksand", system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif;
 
 /* Sans serif typefaces */
 $sans-serif-narrow          : $sans-serif;
@@ -40,8 +44,8 @@ $type-size-7                : 0.6875em; // ~11px
 $type-size-8                : 0.625em;  // ~10px
 
 $global-font-family         : $sans-serif;
-$header-font-family         : $sans-serif;
-$caption-font-family        : $serif;
+$header-font-family         : $rounded-display;
+$caption-font-family        : $sans-serif;
 
 /* ==========================================================================
    Breakpoints
