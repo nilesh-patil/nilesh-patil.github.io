@@ -3,7 +3,7 @@ title: "SimuCell3D: HPC tissue mechanics in C++"
 collection: portfolio
 permalink: /portfolio/simucell3d/
 date: 2026-03-02
-excerpt: "Performance-oriented fork of an ETH-developed C++ framework for simulating 3D tissue mechanics at subcellular resolution — adaptive OpenMP scheduling lifts parallel thread efficiency from 29% to 60%."
+excerpt: "Performance-oriented fork of an ETH-developed C++ framework for 3D tissue mechanics at subcellular resolution — adaptive OpenMP scheduling delivers 1.8×–4.4× speedups, growing with tissue size."
 tags: [cpp, hpc, openmp, computational-biology, simulation]
 ---
 
@@ -17,9 +17,10 @@ tags: [cpp, hpc, openmp, computational-biology, simulation]
 - Replaced the static OpenMP schedule with an adaptive scheme that sizes chunks to the per-cell work estimate.
 - Kept the public simulation API unchanged so existing experiment scripts continue to run without modification.
 
-Result: parallel thread efficiency moves from ~29% to ~60% on the standard benchmarks, with no change to numerical output.
+Result: **1.8×–4.4× faster** across the benchmark tissues — the bigger and more heterogeneous the tissue, the larger the win — with no change to numerical output. Per-thread busy time during contact detection tightens from a 20–95% spread to a uniform 90–94%.
 
 ## Links
 
 - **Repo**: [github.com/nilesh-patil/simucell3d](https://github.com/nilesh-patil/simucell3d)
-- **Reference paper**: Runser et al., *Nature Computational Science* (2024)
+- **Deep dive**: [Most threads idle, a few sprinting](/posts/simucell3d-adaptive-openmp-scheduling/) — how the adaptive scheduler was built and measured.
+- **Reference paper**: Runser et al., [SimuCell3D](https://www.nature.com/articles/s43588-024-00620-9), *Nature Computational Science* (2024)
