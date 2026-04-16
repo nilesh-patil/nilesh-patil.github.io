@@ -1,0 +1,289 @@
+{
+  "run": "parallel_benchmark_20260621_055502",
+  "n_adaptive_diag_rows": 219,
+  "fig1_imbalance": {
+    "v1_available": false,
+    "v1_note": "genuine v1.0 emits no performance_diagnostics.csv / thread_imbalance_pct anywhere in the new run",
+    "adaptive_all_rows": {
+      "n": 219,
+      "mean": 10.758,
+      "median": 12.2,
+      "max": 15.7
+    },
+    "adaptive_cells_gt_100": {
+      "n": 128,
+      "mean": 12.9648,
+      "median": 12.8,
+      "max": 15.7
+    }
+  },
+  "fig2_cov": {
+    "v1_available": false,
+    "v1_note": "no cov column exists for v1 in the new run",
+    "adaptive_all_rows": {
+      "n": 219,
+      "mean": 0.1076,
+      "median": 0.1223,
+      "max": 0.1572
+    },
+    "adaptive_cells_gt_100": {
+      "n": 128,
+      "mean": 0.1296,
+      "median": 0.1281,
+      "max": 0.1572
+    },
+    "ever_ge_0.4": false,
+    "ever_ge_0.6": false,
+    "thresholds_drawn": [
+      0.4,
+      0.6
+    ]
+  },
+  "fig3_phase": {
+    "phase_counts": {
+      "INITIALIZATION": 40,
+      "HOMEOSTASIS": 179
+    },
+    "growth_ever": false,
+    "last_INITIALIZATION_iter": 4000,
+    "last_INITIALIZATION_cells": 9,
+    "first_HOMEOSTASIS_iter": 4100,
+    "first_HOMEOSTASIS_cells": 10,
+    "final_iter": 21900,
+    "final_cells": 26534
+  },
+  "fig4_wallclock": {
+    "adaptive_final": {
+      "iter": 21900,
+      "cells": 26534,
+      "wall_hours": 61.79361
+    },
+    "v1_concurrent_final": {
+      "iter": 20100,
+      "cells": 12851,
+      "wall_hours": 61.80222
+    },
+    "adaptive_powerlaw_cells_vs_t": {
+      "exponent_k": 0.8751,
+      "r2": 0.99645
+    }
+  },
+  "fig4b_doubling": {
+    "adaptive_doublings": [
+      {
+        "from": 1000,
+        "to": 2000,
+        "delta_hours": 1.596,
+        "h_from": 1.414,
+        "h_to": 3.01
+      },
+      {
+        "from": 2000,
+        "to": 4000,
+        "delta_hours": 3.895,
+        "h_from": 3.01,
+        "h_to": 6.905
+      },
+      {
+        "from": 4000,
+        "to": 8000,
+        "delta_hours": 8.025,
+        "h_from": 6.905,
+        "h_to": 14.93
+      },
+      {
+        "from": 8000,
+        "to": 16000,
+        "delta_hours": 18.688,
+        "h_from": 14.93,
+        "h_to": 33.618
+      }
+    ],
+    "adaptive_successive_ratios": [
+      2.44,
+      2.06,
+      2.329
+    ],
+    "v1_doublings": [
+      {
+        "from": 1000,
+        "to": 2000,
+        "delta_hours": 3.878
+      },
+      {
+        "from": 2000,
+        "to": 4000,
+        "delta_hours": 8.543
+      },
+      {
+        "from": 4000,
+        "to": 8000,
+        "delta_hours": 18.82
+      }
+    ]
+  },
+  "fig5_ips": {
+    "adaptive_final_ips": 0.008161,
+    "adaptive_final_cells": 26534,
+    "v1_final_ips": 0.007923,
+    "v1_final_cells": 12851,
+    "adaptive_scaling_alpha_time_per_iter_vs_N": 1.092,
+    "adaptive_scaling_r2": 0.99416,
+    "v1_scaling_alpha_time_per_iter_vs_N": 1.1514,
+    "v1_scaling_r2": 0.98579,
+    "crosscheck_adaptive_ips_total_vs_wallepoch_median_ratio": 1.0117,
+    "n_adaptive_ips": 219,
+    "n_v1_ips": 347
+  },
+  "fig6_speedup_bands": {
+    "bands": [
+      {
+        "band": "10-24",
+        "adaptive_median_ips": 55.401662,
+        "n_adaptive": 21,
+        "v1_median_ips": 50.0,
+        "n_v1": 35,
+        "speedup": 1.108
+      },
+      {
+        "band": "25-49",
+        "adaptive_median_ips": 22.603978,
+        "n_adaptive": 15,
+        "v1_median_ips": 12.5,
+        "n_v1": 29,
+        "speedup": 1.8083
+      },
+      {
+        "band": "50-99",
+        "adaptive_median_ips": 10.513036,
+        "n_adaptive": 15,
+        "v1_median_ips": 4.545455,
+        "n_v1": 31,
+        "speedup": 2.3129
+      },
+      {
+        "band": "100-249",
+        "adaptive_median_ips": 3.7272,
+        "n_adaptive": 20,
+        "v1_median_ips": 1.5625,
+        "n_v1": 41,
+        "speedup": 2.3854
+      },
+      {
+        "band": "250-499",
+        "adaptive_median_ips": 1.365791,
+        "n_adaptive": 16,
+        "v1_median_ips": 0.584975,
+        "n_v1": 30,
+        "speedup": 2.3348
+      },
+      {
+        "band": "500-999",
+        "adaptive_median_ips": 0.601454,
+        "n_adaptive": 16,
+        "v1_median_ips": 0.26178,
+        "n_v1": 31,
+        "speedup": 2.2976
+      },
+      {
+        "band": "1000-1999",
+        "adaptive_median_ips": 0.280787,
+        "n_adaptive": 15,
+        "v1_median_ips": 0.120649,
+        "n_v1": 32,
+        "speedup": 2.3273
+      },
+      {
+        "band": "2000-3999",
+        "adaptive_median_ips": 0.129676,
+        "n_adaptive": 17,
+        "v1_median_ips": 0.055135,
+        "n_v1": 32,
+        "speedup": 2.352
+      },
+      {
+        "band": "4000-7999",
+        "adaptive_median_ips": 0.060521,
+        "n_adaptive": 16,
+        "v1_median_ips": 0.024438,
+        "n_v1": 31,
+        "speedup": 2.4765
+      },
+      {
+        "band": "8000-15999",
+        "adaptive_median_ips": 0.026417,
+        "n_adaptive": 16,
+        "v1_median_ips": 0.011144,
+        "n_v1": 22,
+        "speedup": 2.3705
+      },
+      {
+        "band": "16000-31999",
+        "adaptive_median_ips": 0.011686,
+        "n_adaptive": 12,
+        "v1_median_ips": null,
+        "n_v1": 0,
+        "speedup": null
+      }
+    ],
+    "matched_bands": [
+      "10-24",
+      "25-49",
+      "50-99",
+      "100-249",
+      "250-499",
+      "500-999",
+      "1000-1999",
+      "2000-3999",
+      "4000-7999",
+      "8000-15999"
+    ],
+    "speedup_min": 1.108,
+    "speedup_max": 2.4765,
+    "dips": [
+      {
+        "band": "500-999",
+        "speedup": 2.2976
+      }
+    ]
+  },
+  "fig7_phase_shares": {
+    "v1_available": false,
+    "v1_note": "genuine v1.0 emits no per-phase *_ms timing in the new run",
+    "n_rows_cells_gt_100": 128,
+    "adaptive_shares_renorm_pct": {
+      "mesh_refinement": 6.14,
+      "contact_detection": 57.32,
+      "polarization_internal_forces": 29.85,
+      "time_integration": 6.68
+    },
+    "adaptive_shares_vs_total_pct": {
+      "mesh_refinement": 6.14,
+      "contact_detection": 57.32,
+      "polarization_internal_forces": 29.85,
+      "time_integration": 6.68
+    },
+    "max_untracked_overhead_ms": 0.02
+  },
+  "physics_check": {
+    "metric": "mean_pressure (adaptive vs v1) at matched iterations",
+    "source": "plots/updated/cleaned_data/{adaptive,v1}_biological_cleaned.csv",
+    "n_matched_iterations": 403,
+    "median_rel_dev_pct": 2.3317,
+    "mean_rel_dev_pct": 4.9627,
+    "p90_rel_dev_pct": 13.538,
+    "max_rel_dev_pct": 39.9962
+  },
+  "headline": {
+    "adaptive_final_cells": 26534,
+    "v1_concurrent_final_cells": 12851,
+    "ratio_matched_wallclock": 2.0647,
+    "adaptive_cov_max": 0.1572,
+    "adaptive_imbalance_max": 15.7,
+    "phase_transition_iter": 4100,
+    "phase_transition_cells": 10,
+    "pressure_median_dev_pct": 2.3317,
+    "note_v1_solo_tail_excluded": "sim_v1/_solo_tail (~15654 cells) excluded; v1 endpoint is concurrent iter 20100 = 12851 cells",
+    "note_adaptive_oom": "adaptive OOM-killed at ~98 GB after iter 21900 / 26534 cells; not a clean shared stopping point"
+  }
+}
