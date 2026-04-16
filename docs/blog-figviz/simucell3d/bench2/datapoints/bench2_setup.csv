@@ -1,0 +1,8 @@
+key,value,source
+machine,c2-standard-16,"A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'Every long T1 run, 8 threads on c2-standard-16. Each run stops at 150k cells, the 48 h cap, or its own failure.'"
+threads,8,"A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'Every long T1 run, 8 threads on c2-standard-16. Each run stops at 150k cells, the 48 h cap, or its own failure.'"
+case,T1 growing aggregate,A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'bench2’s growing aggregate (T1) is the lab’s benchmark file: contact model 1'
+contact_model,1,A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'bench2’s growing aggregate (T1) is the lab’s benchmark file: contact model 1'
+dt,2.5e-8,A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'so bench2 compares builds at dt 2.5e-8'
+stop_cells,150k,"A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'Every long T1 run, 8 threads on c2-standard-16. Each run stops at 150k cells, the 48 h cap, or its own failure.'"
+time_cap_hours,48,"A1 SimuCell3D Growth Reproduction: bench2 scaling panel text 'Every long T1 run, 8 threads on c2-standard-16. Each run stops at 150k cells, the 48 h cap, or its own failure.'"

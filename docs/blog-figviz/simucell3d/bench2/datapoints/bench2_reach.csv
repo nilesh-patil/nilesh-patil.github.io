@@ -1,0 +1,13 @@
+row,series,build,run,final_cells,final_cells_verbatim,outcome,source
+1,v1.0,B0,1,127,127,abort,"A1 SimuCell3D Growth Reproduction: JS ROWS, row 'dt 2.5e-8 (48 h)'"
+2,v1.0 + crash fixes,B1,1,25100,25.1k,abort,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+3,v1.0 + crash fixes,B1,2,22700,22.7k,abort,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+4,v1.0 + crash fixes,B1,3,42300,42.3k,abort,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+5,v2.0,B2,1,63,63,crash,"A1 SimuCell3D Growth Reproduction: JS ROWS, row 'dt 2.5e-8 (48 h)'"
+6,2.x dev builds,B3,1,135773,"135,773",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+7,2.x dev builds,B4,1,138135,"138,135",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+8,2.x dev builds,B5,1,136215,"136,215",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+9,2.x dev builds,B6,1,143394,"143,394",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+10,v2.1.0,B7,1,144919,"144,919",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+11,v2.1.0,B7,2,148914,"148,914",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"
+12,v2.1.0,B7,3,142314,"142,314",48 h cap,"A1 SimuCell3D Growth Reproduction: JS M, column 'Final cells'"

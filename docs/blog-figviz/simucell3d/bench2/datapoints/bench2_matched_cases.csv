@@ -1,0 +1,7 @@
+row,case,arm,v1_fix_hours_lo,v1_fix_hours_hi,v210_hours_lo,v210_hours_hi,ratio_verbatim,source
+1,Growing aggregate to 10k cells,A,2.49,2.49,1.28,1.28,1.9,A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases'; also A1 SimuCell3D Growth Reproduction verdict tile
+2,"Vesicle, eps 2.0",A,16.0,16.8,6.2,7.0,2.5,A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases' (A1 has no copy of this row)
+3,Tube,A,6.28,6.28,3.44,3.44,1.8,A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases'; also A1 SimuCell3D Growth Reproduction JS ROWS 'T4 tube Arm A'
+4,"Vesicle, eps 2.0",B,22.1,22.1,8.6,8.6,2.6,"A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases'; also A1 SimuCell3D Growth Reproduction JS ROWS 'T2, T3 multi, T4'"
+5,Vesicle multilayer,B,20.6,20.6,8.6,8.6,2.4,"A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases'; also A1 SimuCell3D Growth Reproduction JS ROWS 'T2, T3 multi, T4'"
+6,Tube,B,14.6,14.6,8.1,8.1,1.8,"A2 SimuCell3D v1.0 vs 2.x: table 'Speed on matched cases'; also A1 SimuCell3D Growth Reproduction JS ROWS 'T2, T3 multi, T4'"

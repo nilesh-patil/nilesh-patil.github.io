@@ -1,0 +1,32 @@
+kind,run,build,cells,col4_unlabeled,rss_gib,source
+sample,at1-dt25-b4-full,B4,76736,278492,48.028,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b5-full,B5,77080,283855,48.725,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b3-full,B3,80701,276686,48.424,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b3-full,B3,75843,259533,45.3,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b4-full,B4,76756,278983,48.0,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b5-full,B5,77009,280447,47.9,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b6-full,B6,77135,637,10.5,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7-full,B7,79286,8,10.7,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b3-full,B3,42508,97772,19.0,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b4-full,B4,43189,108129,19.0,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b5-full,B5,41961,102657,19.0,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b6-full,B6,42920,235,5.8,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7-full,B7,43932,4,5.8,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b1,B1,11311,0,2.22,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b3,B3,19267,35789,6.9,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b4,B4,19477,36939,7.14,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b5,B5,19163,33743,6.71,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b6,B6,19144,83,2.59,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7,B7,20018,0,2.67,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b3-full,B3,135989,659636,61.66,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b4-full,B4,138135,673963,61.67,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b5-full,B5,136559,704854,61.64,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b6-full,B6,143490,1675,18.69,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7-full,B7,145321,16,18.86,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b1-full,B1,25143,0,5.36,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b1-full-r2,B1,22753,0,4.8,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b1-full-r3,B1,42393,0,9.22,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7-full-r2,B7,86735,6,11.25,A1 SimuCell3D Growth Reproduction: b2data.mem
+sample,at1-dt25-b7-full-r3,B7,83688,10,10.94,A1 SimuCell3D Growth Reproduction: b2data.mem
+memory_cap,,,,,61.6,A1 SimuCell3D Growth Reproduction: cB2Mem panel text and '_cap' line
+v210_slope_gib_per_1k_cells,,,,,0.13,A1 SimuCell3D Growth Reproduction: cB2Mem panel text '~0.13 GB per 1k cells'
