@@ -4,6 +4,7 @@ collection: portfolio
 permalink: /portfolio/simucell3d/
 date: 2026-03-02
 excerpt: "Performance-oriented fork of an ETH-developed C++ framework for 3D tissue mechanics at subcellular resolution — adaptive OpenMP scheduling delivers 1.8×–4.4× speedups, growing with tissue size."
+repo: https://github.com/nilesh-patil/simucell3d
 tags: [cpp, hpc, openmp, computational-biology, simulation]
 ---
 
