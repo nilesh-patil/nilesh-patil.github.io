@@ -38,9 +38,15 @@ body {
 /* Calmer reading rhythm: a touch more leading and section air. */
 .page__content {
   p, li { line-height: 1.65; }
-  p { margin: 0 0 1.15em; }
+  /* Inter-paragraph gap >= in-paragraph leading, so a paragraph break reads as
+     a real pause instead of walling up the text (was 1.15em < the 1.65 line). */
+  p { margin: 0 0 1.5em; }
 
-  h2 { margin-top: 2.4em; }
+  /* Heading ladder: h1 (hero, ~44px) > h2 (~28px) > h3 (~22.5px) > body (18px).
+     h2 and h3 were both $type-size-4 (~22.5px), so a subsection was
+     indistinguishable from a section by size. Lift h2 to $type-size-3; the
+     full-width h2 underline (in _page.scss) stays as the section cue. */
+  h2 { margin-top: 2.4em; font-size: $type-size-3; }
   h3 { margin-top: 1.85em; }
   > h2:first-child,
   > h3:first-child { margin-top: 0; }
@@ -53,15 +59,21 @@ hr {
   margin: 2.4em 0;
 }
 
-/* ---- Links: monochrome ink + underline (the Ollama affordance) ----------- */
-.page__content a:not(.btn):not(.page__taxonomy-item):not(.tag) {
+/* ---- Links: one figure-derived accent + a genuinely visible underline -----
+   The resting underline used to be the #e5e5e5 hairline (~1.1:1, near-invisible)
+   and in sepia the link ink equalled the body ink, so links could not be found
+   pre-attentively. Now content links carry the per-theme accent token AND an
+   accent underline — colour + non-colour cue (WCAG 1.4.1). Accent is scoped to
+   .page__content links, active nav and focus rings only; body text stays ink. */
+.page__content a:not(.btn):not(.page__taxonomy-item):not(.tag):not(.post-row__link) {
+  color: var(--global-accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
-  text-decoration-color: var(--global-border-color);
-  transition: text-decoration-color 0.15s ease;
+  text-decoration-color: var(--global-accent);
+  transition: text-decoration-thickness 0.15s ease, text-decoration-color 0.15s ease;
 
-  &:hover { text-decoration-color: currentColor; }
+  &:hover { text-decoration-thickness: 2px; }
 }
 
 /* ---- Pills: every interactive control collapses to rounded.full ---------- */
@@ -186,10 +198,15 @@ pre, .highlight, div.highlighter-rouge, figure.highlight {
   border: 1px solid var(--global-border-color);
 }
 
-/* Blockquotes (the TL;DR box) → quiet hairline rule, neutral ink. */
+/* Blockquotes (the TL;DR box) → quiet hairline rule, neutral ink, ROMAN.
+   The TL;DR / long quote is the most-skimmed block; long italic runs measurably
+   slow reading and hurt dyslexic/low-vision readers. Italic is reserved for an
+   opt-in `.pullquote`. */
 blockquote {
   border-left: 3px solid var(--global-dark-border-color);
+  font-style: normal;
 }
+.page__content blockquote.pullquote { font-style: italic; }
 
 /* ---- Code: soft-surface rounded.lg blocks; chip radius inline ------------ */
 pre, .highlight, div.highlighter-rouge, figure.highlight {
@@ -210,11 +227,132 @@ code { border-radius: var(--radius-chip); }
 .masthead { box-shadow: none; }
 .greedy-nav .visible-links a::before {
   height: 2px;
-  background: var(--global-text-color);
+  background: var(--global-accent);
 }
 .site-title,
 .greedy-nav .visible-links li:first-child a {
   font-family: $header-font-family;
   font-weight: 700;
   letter-spacing: -0.01em;
+}
+
+/* ---- Active nav tab + focus rings pick up the one accent ------------------ */
+.masthead__menu-item.selected a,
+.masthead__menu-item.selected a:hover {
+  color: var(--global-accent);
+  border-bottom-color: var(--global-accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--global-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   READING COLUMN — blog posts only
+   --------------------------------------------------------------------------
+   Posts drop the LHS author card (single.html skips the sidebar and tags the
+   article `.page--wide`). The article reclaims that 2/12 track, the prose is
+   capped to a ~66ch measure (Bringhurst/WCAG 1.4.8 reading band, was ~80-85
+   cpl) and centred, and figures / code / tables / notices break out to a wider
+   band so the data charts keep their size. The RHS TOC rail is unchanged.
+   ========================================================================== */
+.page--wide {
+  @include breakpoint($large) {
+    @include span(10 of 12);   /* card's 2/12 reclaimed; TOC keeps the last 2/12 */
+    padding-left: 0;           /* cancel the 0.5/12 prefix the 3-col shell used */
+  }
+}
+
+.page--wide .page__content > *,
+.page--wide .page__meta,
+.page--wide .page__share,
+.page--wide .page__taxonomy {
+  /* ~66ch of body text. NOTE: this MUST be a root-relative unit, not `ch` —
+     `ch` resolves against each element's own font, so on a heading (the larger
+     rounded display face) 66ch is ~1187px and the heading would blow past the
+     column while the 18px paragraph capped correctly. rem keeps every block on
+     one shared measure so headings and prose align. */
+  max-width: 40rem;          /* ≈ 720px ≈ 66-68ch at the 18px desktop body */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Break-out band: clearly wider than the prose, still centred on the same axis,
+   so charts, tables, code, notices and any custom widget div (interactive
+   controls, CTAs, the post's own figure blocks) use the reclaimed column space.
+   `> div` is deliberately broad so every post's wide content breaks out, not
+   just <figure> — this design has to hold across all 12 posts, not one. */
+.page--wide .page__content > figure,
+.page--wide .page__content > .highlighter-rouge,
+.page--wide .page__content > pre,
+.page--wide .page__content > table,
+.page--wide .page__content > div,
+.page--wide .page__content > center {   /* older posts wrap figures in <center> */
+  max-width: 50rem;          /* ≈ 900px — wide content reads large without filling the column */
+}
+
+/* Centre the diagram inside a broken-out figure so small inline concept SVGs
+   don't sit hard-left in the wider band. */
+.page--wide .page__content figure { justify-content: center; }
+
+/* ==========================================================================
+   FIGURES — calm the committed matplotlib charts across themes
+   --------------------------------------------------------------------------
+   The charts are cream-background <img>s (figure-N.svg); the inline concept
+   <svg>s already adapt via currentColor and are deliberately NOT touched here
+   (this targets <img> only). Frame on the theme hairline so the cream stops
+   floating as a pale card in sepia; damp brightness in dark mode so the chart
+   stops haloing against the charcoal. (Decision: CSS-damp now, regenerate
+   theme-aware SVGs later.)
+   ========================================================================== */
+.page__content figure img {
+  border: 1px solid var(--global-border-color);
+}
+html[data-theme="dark"] .page__content figure img {
+  filter: brightness(0.85) contrast(1.02);
+}
+
+/* Keep figure media inside its container across ALL posts. Base `figure` is a
+   flex container, and flex items default to min-width:auto — so a single image
+   wider than the (now measure-capped) column refuses to shrink and overflows.
+   min-width:0 lets it shrink; max-width:100% caps it. Fixes large images in the
+   older <center>-wrapped posts as well as the bare-<figure> ones. */
+.page__content figure img,
+.page__content figure svg {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Older posts wrap figures in <center>, whose UA `text-align:-webkit-center`
+   shrink-wraps the figure to its image's intrinsic width — which overflows the
+   measure-capped column. Normalise to plain centring so the figure fills the
+   wrapper (and the image scales down to it) like every bare-<figure> post. */
+.page__content center { text-align: center; }
+.page__content center > figure { width: 100%; }
+
+/* Read-time on the home recent-posts rows — surfaced where the read decision
+   is made, kept muted so the flat "date » title" listing stays the signal. */
+.post-row__rt {
+  color: var(--global-text-color-light);
+  font-size: 0.82em;
+  white-space: nowrap;
+}
+
+/* Scrollspy: the TOC link for the section currently under the reader (set by
+   assets/js/toc-scrollspy.js). The accent bar (inset box-shadow — no layout
+   shift, not transitioned or overridden on these links) is the reliable cue;
+   accent colour + weight reinforce it where they win the cascade. */
+.toc .toc__menu a.is-active,
+.toc__menu a.is-active {
+  color: var(--global-accent) !important;
+  font-weight: 700;
+  box-shadow: inset 2px 0 0 var(--global-accent);
+  background: var(--global-code-background-color);
 }

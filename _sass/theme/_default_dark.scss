@@ -71,6 +71,7 @@ html[data-theme="dark"] {
     --global-link-color                 : #ededed;
     --global-link-color-hover           : #ffffff;
     --global-link-color-visited         : #c2c2c2;
+    --global-accent                     : #7fb3d5;   /* figure-derived cyan — links, active nav, focus */
     --global-masthead-link-color        : #{$text};
     --global-masthead-link-color-hover  : #ffffff;
     --global-text-color                 : #{$text};
