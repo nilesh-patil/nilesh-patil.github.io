@@ -147,7 +147,9 @@ td > code {
   color: var(--global-code-text-color);
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
-  font-size: $type-size-6;
+  /* C-025: was $type-size-6 (0.75em ≈ 13.5px) — too small for a blog firing
+     dozens of identifiers per section. 0.85em is the standard x-height match. */
+  font-size: 0.85em;
   background: var(--global-code-background-color);
   border: 1px solid var(--global-thead-color);
   border-radius: $border-radius;
@@ -254,7 +256,9 @@ figcaption {
   margin-bottom: 0.5em;
   color: var(--global-fig-caption-color);
   font-family: $caption-font-family;
-  font-size: $type-size-6;
+  /* C-025: lifted from $type-size-6 (0.75em) — these captions carry the
+     load-bearing stats, so they need to read clearly under the figure. */
+  font-size: 0.8em;
 
   a {
     color: inherit;
@@ -282,7 +286,7 @@ figcaption {
   margin-top: 0.4em;
   color: var(--global-fig-caption-color);
   font-family: $caption-font-family;
-  font-size: $type-size-6;
+  font-size: 0.8em;
   line-height: 1.5;
 }
 

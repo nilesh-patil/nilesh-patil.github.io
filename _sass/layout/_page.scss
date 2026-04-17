@@ -85,6 +85,11 @@
 
   a {
     text-decoration: underline;
+    /* Long unbroken URLs used as link text (e.g. bare autolinks in a
+       reference list) must wrap instead of forcing horizontal overflow
+       at narrow widths. */
+    overflow-wrap: break-word;
+    word-break: break-word;
 
     &:hover {
       text-decoration: underline;

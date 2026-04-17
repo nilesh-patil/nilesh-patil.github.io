@@ -1,6 +1,18 @@
 <script defer src="{{ site.baseurl }}/assets/js/main.min.js"></script>
 
 {%- comment -%}
+  Right-rail TOC scrollspy — marks the current section as the reader scrolls.
+  Self-contained and a no-op on pages without a TOC; deferred so the DOM exists.
+{%- endcomment -%}
+<script defer src="{{ site.baseurl }}/assets/js/toc-scrollspy.js"></script>
+
+{%- comment -%}
+  Reader affordances on post pages: copy buttons on code blocks and hover-reveal
+  permalink anchors on section headings. Self-contained, no-op without targets.
+{%- endcomment -%}
+<script defer src="{{ site.baseurl }}/assets/js/post-enhancements.js"></script>
+
+{%- comment -%}
   Three-mode theme cycle. Loaded after the academicpages bundle so the
   click handler it binds on #theme-toggle overrides the stock 2-mode
   toggle (light/dark only) with light → dark → sepia → light cycling.

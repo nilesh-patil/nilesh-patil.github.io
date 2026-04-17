@@ -13,7 +13,7 @@ Particularly interested in AI harness design, developer productivity, and cookin
 
 ## Currently
 
-**Head of AI, DreamStreet** &mdash; compliance-aware AI architecture for SEBI-regulated Indian investor and trader workflows, spanning research, brokerage, and advisory. Translating domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots. Driving AI adoption org-wide through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations.
+**Head of AI, DreamStreet** - compliance-aware AI architecture for SEBI-regulated (India's securities regulator) investor and trader workflows, spanning research, brokerage, and advisory. Translating domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots. Driving AI adoption org-wide through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations.
 
 ## Technical focus
 
@@ -23,7 +23,7 @@ Particularly interested in AI harness design, developer productivity, and cookin
 - **Real-time forecasting** (~50k+ forecasts) under strict latency constraints.
 - **Deep-learning churn prediction** over user lifetime trajectories.
 - **Self-hosted SLMs and agent tooling** across local, GCP, and AWS environments.
-- **Compliance-aware AI harness design** &mdash; audit-friendly, controllable workflows for regulated domains.
+- **Compliance-aware AI harness design** - audit-friendly, controllable workflows for regulated domains.
 
 ## Background
 
@@ -35,10 +35,10 @@ Frontier model capabilities as building blocks for reliable products, agentic ev
 
 ## Get in touch
 
-LinkedIn is the fastest way to reach me &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme). Other profiles below.
+LinkedIn is the fastest way to reach me: [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme). Other profiles below.
 
-- **GitHub** &mdash; [@nilesh-patil](https://github.com/nilesh-patil)
-- **LinkedIn** &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme)
-- **Google Scholar** &mdash; [profile](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ)
-- **Medium** &mdash; [nilesh-patil.medium.com](https://nilesh-patil.medium.com/)
-- **Stack Exchange (Stats)** &mdash; [profile](https://stats.stackexchange.com/users/36581/nilesh)
+- **GitHub** - [@nilesh-patil](https://github.com/nilesh-patil)
+- **LinkedIn** - [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme)
+- **Google Scholar** - [profile](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ)
+- **Medium** - [nilesh-patil.medium.com](https://nilesh-patil.medium.com/)
+- **Stack Exchange (Stats)** - [profile](https://stats.stackexchange.com/users/36581/nilesh)
