@@ -1,17 +1,18 @@
 ---
 layout: single
 title: ""
+seo_title: "Nilesh Patil - AI systems & field reports"
 permalink: /
 author_profile: true
 ---
 
 # Nilesh Patil
 
-**AI systems & applied research.** Head of AI at DreamStreet, building compliance-aware AI architecture for SEBI-regulated investor and trader workflows. Previously led applied AI research at Dream11 and ran a Columbia University research collaboration.
+**AI systems & applied research.** I'm Head of AI at DreamStreet, building compliance-aware AI for SEBI-regulated (India's securities regulator) investor and trader workflows. Before that I led applied AI research at Dream11 and ran a Columbia University research collaboration.
 
-Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products.
+This site is where I write up the engineering behind that work - mostly field reports on HPC, applied ML, and the measurements behind the results.
 
-[More about me &rarr;](/about/) &nbsp; &middot; &nbsp; [Publications &rarr;](/publications/) &nbsp; &middot; &nbsp; [Side projects &rarr;](/portfolio/) &nbsp; &middot; &nbsp; [CV &rarr;](/cv/) &nbsp; &middot; &nbsp; [Search &rarr;](/search/)
+[About &rarr;](/about/) &nbsp;&middot;&nbsp; [Publications &rarr;](/publications/) &nbsp;&middot;&nbsp; [Side projects &rarr;](/portfolio/) &nbsp;&middot;&nbsp; [CV &rarr;](/cv/) &nbsp;&middot;&nbsp; [Search &rarr;](/search/)
 
 ---
 
@@ -21,12 +22,12 @@ Particularly interested in AI harness design, developer productivity, and turnin
 {% for post in site.posts limit:6 %}
   <li class="post-row">
     <time class="post-row__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b %Y" }}</time>
-    <span class="post-row__title"><a class="post-row__link" href="{{ post.url | relative_url }}">{{ post.title }}</a></span>
+    <span class="post-row__title"><a class="post-row__link" href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="post-row__rt"> &middot; {{ post.content | strip_html | number_of_words | divided_by: 200 | plus: 1 }} min read</span></span>
   </li>
 {% endfor %}
 </ul>
 
-[All posts &rarr;](/posts/) &nbsp; &middot; &nbsp; [Posts by year &rarr;](/year-archive/) &nbsp; &middot; &nbsp; [Posts by tag &rarr;](/tag-archive/)
+[All posts &rarr;](/posts/) &nbsp;&middot;&nbsp; [Posts by year &rarr;](/year-archive/) &nbsp;&middot;&nbsp; [Posts by tag &rarr;](/tag-archive/)
 
 ---
 

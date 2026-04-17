@@ -13,7 +13,7 @@ Particularly interested in AI harness design, developer productivity, and cookin
 
 ## Currently
 
-**Head of AI, DreamStreet** &mdash; compliance-aware AI architecture for SEBI-regulated Indian investor and trader workflows, spanning research, brokerage, and advisory. Translating domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots. Driving AI adoption org-wide through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations.
+**Head of AI, DreamStreet** &mdash; compliance-aware AI architecture for SEBI-regulated (India's securities regulator) investor and trader workflows, spanning research, brokerage, and advisory. Translating domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots. Driving AI adoption org-wide through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations.
 
 ## Technical focus
 
