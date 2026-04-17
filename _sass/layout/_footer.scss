@@ -63,6 +63,17 @@
   font-size: $type-size-7;
 }
 
+/* Small footer wayfinding nav; sits a touch above the copyright/credit. */
+.page__footer-nav {
+  margin-bottom: 0.5em;
+  font-size: $type-size-6;
+
+  a { font-weight: 600; }
+}
+
+/* The theme credit is de-emphasized in favour of the wayfinding nav. */
+.page__footer-credit { opacity: 0.8; }
+
 .page__footer-follow {
   ul {
     margin: 0;

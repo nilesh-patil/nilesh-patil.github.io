@@ -6,7 +6,7 @@
         <button type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="greedy-nav-overflow"><span class="navicon" aria-hidden="true"></span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+            <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
           </li>
           {% for link in site.data.navigation.main %}
             {% comment %}
@@ -18,13 +18,19 @@
               {% assign show_link = false %}
             {% endif %}
             {% if show_link %}
-              {% if link.url contains 'http' %}
-                {% assign domain = '' %}
+              {% comment %}
+                Internal links are baseurl-relative (via `relative_url`) so they
+                resolve against the current host - localhost in dev, the domain in
+                prod - instead of being hard-pinned to `site.url`. External links
+                (http/https) pass through untouched.
+              {% endcomment %}
+              {% if link.url contains '://' %}
+                {% assign nav_url = link.url %}
               {% else %}
-                {% assign domain = base_path %}
+                {% assign nav_url = link.url | relative_url %}
               {% endif %}
               <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
-                <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+                <a href="{{ nav_url }}">{{ link.title }}</a>
               </li>
             {% endif %}
           {% endfor %}
