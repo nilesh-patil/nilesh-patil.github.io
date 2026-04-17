@@ -14,6 +14,6 @@ sitemap: false
   }
 " onerror="
   document.getElementById('search').innerHTML =
-    '<p class=&quot;notice--warning&quot;><strong>Search index not built.</strong> ' +
-    'Run <code>npx pagefind --site _site</code> after <code>bundle exec jekyll build</code> to enable search.</p>';
+    '<p class=&quot;notice&quot;>Live search is unavailable here (the index is built on deploy). ' +
+    'Browse by <a href=&quot;/tag-archive/&quot;>tag</a> or <a href=&quot;/year-archive/&quot;>year</a> instead.</p>';
 "></script>

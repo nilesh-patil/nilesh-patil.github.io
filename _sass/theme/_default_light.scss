@@ -40,10 +40,11 @@ $sidebar-screen-min-width   : 1024px;
     --global-dark-border-color          : #d4d4d4;   /* hairline-strong */
     --global-code-background-color      : #fafafa;   /* surface-soft */
     --global-code-text-color            : #171717;
-    --global-fig-caption-color          : #737373;
+    --global-fig-caption-color          : #5f5f5f;   /* one notch darker than #737373 for load-bearing stat captions */
     --global-link-color                 : #171717;
     --global-link-color-hover           : #000000;
     --global-link-color-visited         : #404040;
+    --global-accent                     : #2f4b7c;   /* figure-derived ink-blue — links, active nav, focus (the one relaxed accent) */
     --global-masthead-link-color        : #171717;
     --global-masthead-link-color-hover  : #000000;
     --global-text-color                 : #1f1f1f;   /* body ink */
