@@ -91,6 +91,6 @@ See the [Teaching]({{ '/teaching/' | relative_url }}) section.
 ## Contact
 
 - **GitHub** &mdash; [github.com/nilesh-patil](https://github.com/nilesh-patil)
-- **LinkedIn** &mdash; *(see GitHub profile for current link)*
+- **LinkedIn** &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme)
 - **Google Scholar** &mdash; [scholar.google.co.in/citations?user=IIabY1sAAAAJ](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ)
-- **Medium** &mdash; [@ensembledme](https://medium.com/@ensembledme)
+- **Medium** &mdash; [nilesh-patil.medium.com](https://nilesh-patil.medium.com/)

@@ -38,6 +38,7 @@ AI harness design, developer productivity, and turning emerging model capabiliti
 The best ways to reach me:
 
 - **GitHub** &mdash; [@nilesh-patil](https://github.com/nilesh-patil)
+- **LinkedIn** &mdash; [linkedin.com/in/ensembledme](https://www.linkedin.com/in/ensembledme)
 - **Google Scholar** &mdash; [profile](https://scholar.google.co.in/citations?user=IIabY1sAAAAJ)
-- **Medium** &mdash; [@ensembledme](https://medium.com/@ensembledme)
+- **Medium** &mdash; [nilesh-patil.medium.com](https://nilesh-patil.medium.com/)
 - **Stack Exchange (Stats)** &mdash; [profile](https://stats.stackexchange.com/users/36581/nilesh)

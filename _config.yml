@@ -18,6 +18,28 @@ timezone: "Asia/Kolkata"
 words_per_minute: 200
 
 # =============================================================================
+# Open Graph / Twitter Card / structured data
+# Wires og:image, og:description, Twitter Card meta tags, and Person JSON-LD.
+# Person JSON-LD `sameAs` links power Google knowledge-graph disambiguation
+# for the common name "Nilesh Patil".
+# =============================================================================
+og_image: "ensembledme.jpg"
+og_description: "Head of AI at DreamStreet. Building compliance-aware AI systems for SEBI-regulated investor and trader workflows. Previously Head of Applied Research, Dream11."
+
+twitter:
+  username: ensembledme
+
+social:
+  type: Person
+  name: "Nilesh Patil"
+  links:
+    - "https://github.com/nilesh-patil"
+    - "https://x.com/optimistic_flw"
+    - "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+    - "https://twitter.com/nilesh-patil"
+    - "https://nilesh-patil.medium.com/"
+
+# =============================================================================
 # Author profile (sidebar via author_profile: true)
 # NOTE: email omitted intentionally — contact is via LinkedIn / GitHub only.
 # =============================================================================
@@ -30,8 +52,9 @@ author:
   googlescholar: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
   github: "nilesh-patil"
   twitter: "ensembledme"
-  medium: "https://medium.com/@ensembledme"
-  # `linkedin:` and `stackoverflow:` intentionally omitted (see _data/authors.yml).
+  medium: "https://nilesh-patil.medium.com/"
+  linkedin: "ensembledme"   # template prepends https://www.linkedin.com/in/
+  # `stackoverflow:` intentionally omitted (see _data/authors.yml).
 
 # =============================================================================
 # Build
@@ -151,7 +174,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
+      comments: false   # giscus repo_id/category_id unset; re-enable after running https://giscus.app
       share: true
       related: true
       toc: true
@@ -241,11 +264,13 @@ footer:
       url: "https://github.com/nilesh-patil"
     - label: "Medium"
       icon: "fab fa-fw fa-medium"
-      url: "https://medium.com/@ensembledme"
+      url: "https://nilesh-patil.medium.com/"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/ensembledme"
     - label: "Google Scholar"
       icon: "fas fa-fw fa-graduation-cap"
       url: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
-    # LinkedIn intentionally omitted until handle is provided.
 
 # =============================================================================
 # Analytics: OMITTED — zero outbound telemetry
