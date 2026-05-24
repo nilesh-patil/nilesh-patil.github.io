@@ -1,0 +1,540 @@
+uid=16_0 RootWebArea "CV - Nilesh Patil" url="http://localhost:4000/cv/"
+  uid=16_1 ignored
+    uid=16_2 ignored
+      uid=16_3 generic
+        uid=16_4 ignored
+          uid=16_5 ignored
+            uid=16_6 navigation
+              uid=16_7 button "Toggle navigation menu"
+                uid=16_8 ignored
+                  uid=16_9 ignored
+                  uid=16_10 ignored
+              uid=16_11 list
+                uid=16_12 listitem level="1"
+                  uid=16_13 link "Nilesh Patil" url="http://localhost:4000/"
+                    uid=16_14 StaticText "Nilesh Patil"
+                      uid=16_15 InlineTextBox "Nilesh Patil"
+                uid=16_16 listitem level="1"
+                  uid=16_17 link "About" url="http://localhost:4000/about/"
+                    uid=16_18 StaticText "About"
+                      uid=16_15 InlineTextBox "About"
+                uid=16_19 listitem level="1"
+                  uid=16_20 link "Publications" url="http://localhost:4000/publications/"
+                    uid=16_21 StaticText "Publications"
+                      uid=16_15 InlineTextBox "Publications"
+                uid=16_22 listitem level="1"
+                  uid=16_23 link "Side projects" url="http://localhost:4000/portfolio/"
+                    uid=16_24 StaticText "Side projects"
+                      uid=16_15 InlineTextBox "Side projects"
+                uid=16_25 listitem level="1"
+                  uid=16_26 link "Blog" url="http://localhost:4000/posts/"
+                    uid=16_27 StaticText "Blog"
+                      uid=16_15 InlineTextBox "Blog"
+                uid=16_28 listitem level="1"
+                  uid=16_29 link "CV" url="http://localhost:4000/cv/"
+                    uid=16_30 StaticText "CV"
+                      uid=16_15 InlineTextBox "CV"
+                uid=16_31 listitem level="1"
+                  uid=16_32 button "Toggle color theme (light, dark, sepia)"
+                    uid=16_33 ignored
+                      uid=16_34 ignored
+      uid=16_35 main
+        uid=16_36 generic
+          uid=16_37 ignored
+            uid=16_38 generic
+              uid=16_39 image "Nilesh Patil" url="http://localhost:4000/images/ensembledme.webp"
+            uid=16_40 ignored
+              uid=16_41 heading "Nilesh Patil" level="2"
+                uid=16_42 StaticText "Nilesh Patil"
+                  uid=16_15 InlineTextBox "Nilesh Patil"
+              uid=16_43 paragraph
+                uid=16_44 StaticText "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
+                  uid=16_15 InlineTextBox "Head of AI at DreamStreet. "
+                  uid=16_15 InlineTextBox "Previously Head of Applied "
+                  uid=16_15 InlineTextBox "Research, Dream11."
+            uid=16_45 generic
+              uid=16_46 list
+                uid=16_47 listitem level="1"
+                  uid=16_48 ignored
+                    uid=16_49 ignored
+                  uid=16_50 StaticText "Mumbai, India"
+                    uid=16_15 InlineTextBox "Mumbai, India"
+                uid=16_51 listitem level="1"
+                  uid=16_52 ignored
+                    uid=16_53 ignored
+                  uid=16_54 StaticText "DreamStreet"
+                    uid=16_15 InlineTextBox "DreamStreet"
+                uid=16_55 listitem level="1"
+                  uid=16_56 link " Google Scholar" url="https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                    uid=16_57 generic
+                      uid=16_58 ignored
+                        uid=16_15 StaticText ""
+                          uid=16_15 InlineTextBox ""
+                    uid=16_59 StaticText "Google Scholar"
+                      uid=16_15 InlineTextBox "Google Scholar"
+                uid=16_60 listitem level="1"
+                  uid=16_61 link "GitHub" url="https://github.com/nilesh-patil"
+                    uid=16_62 ignored
+                      uid=16_63 ignored
+                    uid=16_64 StaticText "GitHub"
+                      uid=16_15 InlineTextBox "GitHub"
+                uid=16_65 listitem level="1"
+                  uid=16_66 link "LinkedIn" url="https://www.linkedin.com/in/ensembledme"
+                    uid=16_67 ignored
+                      uid=16_68 ignored
+                    uid=16_69 StaticText "LinkedIn"
+                      uid=16_15 InlineTextBox "LinkedIn"
+                uid=16_70 listitem level="1"
+                  uid=16_71 link "Medium" url="https://nilesh-patil.medium.com/"
+                    uid=16_72 ignored
+                      uid=16_73 ignored
+                    uid=16_74 StaticText "Medium"
+                      uid=16_15 InlineTextBox "Medium"
+                uid=16_75 listitem level="1"
+                  uid=16_76 link "X (formerly Twitter)" url="https://twitter.com/ensembledme"
+                    uid=16_77 ignored
+                      uid=16_78 ignored
+                    uid=16_79 StaticText "X (formerly Twitter)"
+                      uid=16_15 InlineTextBox "X (formerly Twitter)"
+        uid=16_80 article
+          uid=16_81 ignored
+            uid=16_82 sectionheader
+              uid=16_83 heading "CV" level="1"
+                uid=16_84 StaticText "CV"
+                  uid=16_15 InlineTextBox "CV"
+            uid=16_85 generic
+              uid=16_86 paragraph
+                uid=16_87 strong
+                  uid=16_88 StaticText "Download"
+                    uid=16_15 InlineTextBox "Download"
+                uid=16_89 StaticText " — "
+                  uid=16_15 InlineTextBox " — "
+                uid=16_90 link "PDF version of this CV" url="http://localhost:4000/files/nilesh-patil.pdf"
+                  uid=16_91 StaticText "PDF version of this CV"
+                    uid=16_15 InlineTextBox "PDF version of this CV"
+              uid=16_92 blockquote
+                uid=16_93 paragraph
+                  uid=16_94 StaticText "The web version above is authoritative; the PDF may lag the web by a few weeks."
+                    uid=16_15 InlineTextBox "The web version above is authoritative; the PDF may lag the web by a few weeks."
+              uid=16_95 heading "Profile" level="2"
+                uid=16_96 StaticText "Profile"
+                  uid=16_15 InlineTextBox "Profile"
+              uid=16_97 paragraph
+                uid=16_98 StaticText "AI leader building deployable AI systems, agentic workflows, and organizational adoption in regulated and large-scale environments. Currently Head of AI at DreamStreet, building compliance-aware AI architecture for investor and trader workflows across research, brokerage, and advisory domains. Previously led applied AI research at Dream Sports / Dream11, including a Columbia University research center collaboration, cross-geography teams across India and New York, and production ML systems at 250M+ user scale."
+                  uid=16_15 InlineTextBox "AI leader building deployable AI systems, agentic workflows, and organizational adoption in "
+                  uid=16_15 InlineTextBox "regulated and large-scale environments. Currently Head of AI at DreamStreet, building "
+                  uid=16_15 InlineTextBox "compliance-aware AI architecture for investor and trader workflows across research, brokerage, "
+                  uid=16_15 InlineTextBox "and advisory domains. Previously led applied AI research at Dream Sports / Dream11, including "
+                  uid=16_15 InlineTextBox "a Columbia University research center collaboration, cross-geography teams across India and "
+                  uid=16_15 InlineTextBox "New York, and production ML systems at 250M+ user scale."
+              uid=16_99 paragraph
+                uid=16_100 StaticText "Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products."
+                  uid=16_15 InlineTextBox "Particularly interested in AI harness design, developer productivity, and turning emerging model "
+                  uid=16_15 InlineTextBox "capabilities into reliable workflows and products."
+              uid=16_101 heading "Education" level="2"
+                uid=16_102 StaticText "Education"
+                  uid=16_15 InlineTextBox "Education"
+              uid=16_103 list
+                uid=16_104 listitem level="1"
+                  uid=16_105 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_106 strong
+                    uid=16_107 StaticText "M.S. in Data Science"
+                      uid=16_15 InlineTextBox "M.S. in Data Science"
+                  uid=16_108 StaticText ", University of Rochester — "
+                    uid=16_15 InlineTextBox ", University of Rochester — "
+                  uid=16_109 emphasis
+                    uid=16_110 StaticText "Rochester, NY"
+                      uid=16_15 InlineTextBox "Rochester, NY"
+                  uid=16_111 StaticText " — 2017"
+                    uid=16_15 InlineTextBox " — 2017"
+                uid=16_112 listitem level="1"
+                  uid=16_113 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_114 strong
+                    uid=16_115 StaticText "Bachelor of Technology"
+                      uid=16_15 InlineTextBox "Bachelor of Technology"
+                  uid=16_116 StaticText ", Indian Institute of Technology, Roorkee — "
+                    uid=16_15 InlineTextBox ", Indian Institute of Technology, Roorkee — "
+                  uid=16_117 emphasis
+                    uid=16_118 StaticText "Roorkee, IN"
+                      uid=16_15 InlineTextBox "Roorkee, IN"
+                  uid=16_119 StaticText " — 2013"
+                    uid=16_15 InlineTextBox " — 2013"
+              uid=16_120 heading "Experience" level="2"
+                uid=16_121 StaticText "Experience"
+                  uid=16_15 InlineTextBox "Experience"
+              uid=16_122 heading "Head of AI — DreamStreet — Mumbai — 2026 — Present" level="3"
+                uid=16_123 StaticText "Head of AI — DreamStreet — "
+                  uid=16_15 InlineTextBox "Head of AI — DreamStreet — "
+                uid=16_124 emphasis
+                  uid=16_125 StaticText "Mumbai"
+                    uid=16_15 InlineTextBox "Mumbai"
+                uid=16_126 StaticText " — 2026 — Present"
+                  uid=16_15 InlineTextBox " — 2026 — Present"
+              uid=16_127 list
+                uid=16_128 listitem level="1"
+                  uid=16_129 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_130 StaticText "Built full-stack AI systems for Indian investors and traders spanning research, brokerage, and advisory workflows in a SEBI-regulated environment."
+                    uid=16_15 InlineTextBox "Built full-stack AI systems for Indian investors and traders spanning research, brokerage, "
+                    uid=16_15 InlineTextBox "and advisory workflows in a SEBI-regulated environment."
+                uid=16_131 listitem level="1"
+                  uid=16_132 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_133 StaticText "Led development of a compliance-aware AI harness for brokerage and advisory use cases, emphasizing reliability, controllability, and audit-friendly workflow design."
+                    uid=16_15 InlineTextBox "Led development of a compliance-aware AI harness for brokerage and advisory use "
+                    uid=16_15 InlineTextBox "cases, emphasizing reliability, controllability, and audit-friendly workflow design."
+                uid=16_134 listitem level="1"
+                  uid=16_135 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_136 StaticText "Translated domain, product, and regulatory requirements into deployable AI architecture, agentic workflows, and user-facing copilots."
+                    uid=16_15 InlineTextBox "Translated domain, product, and regulatory requirements into deployable AI architecture, "
+                    uid=16_15 InlineTextBox "agentic workflows, and user-facing copilots."
+                uid=16_137 listitem level="1"
+                  uid=16_138 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_139 StaticText "Drove AI adoption across the organization through training, rapid prototypes, and redesign of existing workflows around agents and model-assisted operations."
+                    uid=16_15 InlineTextBox "Drove AI adoption across the organization through training, rapid prototypes, and redesign "
+                    uid=16_15 InlineTextBox "of existing workflows around agents and model-assisted operations."
+                uid=16_140 listitem level="1"
+                  uid=16_141 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_142 StaticText "Built Hermes-based in-house automation agents across Marketing, Finance, IT, Tech, and HR, and set up self-hosted SLMs and agent tooling across local, GCP, and AWS environments."
+                    uid=16_15 InlineTextBox "Built Hermes-based in-house automation agents across Marketing, Finance, IT, Tech, and "
+                    uid=16_15 InlineTextBox "HR, and set up self-hosted SLMs and agent tooling across local, GCP, and AWS "
+                    uid=16_15 InlineTextBox "environments."
+              uid=16_143 heading "Senior Principal Research Scientist / Head of Applied Research — Dream11 — Mumbai — 2019 — 2026" level="3"
+                uid=16_144 StaticText "Senior Principal Research Scientist / Head of Applied Research — Dream11 — "
+                  uid=16_15 InlineTextBox "Senior Principal Research Scientist / Head of Applied Research — Dream11 — "
+                uid=16_145 emphasis
+                  uid=16_146 StaticText "Mumbai"
+                    uid=16_15 InlineTextBox "Mumbai"
+                uid=16_147 StaticText " — 2019 — 2026"
+                  uid=16_15 InlineTextBox " — "
+                  uid=16_15 InlineTextBox "2019 — 2026"
+              uid=16_148 list
+                uid=16_149 listitem level="1"
+                  uid=16_150 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_151 StaticText "Built Dream Sports’ collaboration with "
+                    uid=16_15 InlineTextBox "Built Dream Sports’ collaboration with "
+                  uid=16_152 strong
+                    uid=16_153 StaticText "Columbia University, NY"
+                      uid=16_15 InlineTextBox "Columbia University, NY"
+                  uid=16_154 StaticText " and helped establish a "
+                    uid=16_15 InlineTextBox " and helped establish a "
+                  uid=16_155 strong
+                    uid=16_156 StaticText "multi-million-dollar research center"
+                      uid=16_15 InlineTextBox "multi-million-dollar research center"
+                  uid=16_157 StaticText " focused on ML, AI research, and real-world applications."
+                    uid=16_15 InlineTextBox " focused on ML, AI research, and real-world "
+                    uid=16_15 InlineTextBox "applications."
+                uid=16_158 listitem level="1"
+                  uid=16_159 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_160 StaticText "Headed applied AI research for Dream Sports and led a high-performing cross-continent team of research scientists, applied scientists, and ML engineers across India and New York."
+                    uid=16_15 InlineTextBox "Headed applied AI research for Dream Sports and led a high-performing cross-continent "
+                    uid=16_15 InlineTextBox "team of research scientists, applied scientists, and ML engineers across India and New "
+                    uid=16_15 InlineTextBox "York."
+                uid=16_161 listitem level="1"
+                  uid=16_162 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_163 StaticText "Led cross-team workshops to identify ~23 technical problems; converted 10 into funded projects over two years spanning sports robotics, LLM-based persona simulators, and agentic evaluators for personalization."
+                    uid=16_15 InlineTextBox "Led cross-team workshops to identify ~23 technical problems; converted 10 into funded "
+                    uid=16_15 InlineTextBox "projects over two years spanning sports robotics, LLM-based persona simulators, and "
+                    uid=16_15 InlineTextBox "agentic evaluators for personalization."
+                uid=16_164 listitem level="1"
+                  uid=16_165 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_166 StaticText "Delivered regular data, ML, and AI training sessions across Dream Sports for audiences ranging from ~10 to 200 participants."
+                    uid=16_15 InlineTextBox "Delivered regular data, ML, and AI training sessions across Dream Sports for audiences "
+                    uid=16_15 InlineTextBox "ranging from ~10 to 200 participants."
+                uid=16_167 listitem level="1"
+                  uid=16_168 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_169 StaticText "Co-led "
+                    uid=16_15 InlineTextBox "Co-led "
+                  uid=16_170 emphasis
+                    uid=16_171 StaticText "Sports x AI"
+                      uid=16_15 InlineTextBox "Sports x AI"
+                  uid=16_172 StaticText " sessions at Columbia University for students, post-docs, and faculty, translating industry problems into research and teaching material."
+                    uid=16_15 InlineTextBox " sessions at Columbia University for students, post-docs, and faculty, "
+                    uid=16_15 InlineTextBox "translating industry problems into research and teaching material."
+                uid=16_173 listitem level="1"
+                  uid=16_174 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_175 StaticText "Designed and built a deep-learning churn prediction system and LLM-based behavior simulation workflows for 250M+ user lifetime trajectories."
+                    uid=16_15 InlineTextBox "Designed and built a deep-learning churn prediction system and LLM-based behavior "
+                    uid=16_15 InlineTextBox "simulation workflows for 250M+ user lifetime trajectories."
+                uid=16_176 listitem level="1"
+                  uid=16_177 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_178 StaticText "Conceptualized and led real-time forecasting for ~50k+ forecasts under strict latency constraints."
+                    uid=16_15 InlineTextBox "Conceptualized and led real-time forecasting for ~50k+ forecasts under strict latency "
+                    uid=16_15 InlineTextBox "constraints."
+                uid=16_179 listitem level="1"
+                  uid=16_180 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_181 StaticText "Led distributed recommendation, content tagging, text similarity search for ~100M entities, and feature-store systems supporting 250M+ users."
+                    uid=16_15 InlineTextBox "Led distributed recommendation, content tagging, text similarity search for ~100M entities, "
+                    uid=16_15 InlineTextBox "and feature-store systems supporting 250M+ users."
+              uid=16_182 heading "Staff Data Scientist — Center for Vaccine Biology, University of Rochester — Rochester, NY — 2017 — 2019" level="3"
+                uid=16_183 StaticText "Staff Data Scientist — Center for Vaccine Biology, University of Rochester — "
+                  uid=16_15 InlineTextBox "Staff Data Scientist — Center for Vaccine Biology, University of Rochester — "
+                uid=16_184 emphasis
+                  uid=16_185 StaticText "Rochester, NY"
+                    uid=16_15 InlineTextBox "Rochester, "
+                    uid=16_15 InlineTextBox "NY"
+                uid=16_186 StaticText " — 2017 — 2019"
+                  uid=16_15 InlineTextBox " — 2017 — 2019"
+              uid=16_187 paragraph
+                uid=16_188 StaticText "Built automated and self-serve ML systems for bio-imaging research, including 3D reconstruction from hyper-spectral microscopic scans."
+                  uid=16_15 InlineTextBox "Built automated and self-serve ML systems for bio-imaging research, including 3D "
+                  uid=16_15 InlineTextBox "reconstruction from hyper-spectral microscopic scans."
+              uid=16_189 heading "Data Scientist — AXA Insurance — Pune — 2014 — 2016" level="3"
+                uid=16_190 StaticText "Data Scientist — AXA Insurance — "
+                  uid=16_15 InlineTextBox "Data Scientist — AXA Insurance — "
+                uid=16_191 emphasis
+                  uid=16_192 StaticText "Pune"
+                    uid=16_15 InlineTextBox "Pune"
+                uid=16_193 StaticText " — 2014 — 2016"
+                  uid=16_15 InlineTextBox " — 2014 — 2016"
+              uid=16_194 paragraph
+                uid=16_195 StaticText "Built mortality-forecasting system and scaled statistical analysis pipelines with Spark and Python."
+                  uid=16_15 InlineTextBox "Built mortality-forecasting system and scaled statistical analysis pipelines with Spark and "
+                  uid=16_15 InlineTextBox "Python."
+              uid=16_196 heading "Data Analyst — AbsolutData Research & Analytics — Gurgaon — 2013 — 2014" level="3"
+                uid=16_197 StaticText "Data Analyst — AbsolutData Research & Analytics — "
+                  uid=16_15 InlineTextBox "Data Analyst — AbsolutData Research & Analytics — "
+                uid=16_198 emphasis
+                  uid=16_199 StaticText "Gurgaon"
+                    uid=16_15 InlineTextBox "Gurgaon"
+                uid=16_200 StaticText " — 2013 — 2014"
+                  uid=16_15 InlineTextBox " — 2013 — 2014"
+              uid=16_201 paragraph
+                uid=16_202 StaticText "Built a multi-stage equipment-failure prediction ML system using sensor, oil-tests, and human-labeled alert data."
+                  uid=16_15 InlineTextBox "Built a multi-stage equipment-failure prediction ML system using sensor, oil-tests, and human-"
+                  uid=16_15 InlineTextBox "labeled alert data."
+              uid=16_203 heading "Selected publications" level="2"
+                uid=16_204 StaticText "Selected publications"
+                  uid=16_15 InlineTextBox "Selected publications"
+              uid=16_205 paragraph
+                uid=16_206 StaticText "For the full and continuously-updated list, see "
+                  uid=16_15 InlineTextBox "For the full and continuously-updated list, see "
+                uid=16_207 link "Publications" url="http://localhost:4000/publications/"
+                  uid=16_208 StaticText "Publications"
+                    uid=16_15 InlineTextBox "Publications"
+                uid=16_209 StaticText " or "
+                  uid=16_15 InlineTextBox " or "
+                uid=16_210 link "Google Scholar" url="https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                  uid=16_211 StaticText "Google Scholar"
+                    uid=16_15 InlineTextBox "Google Scholar"
+                uid=16_212 StaticText "."
+                  uid=16_15 InlineTextBox "."
+              uid=16_213 heading "Dream11 era (2019 — 2026)" level="3"
+                uid=16_214 StaticText "Dream11 era (2019 — 2026)"
+                  uid=16_15 InlineTextBox "Dream11 era (2019 — 2026)"
+              uid=16_215 list
+                uid=16_216 listitem level="1"
+                  uid=16_217 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_218 strong
+                    uid=16_219 StaticText "Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in Complex Linguistic Contexts."
+                      uid=16_15 InlineTextBox "Structure-Guided Entity Resolution: Fine-Tuning LLMs for Robust Name Matching in "
+                      uid=16_15 InlineTextBox "Complex Linguistic Contexts."
+                  uid=16_220 StaticText " 2026, Association for Computational Linguistics, USA. "
+                    uid=16_15 InlineTextBox " 2026, Association for Computational Linguistics, USA. "
+                  uid=16_221 link "openreview.net/forum?id=rLisRb1T1Y" url="https://openreview.net/forum?id=rLisRb1T1Y"
+                    uid=16_222 StaticText "openreview.net/forum?id=rLisRb1T1Y"
+                      uid=16_15 InlineTextBox "openreview.net/forum?id=rLisRb1T1Y"
+                uid=16_223 listitem level="1"
+                  uid=16_224 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_225 strong
+                    uid=16_226 StaticText "Early Churn Prediction from Large Scale User-Product Interaction Time Series."
+                      uid=16_15 InlineTextBox "Early Churn Prediction from Large Scale User-Product Interaction Time Series."
+                  uid=16_227 StaticText " 2023 International Conference on Machine Learning and Applications (ICMLA), IEEE, 2023. "
+                    uid=16_15 InlineTextBox " 2023 "
+                    uid=16_15 InlineTextBox "International Conference on Machine Learning and Applications (ICMLA), IEEE, 2023. "
+                  uid=16_228 link "doi.org/10.1109/ICMLA58977.2023.00314" url="https://doi.org/10.1109/ICMLA58977.2023.00314"
+                    uid=16_229 StaticText "doi.org/10.1109/ICMLA58977.2023.00314"
+                      uid=16_15 InlineTextBox "doi.org/10.1109/ICMLA58977.2023.00314"
+                uid=16_230 listitem level="1"
+                  uid=16_231 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_232 strong
+                    uid=16_233 StaticText "Optimizing Fantasy Sports Team Selection with Deep Reinforcement Learning."
+                      uid=16_15 InlineTextBox "Optimizing Fantasy Sports Team Selection with Deep Reinforcement Learning."
+                  uid=16_234 StaticText " Proceedings of CODS-COMAD ‘24, ACM, 284–291. "
+                    uid=16_15 InlineTextBox "Proceedings of CODS-COMAD ‘24, ACM, 284–291. "
+                  uid=16_235 link "doi.org/10.1145/3703323.3703743" url="https://doi.org/10.1145/3703323.3703743"
+                    uid=16_236 StaticText "doi.org/10.1145/3703323.3703743"
+                      uid=16_15 InlineTextBox "doi.org/10.1145/3703323.3703743"
+                uid=16_237 listitem level="1"
+                  uid=16_238 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_239 emphasis
+                    uid=16_240 StaticText "6+ additional team publications in causal ML, recommender systems, and LLM applications — see Google Scholar for the live list."
+                      uid=16_15 InlineTextBox "6+ additional team publications in causal ML, recommender systems, and LLM "
+                      uid=16_15 InlineTextBox "applications — see Google Scholar for the live list."
+              uid=16_241 heading "Rochester era (2016 — 2019)" level="3"
+                uid=16_242 StaticText "Rochester era (2016 — 2019)"
+                  uid=16_15 InlineTextBox "Rochester era (2016 — 2019)"
+              uid=16_243 list
+                uid=16_244 listitem level="1"
+                  uid=16_245 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_246 strong
+                    uid=16_247 StaticText "Automated Ultrasound Doppler Angle Estimation Using Deep Learning."
+                      uid=16_15 InlineTextBox "Automated Ultrasound Doppler Angle Estimation Using Deep Learning."
+                  uid=16_248 StaticText " 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), pp. 28–31, IEEE, 2019. "
+                    uid=16_15 InlineTextBox " 41st Annual "
+                    uid=16_15 InlineTextBox "International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), "
+                    uid=16_15 InlineTextBox "pp. 28–31, IEEE, 2019. "
+                  uid=16_249 link "pubmed.ncbi.nlm.nih.gov/31945837" url="https://pubmed.ncbi.nlm.nih.gov/31945837"
+                    uid=16_250 StaticText "pubmed.ncbi.nlm.nih.gov/31945837"
+                      uid=16_15 InlineTextBox "pubmed.ncbi.nlm.nih.gov/31945837"
+                uid=16_251 listitem level="1"
+                  uid=16_252 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_253 strong
+                    uid=16_254 StaticText "CXCL10+ Perivascular Clusters Nucleate Th1 Cell Tissue Entry and Activation in the Inflamed Skin."
+                      uid=16_15 InlineTextBox "CXCL10+ Perivascular Clusters Nucleate Th1 Cell Tissue Entry and Activation in the "
+                      uid=16_15 InlineTextBox "Inflamed Skin."
+                  uid=16_255 StaticText " Journal of Immunology. "
+                    uid=16_15 InlineTextBox " Journal of Immunology. "
+                  uid=16_256 link "jimmunol.org/content/204/1_Supplement/220.9" url="https://www.jimmunol.org/content/204/1_Supplement/220.9"
+                    uid=16_257 StaticText "jimmunol.org/content/204/1_Supplement/220.9"
+                      uid=16_15 InlineTextBox "jimmunol.org/content/204/1_Supplement/220.9"
+                uid=16_258 listitem level="1"
+                  uid=16_259 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_260 strong
+                    uid=16_261 StaticText "CXCL10+ Peripheral Activation Niches Couple Preferred Sites of Th1 Entry with Optimal APC Encounter."
+                      uid=16_15 InlineTextBox "CXCL10+ Peripheral Activation Niches Couple Preferred Sites of Th1 Entry with "
+                      uid=16_15 InlineTextBox "Optimal APC Encounter."
+                  uid=16_262 StaticText " Cell Reports / preprint at "
+                    uid=16_15 InlineTextBox " Cell Reports / preprint at "
+                  uid=16_263 link "biorxiv.org/content/10.1101/2020.10.04.324525v1" url="https://www.biorxiv.org/content/10.1101/2020.10.04.324525v1.full"
+                    uid=16_264 StaticText "biorxiv.org/content/10.1101/2020.10.04.324525v1"
+                      uid=16_15 InlineTextBox "biorxiv.org/content/10.1101/2020.10.04.324525v1"
+              uid=16_265 heading "Contact" level="2"
+                uid=16_266 StaticText "Contact"
+                  uid=16_15 InlineTextBox "Contact"
+              uid=16_267 list
+                uid=16_268 listitem level="1"
+                  uid=16_269 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_270 strong
+                    uid=16_271 StaticText "GitHub"
+                      uid=16_15 InlineTextBox "GitHub"
+                  uid=16_272 StaticText " — "
+                    uid=16_15 InlineTextBox " — "
+                  uid=16_273 link "github.com/nilesh-patil" url="https://github.com/nilesh-patil"
+                    uid=16_274 StaticText "github.com/nilesh-patil"
+                      uid=16_15 InlineTextBox "github.com/nilesh-patil"
+                uid=16_275 listitem level="1"
+                  uid=16_276 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_277 strong
+                    uid=16_278 StaticText "LinkedIn"
+                      uid=16_15 InlineTextBox "LinkedIn"
+                  uid=16_279 StaticText " — "
+                    uid=16_15 InlineTextBox " — "
+                  uid=16_280 link "linkedin.com/in/ensembledme" url="https://www.linkedin.com/in/ensembledme"
+                    uid=16_281 StaticText "linkedin.com/in/ensembledme"
+                      uid=16_15 InlineTextBox "linkedin.com/in/ensembledme"
+                uid=16_282 listitem level="1"
+                  uid=16_283 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_284 strong
+                    uid=16_285 StaticText "Google Scholar"
+                      uid=16_15 InlineTextBox "Google Scholar"
+                  uid=16_286 StaticText " — "
+                    uid=16_15 InlineTextBox " — "
+                  uid=16_287 link "scholar.google.co.in/citations?user=IIabY1sAAAAJ" url="https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                    uid=16_288 StaticText "scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                      uid=16_15 InlineTextBox "scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                uid=16_289 listitem level="1"
+                  uid=16_290 ListMarker "• "
+                    uid=16_15 ignored
+                  uid=16_291 strong
+                    uid=16_292 StaticText "Medium"
+                      uid=16_15 InlineTextBox "Medium"
+                  uid=16_293 StaticText " — "
+                    uid=16_15 InlineTextBox " — "
+                  uid=16_294 link "nilesh-patil.medium.com" url="https://nilesh-patil.medium.com/"
+                    uid=16_295 StaticText "nilesh-patil.medium.com"
+                      uid=16_15 InlineTextBox "nilesh-patil.medium.com"
+            uid=16_296 sectionfooter
+      uid=16_297 ignored
+        uid=16_298 contentinfo
+          uid=16_299 ignored
+            uid=16_300 list
+              uid=16_301 listitem level="1"
+                uid=16_302 strong
+                  uid=16_303 StaticText "FOLLOW:"
+                    uid=16_15 InlineTextBox "FOLLOW:"
+              uid=16_304 listitem level="1"
+                uid=16_305 ignored
+                uid=16_306 link " GITHUB" url="https://github.com/nilesh-patil"
+                  uid=16_307 ignored
+                    uid=16_308 ignored
+                  uid=16_309 StaticText " GITHUB"
+                    uid=16_15 InlineTextBox " GITHUB"
+              uid=16_310 listitem level="1"
+                uid=16_311 ignored
+                uid=16_312 link " MEDIUM" url="https://nilesh-patil.medium.com/"
+                  uid=16_313 ignored
+                    uid=16_314 ignored
+                  uid=16_315 StaticText " MEDIUM"
+                    uid=16_15 InlineTextBox " MEDIUM"
+              uid=16_316 listitem level="1"
+                uid=16_317 ignored
+                uid=16_318 link " LINKEDIN" url="https://www.linkedin.com/in/ensembledme"
+                  uid=16_319 ignored
+                    uid=16_320 ignored
+                  uid=16_321 StaticText " LINKEDIN"
+                    uid=16_15 InlineTextBox " LINKEDIN"
+              uid=16_322 listitem level="1"
+                uid=16_323 ignored
+                uid=16_324 link " GOOGLE SCHOLAR" url="https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
+                  uid=16_325 ignored
+                    uid=16_326 ignored
+                  uid=16_327 StaticText " GOOGLE SCHOLAR"
+                    uid=16_15 InlineTextBox " GOOGLE SCHOLAR"
+              uid=16_328 listitem level="1"
+                uid=16_329 ignored
+                uid=16_330 link " FEED" url="http://localhost:4000/feed.xml"
+                  uid=16_331 ignored
+                    uid=16_332 ignored
+                  uid=16_333 StaticText " FEED"
+                    uid=16_15 InlineTextBox " FEED"
+          uid=16_334 generic
+            uid=16_335 StaticText "© 2026 Nilesh Patil, Powered by "
+              uid=16_15 InlineTextBox "© 2026 Nilesh Patil, Powered by "
+            uid=16_336 link "Jekyll" url="https://jekyllrb.com/"
+              uid=16_337 StaticText "Jekyll"
+                uid=16_15 InlineTextBox "Jekyll"
+            uid=16_338 StaticText " & "
+              uid=16_15 InlineTextBox " & "
+            uid=16_339 link "AcademicPages" url="https://github.com/academicpages/academicpages.github.io"
+              uid=16_340 StaticText "AcademicPages"
+                uid=16_15 InlineTextBox "AcademicPages"
+            uid=16_341 StaticText ", a fork of "
+              uid=16_15 InlineTextBox ", a fork of "
+            uid=16_342 link "Minimal Mistakes" url="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/"
+              uid=16_343 StaticText "Minimal Mistakes"
+                uid=16_15 InlineTextBox "Minimal Mistakes"
+            uid=16_344 StaticText "."
+              uid=16_15 InlineTextBox "."
+            uid=16_345 LineBreak "
+"
+              uid=16_15 InlineTextBox "
+"
+            uid=16_346 StaticText "Site last updated 2026-05-24, "
+              uid=16_15 InlineTextBox "Site last updated 2026-05-24, "
+            uid=16_347 link "SITEMAP" url="http://localhost:4000/sitemap/"
+              uid=16_348 StaticText "SITEMAP"
+                uid=16_15 InlineTextBox "SITEMAP"
