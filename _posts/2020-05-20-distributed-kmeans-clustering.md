@@ -199,7 +199,9 @@ def advanced_kmeans_pyspark(spark, df, k=3, init_method="k-means++"):
     """
     
     if init_method == "k-means++":
-        # Use PySpark's default k-means++ initialization
+        # PySpark uses k-means|| (k-means parallel) as its scalable
+        # initialisation — not k-means++.  Both aim for good seeding but
+        # k-means|| runs in O(log k) passes rather than k sequential passes.
         kmeans = SparkKMeans(k=k, initMode="k-means||", initSteps=2)
     elif init_method == "random":
         kmeans = SparkKMeans(k=k, initMode="random")
@@ -363,25 +365,34 @@ def run_dask_example():
 
 #### Incremental K-Means with Dask
 
+> **Note (corrected):** `dask_ml.cluster.KMeans` does **not** expose
+> `partial_fit` — calling it raises `AttributeError`. For true incremental /
+> streaming k-means, use `dask_ml.wrappers.Incremental` wrapping scikit-learn's
+> `MiniBatchKMeans`, which does support `partial_fit`.
+
 ```python
 def incremental_kmeans_dask(data_stream, k=3, batch_size=10000):
     """
-    Implement incremental k-means for streaming data
+    Implement incremental k-means for streaming data using Dask's Incremental
+    wrapper around scikit-learn's MiniBatchKMeans.
+
+    dask_ml.cluster.KMeans does NOT have partial_fit; use Incremental instead.
     """
-    from dask_ml.cluster import KMeans
-    
-    # Initialize model
-    kmeans = KMeans(n_clusters=k, init_max_iter=1)
-    
-    # Process data in batches
+    from sklearn.cluster import MiniBatchKMeans
+    from dask_ml.wrappers import Incremental
+
+    # Wrap MiniBatchKMeans (which supports partial_fit) with Dask's Incremental
+    base = MiniBatchKMeans(n_clusters=k, random_state=42)
+    kmeans = Incremental(base)
+
+    # Process data in batches — Incremental delegates to partial_fit internally
     for batch in data_stream:
-        # Partial fit on current batch
         kmeans.partial_fit(batch)
-        
-        # Optional: Track convergence
-        if hasattr(kmeans, 'inertia_'):
-            print(f"Current inertia: {kmeans.inertia_}")
-    
+
+        # Track convergence via the underlying estimator
+        if hasattr(kmeans.estimator_, 'inertia_'):
+            print(f"Current inertia: {kmeans.estimator_.inertia_}")
+
     return kmeans
 ```
 
@@ -498,8 +509,6 @@ def find_elbow_point(k_range, inertias):
     proj_points = np.outer(scalar_proj, line_vec_norm) + points[0]
     distances = np.linalg.norm(points - proj_points, axis=1)
     return int(k_range[int(np.argmax(distances))])
-    
-    return k_range, inertias
 ```
 
 ### 3. Memory Management

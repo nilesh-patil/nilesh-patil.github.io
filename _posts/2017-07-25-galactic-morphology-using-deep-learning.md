@@ -1,8 +1,8 @@
 ---
 layout: single
 title: "Galactic Morphology using Deep-Learning"
-date: 2017-07-15T15:39:55-04:00
-last_modified_at: 2017-07-15T19:48:19-04:00
+date: 2017-07-25T15:39:55-04:00
+last_modified_at: 2017-07-25T19:48:19-04:00
 categories: [blog]
 tags: [deep learning, galaxy, computer-vision, machine learning, neural networks]
 excerpt: "Training a deep neural net to understand galactic structure"

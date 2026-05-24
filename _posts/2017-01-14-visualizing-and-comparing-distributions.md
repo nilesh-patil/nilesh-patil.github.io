@@ -67,9 +67,10 @@ sns.set(style="white",
         rc={'figure.figsize':(12,8),
             'figure.dpi':500})
 
-sns.distplot(data_plot.Value[data_plot.type=='female (years)'], bins=nbins)
-sns.distplot(data_plot.Value[data_plot.type=='male (years)'], bins=nbins)
-sns.distplot(data_plot.Value[data_plot.type=='total (years)'], bins=nbins)
+# sns.distplot is removed in seaborn >= 0.12; use sns.histplot with kde=True
+sns.histplot(data_plot.Value[data_plot.type=='female (years)'], bins=nbins, kde=True)
+sns.histplot(data_plot.Value[data_plot.type=='male (years)'], bins=nbins, kde=True)
+sns.histplot(data_plot.Value[data_plot.type=='total (years)'], bins=nbins, kde=True)
 plt.legend(['Female', 'Male', 'Total'], bbox_to_anchor=(1.12,1.04))
 plt.xlim((25,100))
 plt.grid(color='black',linestyle='-.',linewidth=0.25)
@@ -77,7 +78,7 @@ plt.title('Life expectancy at birth ( In years )')
 ```
 
 
-![Histogram](/images/blog/distributions/01.histogram.png){: .center-image height="300px" width="850px"}
+![Histogram of life expectancy at birth by sex across countries](/images/blog/distributions/01.histogram.png){: .center-image height="300px" width="850px"}
 
 
 ## Scatter Plot
@@ -121,7 +122,7 @@ plt.savefig('./plots/02.scatter.png',orientation='landscape',dpi=500);
 ```
 
 
-![png](/images/blog/distributions/02.scatter.png){: .center-image height="500px" width="750px"}
+![Scatter plot of male vs female unemployment rates by country](/images/blog/distributions/02.scatter.png){: .center-image height="500px" width="750px"}
 
 
 ## Density plot
@@ -157,8 +158,9 @@ sns.set(style="white",
             'figure.dpi':200
            })
 
-sns.kdeplot(data_plot.male, color='red')
-sns.kdeplot(data_plot.female, color='blue')
+# seaborn >= 0.12 deprecates positional Series args; use keyword form
+sns.kdeplot(data=data_plot, x='male', color='red')
+sns.kdeplot(data=data_plot, x='female', color='blue')
 plt.grid(color='black',linestyle='-.', linewidth=0.25)
 plt.title('Mortality rate')
 plt.ylim((0,0.006))
@@ -167,7 +169,7 @@ plt.savefig('./03.density.png');
 ```
 
 
-![png](/images/blog/distributions/03.density.png){: .center-image height="500px" width="750px"}
+![Kernel density estimate of adult mortality rates for male vs female populations](/images/blog/distributions/03.density.png){: .center-image height="500px" width="750px"}
 
 
 ## Boxplot
@@ -191,7 +193,7 @@ data_plot['Region'] = data_plot.merge(right=data_countries,on='CountryCode',how=
 
 ### Plot
 ```python
-scolumns_order = sort(data_plot.Region.unique())
+columns_order = sorted(data_plot.Region.unique())  # fixed: was `scolumns_order` (typo); sort() → sorted()
 
 sns.set(style="white",
         palette="pastel",
@@ -215,7 +217,7 @@ plt.savefig('./04.boxplot.png');
 ```
 
 
-![png](/images/blog/distributions/04.boxplot.png){: .center-image height="500px" width="950px"}
+![Box plot of merchandise trade as percent of GDP by world region](/images/blog/distributions/04.boxplot.png){: .center-image height="500px" width="950px"}
 
 
 ## Violin plot
@@ -271,7 +273,7 @@ plt.legend(handles=[gas_patch, liquid_patch], bbox_to_anchor=(0.2, 0.99), fontsi
 plt.savefig('./plots/05.violinplot.png', dpi=250, bbox_inches='tight');
 ```
 
-![png](/images/blog/distributions/05.violinplot.png){: .center-image height="750px" width="950px"}
+![Violin plot of gaseous vs liquid CO2 emissions by region](/images/blog/distributions/05.violinplot.png){: .center-image height="750px" width="950px"}
 
 ## Heatmap
 
@@ -364,7 +366,7 @@ fig.colorbar(mappable, ax = [imports,exports],orientation = 'vertical')
 plt.savefig('./plots/06.heatmap.png', dpi=250, bbox_inches='tight');
 ```
 
-![png](/images/blog/distributions/06.heatmap.png){: .center-image height="500px" width="1000px"}
+![Heatmap of merchandise imports and exports by region](/images/blog/distributions/06.heatmap.png){: .center-image height="500px" width="1000px"}
 
 
 ## Rugs
@@ -403,8 +405,10 @@ g = sns.FacetGrid(data_plot,
                   col="Region",
                   col_wrap=4,
                   col_order=columns_order,subplot_kws={'ylim':(0,0.02)})
-g.map(sns.distplot, "Value", hist=False, rug=True);
+# sns.distplot removed in seaborn >= 0.12; use sns.kdeplot with rug=True
+g.map(sns.kdeplot, "Value")
+g.map(sns.rugplot, "Value");
 plt.savefig('./plots/07.rugplot.png', dpi=500, bbox_inches='tight');
 ```
 
-![png](/images/blog/distributions/07.rugplot.png){: .center-image height="600px" width="1000px"}
+![Rug plots of merchandise trade as percent of GDP faceted by region](/images/blog/distributions/07.rugplot.png){: .center-image height="600px" width="1000px"}
