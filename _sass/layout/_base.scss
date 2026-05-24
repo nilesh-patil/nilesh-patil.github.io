@@ -41,19 +41,23 @@ h2 {
 }
 
 h3 {
-  font-size: $type-size-5;
+  /* C-022: was $type-size-5 (1em = 18px = body text — no visual distinction).
+     Use $type-size-4 (1.25em ≈ 22.5px) to create visible hierarchy. */
+  font-size: $type-size-4;
 }
 
 h4 {
-  font-size: $type-size-6;
+  /* C-022: was $type-size-6 (0.75em = 13.5px — smaller than body, inverted).
+     Lift to $type-size-5 (1em = body weight) with bold for differentiation. */
+  font-size: $type-size-5;
 }
 
 h5 {
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 h6 {
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 small, .small {
