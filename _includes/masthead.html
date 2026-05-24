@@ -2,8 +2,8 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button type="button" aria-label="Toggle navigation menu"><span class="navicon" aria-hidden="true"></span></button>
+      <nav id="site-nav" class="greedy-nav" aria-label="Site navigation">
+        <button type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="greedy-nav-overflow"><span class="navicon" aria-hidden="true"></span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
             <a href="{{ base_path }}/">{{ site.title }}</a>
@@ -30,11 +30,11 @@
           {% endfor %}
           {% if site.dark_mode %}
             <li id="theme-toggle" class="masthead__menu-item persist tail">
-              <a href="#" role="button" aria-label="Toggle color theme (light, dark, sepia)"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i></a>
+              <button type="button" aria-label="Toggle color theme (light, dark, sepia)"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i></button>
             </li>
           {% endif %}
         </ul>
-        <ul class="hidden-links hidden"></ul>
+        <ul class="hidden-links hidden" id="greedy-nav-overflow"></ul>
       </nav>
     </div>
   </div>
