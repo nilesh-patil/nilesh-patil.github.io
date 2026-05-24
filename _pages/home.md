@@ -11,7 +11,7 @@ author_profile: true
 
 Particularly interested in AI harness design, developer productivity, and turning emerging model capabilities into reliable workflows and products.
 
-[More about me &rarr;](/about/) &nbsp; &middot; &nbsp; [Publications &rarr;](/publications/) &nbsp; &middot; &nbsp; [Portfolio &rarr;](/portfolio/) &nbsp; &middot; &nbsp; [CV &rarr;](/cv/) &nbsp; &middot; &nbsp; [Search &rarr;](/search/)
+[More about me &rarr;](/about/) &nbsp; &middot; &nbsp; [Publications &rarr;](/publications/) &nbsp; &middot; &nbsp; [Side projects &rarr;](/portfolio/) &nbsp; &middot; &nbsp; [CV &rarr;](/cv/) &nbsp; &middot; &nbsp; [Search &rarr;](/search/)
 
 ---
 
@@ -29,3 +29,21 @@ Particularly interested in AI harness design, developer productivity, and turnin
 </ul>
 
 [All posts &rarr;](/posts/) &nbsp; &middot; &nbsp; [Posts by year &rarr;](/year-archive/) &nbsp; &middot; &nbsp; [Posts by tag &rarr;](/tag-archive/)
+
+---
+
+## Side projects
+
+<ul class="taxonomy__index">
+{% assign side_projects = site.portfolio | sort: 'date' %}
+{% for project in side_projects %}
+  <li>
+    <a href="{{ project.url | relative_url }}">
+      <h3>{{ project.title }}</h3>
+      <small>{{ project.date | date: "%B %-d, %Y" }}{% if project.excerpt %} &middot; {{ project.excerpt | strip_html | strip_newlines | truncate: 120 }}{% endif %}</small>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+[All side projects &rarr;](/portfolio/)
