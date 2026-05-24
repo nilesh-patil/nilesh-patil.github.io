@@ -5,14 +5,15 @@
 "Nilesh Patil":
   name        : "Nilesh Patil"
   bio         : "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
-  avatar      : "ensembledme.jpg"          # the template prepends /images/
+  avatar      : "nilesh-patil.jpg"         # the template prepends /images/
   location    : "Mumbai, India"
   employer    : "DreamStreet"
   github      : "nilesh-patil"
-  twitter     : "ensembledme"
+  twitter     : "optimistic_flw"
   medium      : "https://nilesh-patil.medium.com/"
   googlescholar : "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
   linkedin    : "ensembledme"             # template prepends https://www.linkedin.com/in/
+  orcid       : "https://orcid.org/0000-0002-3438-8571"
   # `stackoverflow:` omitted: profile lives on stats.stackexchange, not
   # stackoverflow.com, and the template prepends the wrong host. The
   # link is reachable from the About page instead.
