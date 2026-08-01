@@ -138,6 +138,10 @@ whitelist:
   - jemoji
   - jekyll-redirect-from
 
+# jekyll-feed caps feed.xml at the 10 newest posts by default; keep every post in.
+feed:
+  posts_limit: 100
+
 # =============================================================================
 # Archives
 # =============================================================================
