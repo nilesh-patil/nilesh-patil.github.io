@@ -6,8 +6,8 @@ subtitle: "AI systems & applied research"
 title_separator: "-"
 name: "Nilesh Patil"
 description: >-
-  AI leader building deployable AI systems, agentic workflows, and
-  organizational adoption in regulated and large-scale environments.
+  AI/ML for science and applied research: agents for scientific discovery,
+  simulators of complex systems, and reliability under shift.
 url: "https://www.nilesh42.science"
 baseurl: ""
 repository: "nilesh-patil/nilesh-patil.github.io"
@@ -24,7 +24,7 @@ words_per_minute: 200
 # for the common name "Nilesh Patil".
 # =============================================================================
 og_image: "nilesh-patil.jpg"
-og_description: "Head of AI at DreamStreet. Building compliance-aware AI systems for SEBI-regulated investor and trader workflows. Previously Head of Applied Research, Dream11."
+og_description: "Head of AI at DreamStreet. Previously Senior Principal Research Scientist, Dream Sports. Research interests in AI/ML for science and computational biology."
 
 twitter:
   username: optimistic_flw
@@ -46,7 +46,7 @@ social:
 author:
   name: "Nilesh Patil"
   avatar: "nilesh-patil.jpg"   # template prepends /images/
-  bio: "Head of AI at DreamStreet. Previously Head of Applied Research, Dream11."
+  bio: "Head of AI at DreamStreet. Previously Senior Principal Research Scientist, Dream Sports."
   location: "Mumbai, India"
   employer: "DreamStreet"
   googlescholar: "https://scholar.google.co.in/citations?user=IIabY1sAAAAJ"
@@ -137,6 +137,10 @@ whitelist:
   - jekyll-gist
   - jemoji
   - jekyll-redirect-from
+
+# jekyll-feed caps feed.xml at the 10 newest posts by default; keep every post in.
+feed:
+  posts_limit: 100
 
 # =============================================================================
 # Archives
