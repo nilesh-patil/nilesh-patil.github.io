@@ -22,6 +22,19 @@
     sepia: "Switch to light mode"
   };
 
+  // Browser-chrome colour per mode. The <meta name="theme-color"> tags in
+  // _includes/head/custom.html only follow the OS preference, so once this
+  // script runs it pins them to the mode the reader actually chose.
+  var CHROME = { light: "#ffffff", dark: "#1c1c1e", sepia: "#f4ecd8" };
+
+  function syncThemeColor(theme) {
+    var metas = document.querySelectorAll('meta[name="theme-color"]');
+    for (var i = 0; i < metas.length; i++) {
+      metas[i].removeAttribute("media");
+      metas[i].setAttribute("content", CHROME[theme]);
+    }
+  }
+
   function currentTheme() {
     var attr = document.documentElement.getAttribute("data-theme");
     if (attr === "dark" || attr === "sepia") return attr;
@@ -36,6 +49,7 @@
     }
     try { localStorage.setItem("theme", theme); } catch (_) {}
     syncIcon();
+    syncThemeColor(theme);
     syncGiscusTheme(theme);
   }
 
@@ -95,6 +109,8 @@
   // so attaching at the same phase races. window.load fires after all
   // DOMContentLoaded handlers, so by the time we replace the node and bind,
   // the stock handler is already on the old node (which we've discarded).
+  syncThemeColor(currentTheme());
+
   if (document.readyState === "complete") {
     attach();
   } else {
