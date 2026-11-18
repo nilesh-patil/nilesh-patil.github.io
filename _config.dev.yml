@@ -1,6 +1,7 @@
 # Local-dev override. Run with:
 #   bundle exec jekyll serve --config _config.yml,_config.dev.yml
 # Empties site.url so generated absolute URLs (canonical, og:image,
-# masthead asset links, hero overlay background-image) point at the
-# local dev host instead of the production github.io URL.
+# social-share links) point at the local dev host instead of the
+# production domain. Assets and hero backgrounds are root-relative
+# and do not depend on site.url.
 url: ""
