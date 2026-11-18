@@ -35,7 +35,7 @@ layout: default
   <article class="page{% if page.collection == 'posts' %} page--wide{% endif %}" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
     {%- comment -%} show_updated: true only when last_modified_at is strictly AFTER the publish date, guarding against legacy template-artifact dates that predate publication. {%- endcomment -%}
     {% assign show_updated = false %}
     {% if page.last_modified_at and page.date %}
@@ -43,7 +43,7 @@ layout: default
       {% assign _upd_num = page.last_modified_at | date: "%Y%m%d" | plus: 0 %}
       {% if _upd_num > _pub_num %}{% assign show_updated = true %}{% endif %}
     {% endif %}
-    {% if show_updated %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date: "%B %d, %Y" }}">{% elsif page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+    {% if show_updated %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% elsif page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date_to_xmlschema }}">{% endif %}
 
     <div class="page__inner-wrap">
       {%- comment -%}
