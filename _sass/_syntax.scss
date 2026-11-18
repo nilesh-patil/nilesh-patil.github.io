@@ -12,51 +12,6 @@ div.highlighter-rouge, figure.highlight {
   box-shadow: $box-shadow;
   font-size: $type-size-4;
 
-  // Copy-to-clipboard button (injected by _main.js). Replaces the old
-  // decorative "</>" fa-code glyph with a working, theme-aware control.
-  .code-copy-btn {
-    position: absolute;
-    top: 0.4em;
-    right: 0.4em;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35em;
-    margin: 0;
-    padding: 0.35em 0.55em;
-    border: 1px solid var(--global-border-color);
-    border-radius: $border-radius;
-    background-color: var(--global-bg-color);
-    color: var(--global-text-color-light);
-    font-family: $sans-serif;
-    font-size: $type-size-7;
-    line-height: 1;
-    cursor: pointer;
-    opacity: 0.55;
-    transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-
-    svg {
-      width: 1.05em;
-      height: 1.05em;
-      display: block;
-    }
-
-    &:hover,
-    &:focus-visible {
-      opacity: 1;
-      color: var(--global-text-color);
-      outline: none;
-    }
-
-    &.is-copied {
-      opacity: 1;
-      color: #2aa198;
-      border-color: #2aa198;
-    }
-  }
-
-  &:hover .code-copy-btn { opacity: 1; }
-
   .highlight {
     margin: 0;
     font-family: $monospace;
