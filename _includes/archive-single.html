@@ -12,6 +12,14 @@
     - publications: venue + (if paperurl) a "PDF ↗" link
     - portfolio:    one-line description + (if repo) a "GitHub ↗" link
   Every other collection falls through to the bare row in the {% else %} branch.
+
+  Blog posts get a summary row (one-line excerpt, reading time, up to three
+  tags, and the optional `measurement` front-matter string) only where the
+  caller asks for it with `summary=true` (the home page and /posts/). Year, tag
+  and category archives and "related posts" keep the bare row.
+
+  Portfolio rows show a small thumbnail when the project sets header.teaser;
+  with no teaser nothing is rendered and no space is reserved.
 {% endcomment %}
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
@@ -43,7 +51,7 @@
 </div>
 {% elsif post.collection == 'portfolio' %}
 <div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item post-row post-row--rich" itemscope itemtype="https://schema.org/CreativeWork">
+  <article class="archive__item post-row post-row--rich{% if post.header.teaser %} post-row--thumb{% endif %}" itemscope itemtype="https://schema.org/CreativeWork">
     <time class="post-row__date" itemprop="datePublished" datetime="{{ post.date | default: '1900-01-01' | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%d %b %Y" }}</time>
     <div class="post-row__body">
       <span class="post-row__title" itemprop="headline">
@@ -58,6 +66,28 @@
           {% if post.excerpt %}<span class="post-row__desc" itemprop="description">{{ post.excerpt | markdownify | strip_html | strip_newlines | strip }}</span>{% endif %}
           {% if post.repo %}<a class="post-row__ext" href="{{ post.repo }}" rel="noopener" target="_blank">GitHub&nbsp;&#8599;</a>{% endif %}
         </span>
+      {% endif %}
+    </div>
+    {% if post.header.teaser %}
+      <img class="post-row__thumb" src="{{ post.header.teaser | prepend: site.baseurl }}" alt="" loading="lazy" decoding="async">
+    {% endif %}
+  </article>
+</div>
+{% elsif include.summary and post.collection == 'posts' %}
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item post-row post-row--rich post-row--summary" itemscope itemtype="https://schema.org/CreativeWork">
+    <time class="post-row__date" itemprop="datePublished" datetime="{{ post.date | default: '1900-01-01' | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: row_date_format }}</time>
+    <div class="post-row__body">
+      <span class="post-row__title" itemprop="headline">
+        <a class="post-row__link" href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+        {%- if post.measurement %} <span class="post-row__measure">{{ post.measurement }}</span>{% endif %}
+      </span>
+      <span class="post-row__meta">
+        {% if post.excerpt %}<span class="post-row__desc" itemprop="description">{{ post.excerpt | markdownify | strip_html | strip_newlines | strip | truncate: 150 }}</span>{% endif %}
+        <span class="post-row__rt">&middot; {{ post.content | strip_html | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min</span>
+      </span>
+      {% if post.tags.size > 0 %}
+        <span class="post-row__tags">{% for tag in post.tags limit: 3 %}<span class="post-row__tag">{{ tag }}</span>{% endfor %}</span>
       {% endif %}
     </div>
   </article>

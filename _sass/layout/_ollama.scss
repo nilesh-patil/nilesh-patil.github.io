@@ -15,6 +15,8 @@
 
 :root {
   --radius-pill : 9999px;   /* Ollama rounded.full — every interactive control */
+  --measure     : 31rem;    /* post prose column: about 62 characters a line   */
+  --measure-wide: 42rem;    /* figures, code, tables break out to this band    */
   --radius-card : 12px;     /* Ollama rounded.lg   — cards, code blocks, TOC   */
   --radius-chip : 6px;      /* Ollama rounded.sm   — inline code, small chips   */
 }
@@ -65,7 +67,7 @@ hr {
    pre-attentively. Now content links carry the per-theme accent token AND an
    accent underline — colour + non-colour cue (WCAG 1.4.1). Accent is scoped to
    .page__content links, active nav and focus rings only; body text stays ink. */
-.page__content a:not(.btn):not(.page__taxonomy-item):not(.tag):not(.post-row__link) {
+.page__content a:not(.btn):not(.page__taxonomy-item):not(.tag):not(.post-row__link):not(.home-feature) {
   color: var(--global-accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -301,29 +303,34 @@ textarea:focus-visible {
    article `.page--wide`). The article reclaims that 2/12 track, the prose is
    capped to a ~66ch measure (Bringhurst/WCAG 1.4.8 reading band, was ~80-85
    cpl) and centred, and figures / code / tables / notices break out to a wider
-   band so the data charts keep their size. The TOC rail sits on the LEFT (the
-   left track is free with the author card gone): the article floats right into
-   the last 10/12 and the rail takes the first 2/12 (see .sidebar__right below).
+   band so the data charts keep their size. The TOC rail sits on the RIGHT:
+   the article takes the first 9/12, so the text starts near the page's left
+   edge instead of being pushed in by a left-hand rail, and the rail takes the
+   last 3/12 (see .sidebar__right below).
    ========================================================================== */
 .page--wide {
   @include breakpoint($large) {
-    @include span(9 of 12 last);   /* float right; TOC rail takes the first 3/12 */
-    padding-left: 0;               /* cancel the 0.5/12 prefix the 3-col shell used */
+    @include span(9 of 12 first);  /* float left; TOC rail takes the last 3/12 */
+    /* Replaces the 0.5/12 prefix the 3-col shell used. 5.4% of #main is the
+       gap between this article and the TOC rail, so matching it on the left
+       centres the prose between the page edge and the rail instead of inside
+       the article box (which left it ~34px left of that midpoint). */
+    padding-left: 5.4%;
   }
 }
 
-/* Blog posts only: move the TOC rail from the right to the LEFT. Scoped with
+/* Blog posts only: widen the right-hand TOC rail to 3/12. Scoped with
    :has(+ .page--wide) so it fires exactly when the rail precedes a wide post
    article - the CV page (the one other page with a TOC) keeps its author card
-   on the left and its rail on the right, untouched. Mirrors the RHS layout:
-   `first` omits the outer-left gutter the way `last` did on the right. */
+   on the left and its narrower 2/12 rail, untouched. */
 .sidebar__right:has(+ .page--wide) {
   @include breakpoint($large) {
-    @include span(3 of 12 first);  /* ~260-285px: wide enough that titles wrap to <=2 lines */
+    @include span(3 of 12 last);   /* ~260-285px: wide enough that titles wrap to <=2 lines */
   }
 }
 
 .page--wide .page__content > *,
+.page--wide .post-head,
 .page--wide .page__meta,
 .page--wide .page__share,
 .page--wide .page__taxonomy {
@@ -332,7 +339,7 @@ textarea:focus-visible {
      rounded display face) 66ch is ~1187px and the heading would blow past the
      column while the 18px paragraph capped correctly. rem keeps every block on
      one shared measure so headings and prose align. */
-  max-width: 44rem;          /* ≈ 792px ≈ 72ch at the 18px body; closes the gap to the 900px figure band while staying under the ~75ch readability ceiling */
+  max-width: var(--measure); /* about 62 characters a line at the 18px body, measured in the browser */
   margin-left: auto;
   margin-right: auto;
 }
@@ -348,7 +355,7 @@ textarea:focus-visible {
 .page--wide .page__content > table,
 .page--wide .page__content > div,
 .page--wide .page__content > center {   /* older posts wrap figures in <center> */
-  max-width: 50rem;          /* ≈ 900px — wide content reads large without filling the column */
+  max-width: var(--measure-wide); /* wide content reads large without filling the column */
 }
 
 /* Centre the diagram inside a broken-out figure so small inline concept SVGs
@@ -497,4 +504,163 @@ html[data-theme="dark"] .page__content figure img {
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
+}
+
+
+/* ==========================================================================
+   INDEX AND POST HEADER — "tightened index"
+   --------------------------------------------------------------------------
+   Home page: the newest post is a featured card, the rest are summary rows.
+   /posts/: the same summary rows grouped by year. Post pages: a short header
+   under the hero with reading time, the optional `measurement` string and the
+   excerpt as a lead. Everything sits on the --global-* tokens, so light, dark
+   and sepia follow without per-theme rules.
+   ========================================================================== */
+
+/* The home page's own <h1> repeats the name already shown in the masthead and
+   the author card, so keep it for assistive tech and outline only. */
+.home-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page__content a.home-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  margin: 1.5em 0 2em;
+  padding: 1.1em 1.25em;
+  border: 1px solid var(--global-border-color);
+  border-radius: var(--radius-card);
+  color: var(--global-text-color);
+  text-decoration: none;
+  transition: border-color 0.15s ease;
+
+  &:hover { border-color: var(--global-accent); }
+  &:hover .home-feature__title { text-decoration: underline; }
+}
+.home-feature__kicker {
+  font-family: $monospace;
+  font-size: 0.68em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--global-accent);
+}
+.home-feature__title {
+  font-family: $sans-serif-narrow;
+  font-size: 1.3em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.home-feature__lead {
+  font-size: 0.92em;
+  line-height: 1.55;
+  color: var(--global-text-color-light);
+}
+
+/* Summary rows: a rule between entries and a little more air than the bare
+   date-and-title rows the archives keep. */
+.post-row--summary,
+.home-rows .post-row {
+  margin: 0;
+  padding: 0.7em 0;
+  border-top: 1px solid var(--global-border-color);
+}
+.post-row--summary .post-row__title,
+.home-rows .post-row__title { font-weight: 500; }
+.post-row--summary .post-row__meta { margin-top: 0.2em; }
+
+.post-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-top: 0.45em;
+}
+.post-row__tag {
+  padding: 0.1em 0.6em;
+  border: 1px solid var(--global-border-color);
+  border-radius: var(--radius-pill);
+  font-size: 0.72em;
+  line-height: 1.5;
+  color: var(--global-text-color-light);
+}
+
+/* Optional headline measurement (`measurement:` in a post's front matter).
+   Rendered only when the key is set, so posts without one reserve no space. */
+.post-row__measure,
+.post-head__measure {
+  display: inline-block;
+  margin-left: 0.6em;
+  padding: 0.05em 0.55em;
+  border: 1px solid var(--global-accent);
+  border-radius: var(--radius-pill);
+  font-size: 0.74em;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--global-accent);
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+/* Project thumbnail: only present when the project sets header.teaser. */
+.post-row--thumb .post-row__body { flex: 1 1 auto; }
+.post-row__thumb {
+  flex: 0 0 auto;
+  align-self: center;
+  width: 5.5em;
+  height: 3.6em;
+  margin: 0;
+  border: 1px solid var(--global-border-color);
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Narrow screens: the date sits above the title instead of beside it, so the
+   title and summary get the full width. */
+@media (max-width: 480px) {
+  .post-row--summary,
+  .home-rows .post-row {
+    flex-wrap: wrap;
+    gap: 0.1em 0.75em;
+  }
+  .post-row--summary .post-row__date,
+  .home-rows .post-row__date { flex: 1 0 100%; }
+  .post-row--summary .post-row__body,
+  .home-rows .post-row__body { flex: 1 1 0; }
+  .post-row__thumb { width: 4.2em; height: 2.8em; }
+}
+
+/* Post header under the hero. No date: post timestamps stay hidden site-wide
+   (see _layouts/single.html). */
+.post-head {
+  margin-top: 0;
+  margin-bottom: 2em;
+  padding-bottom: 1.25em;
+  border-bottom: 1px solid var(--global-border-color);
+}
+.post-head__meta {
+  margin: 0 0 0.5em;
+  font-size: 0.8em;
+  color: var(--global-text-color-light);
+}
+.post-head__lead {
+  margin: 0;
+  font-size: 1.02em;
+  line-height: 1.6;
+  color: var(--global-text-color);
+}
+
+/* A display equation wider than a phone screen scrolls inside its own box
+   instead of widening the page. */
+.page__content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.15em;
 }
