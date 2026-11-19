@@ -19,10 +19,6 @@
      post-list rows 4+ on the home page — see docs/perf/budgets.json) */
   height: auto;
 
-  -webkit-animation: intro 0.3s both;
-          animation: intro 0.3s both;
-  -webkit-animation-delay: 0.45s;
-          animation-delay: 0.45s;
   border-top: 1px solid var(--global-dark-border-color);
 
   footer {

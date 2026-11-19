@@ -51,13 +51,20 @@ layout: default
         posts render no "Published:"/"Updated:" line. The datePublished /
         dateModified <meta> above stays as invisible structured data for SEO. Two
         cases:
-          1. Overlay hero posts - title is drawn inside the hero; nothing is
-             rendered below the hero.
+          1. Overlay hero posts - title is drawn inside the hero; below it a
+             short header gives the reading time, the optional `measurement`
+             front-matter string, and the excerpt as a lead. No date.
           2. Everything else (publications, portfolio, pages, non-overlay posts)
              - render the title here, then the venue/year meta for the collections
              that still use it. Posts fall through with no date.
       {%- endcomment -%}
       {% if page.header.overlay_color or page.header.overlay_image %}
+        {% if page.collection == 'posts' %}
+          <header class="post-head">
+            <p class="post-head__meta">{{ page.content | strip_html | number_of_words | divided_by: site.words_per_minute | plus: 1 }} min read{% if page.measurement %}<span class="post-head__measure">{{ page.measurement }}</span>{% endif %}</p>
+            {% if page.excerpt %}<p class="post-head__lead">{{ page.excerpt | markdownify | strip_html | strip_newlines | strip }}</p>{% endif %}
+          </header>
+        {% endif %}
       {% else %}
         <header>
           {% if page.title and page.title != "" %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
