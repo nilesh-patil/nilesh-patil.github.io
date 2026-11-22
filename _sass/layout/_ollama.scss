@@ -15,7 +15,7 @@
 
 :root {
   --radius-pill : 9999px;   /* Ollama rounded.full — every interactive control */
-  --measure     : 31rem;    /* post prose column: about 62 characters a line   */
+  --measure     : 36.7rem;  /* post prose column: 660px, about 75 characters   */
   --measure-wide: 42rem;    /* figures, code, tables break out to this band    */
   --radius-card : 12px;     /* Ollama rounded.lg   — cards, code blocks, TOC   */
   --radius-chip : 6px;      /* Ollama rounded.sm   — inline code, small chips   */
@@ -301,8 +301,9 @@ textarea:focus-visible {
    --------------------------------------------------------------------------
    Posts drop the LHS author card (single.html skips the sidebar and tags the
    article `.page--wide`). The article reclaims that 2/12 track, the prose is
-   capped to a ~66ch measure (Bringhurst/WCAG 1.4.8 reading band, was ~80-85
-   cpl) and centred, and figures / code / tables / notices break out to a wider
+   capped to a ~75-character measure (under the WCAG 1.4.8 80-character
+   ceiling; technical prose with inline code wraps badly much below that)
+   and centred, and figures / code / tables / notices break out to a wider
    band so the data charts keep their size. The TOC rail sits on the RIGHT:
    the article takes the first 9/12, so the text starts near the page's left
    edge instead of being pushed in by a left-hand rail, and the rail takes the
@@ -334,12 +335,12 @@ textarea:focus-visible {
 .page--wide .page__meta,
 .page--wide .page__share,
 .page--wide .page__taxonomy {
-  /* ~66ch of body text. NOTE: this MUST be a root-relative unit, not `ch` —
+  /* ~75 characters of body text. NOTE: this MUST be a root-relative unit, not `ch` —
      `ch` resolves against each element's own font, so on a heading (the larger
-     rounded display face) 66ch is ~1187px and the heading would blow past the
+     rounded display face) a ch-based cap is about twice as wide and the heading would blow past the
      column while the 18px paragraph capped correctly. rem keeps every block on
      one shared measure so headings and prose align. */
-  max-width: var(--measure); /* about 62 characters a line at the 18px body, measured in the browser */
+  max-width: var(--measure); /* about 75 characters a line at the 18px body, measured in the browser */
   margin-left: auto;
   margin-right: auto;
 }
